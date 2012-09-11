@@ -27,7 +27,7 @@ from rpathcmd.utils import *
 import pdb
 
 class RpathShell(Cmd):
-    __module_list = [ 'api', 'projects', 'systems', 'images', 'platforms']  
+    __module_list = [ 'api', 'projects', 'groups', 'systems', 'images', 'platforms']  
 
     # a SyntaxError is thrown if we don't wrap this in an 'exec'
     for module in __module_list:
