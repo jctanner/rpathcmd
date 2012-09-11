@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<imageDefinitions>
+  <imageDefinition>
+    <container id="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/containers/vmwareEsxImage">
+      <name>vmwareEsxImage</name>
+      <displayName>VMware(R) ESX/VCD Virtual Appliance</displayName>
+    </container>
+    <architecture id="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/architectures/x86">
+      <name>x86</name>
+      <displayName>x86 (32-bit)</displayName>
+    </architecture>
+    <flavorSet id="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/flavorSets/generic">
+      <name>generic</name>
+      <displayName>Generic</displayName>
+    </flavorSet>
+    <description/>
+    <name>VMware ESX (x86)</name>
+    <displayName>VMware ESX (x86)</displayName>
+    <imageGroup/>
+    <imageType>vmwareEsxImage</imageType>
+    <options autoResolve="false" freespace="$FREESPACE" natNetworking="true" vmMemory="1024" swapSize="2048" baseFileName="" installLabelPath="" vmSnapshots="false"/>
+  </imageDefinition>
+</imageDefinitions>

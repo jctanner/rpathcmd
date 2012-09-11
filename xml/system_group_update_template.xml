@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<job>
+  <descriptor id="https://$RBA/api/v1/inventory/systems/$SYSTEM_ID/descriptors/update" href="https://$RBA/api/v1/inventory/systems/$SYSTEM_ID/descriptors/update">
+    <description/>
+    <descriptor/>
+    <name/>
+    <resource_type/>
+  </descriptor>
+  <descriptor_data>
+    <dry_run>false</dry_run>
+    <system id="https://$RBA/api/v1/inventory/systems/$SYSTEM_ID" href="https://$RBA/api/v1/inventory/systems/$SYSTEM_ID"/>
+    <trove_label>$TROVE</trove_label>
+  </descriptor_data>
+  <job_type href="https://$RBA/api/v1/inventory/event_types/$EVENT_ID" id="https://$RBA/api/v1/inventory/event_types/$EVENT_ID"/>
+</job>

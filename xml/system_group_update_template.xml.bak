@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<job>
+  <descriptor href="https://$RBA_HOSTNAME/api/v1/inventory/systems/$SYSTEM_ID/descriptors/update" id="https://$RBA_HOSTNAME/api/v1/inventory/systems/$SYSTEM_ID/descriptors/update">
+    <description/>
+    <descriptor/>
+    <name/>
+    <resource_type/>
+  </descriptor>
+  <descriptor_data>
+    <dry_run>false</dry_run>
+    <system href="https://$RBA_HOSTNAME/api/v1/inventory/systems/$SYSTEM_ID" id="https://$RBA_HOSTNAME/api/v1/inventory/systems/$SYSTEM_ID">
+      <networks>
+        <network href="https://$RBA_HOSTNAME/api/v1/inventory/networks/160" id="https://poc3.fe.rpath.com/api/v1/inventory/networks/160">
+          <dns_name>172.16.72.153</dns_name>
+          <pinned>false</pinned>
+          <ip_address>172.16.72.153</ip_address>
+        </network>
+      </networks>
+      <management_interface href="https://poc3.fe.rpath.com/api/v1/inventory/management_interfaces/1" id="https://poc3.fe.rpath.com/api/v1/inventory/management_interfaces/1">
+        <description>Common Information Model (CIM)</description>
+        <name>cim</name>
+        <resource_type/>
+      </management_interface>
+      <network_address>
+        <address>172.16.72.153</address>
+        <pinned>false</pinned>
+      </network_address>
+      <system_type href="https://$RBA_HOSTNAME/api/v1/inventory/system_types/1"/>
+      <managing_zone href="https://$RBA_HOSTNAME/api/v1/inventory/zones/1"/>
+      <description>jt-apilaunch-100</description>
+      <configuration href="https://$RBA_HOSTNAME/api/v1/inventory/systems/$SYSTEM_ID/configuration" id="https://$RBA_HOSTNAME/api/v1/inventory/systems/$SYSTEM_ID/configuration"/>
+      <name>$SYSTEM_NAME</name>
+      <current_state href="https://$RBA_HOSTNAME/api/v1/inventory/system_states/4" id="https://$RBA_HOSTNAME/api/v1/inventory/system_states/4">
+        <description>Online</description>
+        <name>responsive</name>
+        <created_date>2012-02-08T22:01:27.907Z</created_date>
+        <resource_type/>
+      </current_state>
+      <resource_type/>
+      <should_migrate>false</should_migrate>
+      <system_tags/>
+    </system>
+    <trove_label>$TROVE_LABEL</trove_label>
+  </descriptor_data>
+  <job_type href="https://$RBA_HOSTNAME/api/v1/inventory/event_types/26" id="https://$RBA_HOSTNAME/api/v1/inventory/event_types/26"/>
+</job>

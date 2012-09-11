@@ -1,0 +1,10 @@
+<imageDefinitions><imageDefinition><container id="https://qa3.eng.rpath.com/api/products/test-centos6-automation2-1347312349/versions/1.0/containers/vmwareEsxImage">
+  <name>vmwareEsxImage</name>
+    <displayName>VMware(R) ESX/VCD Virtual Appliance</displayName>
+    </container><architecture id="https://qa3.eng.rpath.com/api/products/test-centos6-automation2-1347312349/versions/1.0/architectures/x86">
+      <name>x86</name>
+        <displayName>x86 (32-bit)</displayName>
+        </architecture><flavorSet id="https://qa3.eng.rpath.com/api/products/test-centos6-automation2-1347312349/versions/1.0/flavorSets/generic">
+          <name>generic</name>
+            <displayName>Generic</displayName>
+            </flavorSet><description/><name>VMware ESX (x86)</name><displayName>VMware ESX (x86)</displayName><imageGroup/><imageType>vmwareEsxImage</imageType><options autoResolve="false" freespace="1024" natNetworking="true" vmMemory="1024" swapSize="2048" baseFileName="" installLabelPath="" vmSnapshots="false"/></imageDefinition></imageDefinitions>

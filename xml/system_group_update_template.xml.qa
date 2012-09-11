@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<job>
+  <descriptor id="https://qa3.eng.rpath.com/api/v1/inventory/systems/751/descriptors/update" href="https://qa3.eng.rpath.com/api/v1/inventory/systems/751/descriptors/update">
+    <description/>
+    <descriptor/>
+    <name/>
+    <resource_type/>
+  </descriptor>
+  <descriptor_data>
+    <dry_run>false</dry_run>
+    <system id="https://qa3.eng.rpath.com/api/v1/inventory/systems/751" href="https://qa3.eng.rpath.com/api/v1/inventory/systems/751"/>
+    <trove_label>group-test-centos6-listtypetest-appliance=/test-centos6-listtypetest.eng.rpath.com@rpath:test-centos6-listtypetest-1.0-devel/1.0-1-1</trove_label>
+  </descriptor_data>
+  <job_type href="https://qa3.eng.rpath.com/api/v1/inventory/event_types/26" id="https://qa3.eng.rpath.com/api/v1/inventory/event_types/26"/>
+</job>

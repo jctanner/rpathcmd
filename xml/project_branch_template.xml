@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<project_branch>
+  <description>branch created by rpathcmd</description>
+  <label/>
+  <name>$BRANCH_NAME</name>
+  <namespace/>
+  <platform id="https://$RBA/api/platforms/$PLATFORM_ID"/>
+  <platform_label>$PLATFORM_LABEL</platform_label>
+  <project id="https://$RBA/api/v1/projects/$PROJECT_SHORTNAME"/>
+  <project_version/>
+  <source_group/>
+</project_branch>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<imageDefinitions href="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/imageDefinitions" id="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/imageDefinitions">
+  <imageDefinition>
+    <architecture href="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/architectures/x86" id="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/architectures/x86">
+      <name>x86</name>
+      <displayName>x86 (32-bit)</displayName>
+      <description/>
+      <resource_type/>
+    </architecture>
+    <container href="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/containers/vmwareImage" id="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/containers/vmwareImage">
+      <description/>
+      <displayName>VMware(R) Workstation/Fusion Virtual Appliance</displayName>
+      <name>vmwareImage</name>
+      <resource_type/>
+    </container>
+    <description/>
+    <displayName>rpathcmd_image_def</displayName>
+    <flavorSet href="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/flavorSets/generic" id="https://$RBA/api/products/$PROJECT_SHORTNAME/versions/$BRANCH_NAME/flavorSets/generic">
+      <name>generic</name>
+      <displayName>Generic</displayName>
+      <description/>
+      <resource_type/>
+    </flavorSet>
+    <imageGroup/>
+    <imageType>vmwareImage</imageType>
+    <name>rpathcmd_image_def</name>
+    <options>
+      <allowSnapshots>true</allowSnapshots>
+      <autoResolve>false</autoResolve>
+      <baseFileName/>
+      <buildOVF10>true</buildOVF10>
+      <diskAdapter>lsilogic</diskAdapter>
+      <freespace>$FREESPACE</freespace>
+      <installLabelPath/>
+      <natNetworking>true</natNetworking>
+      <swapSize>512</swapSize>
+      <vhdDiskType/>
+      <vmMemory>1024</vmMemory>
+    </options>
+  </imageDefinition>
+</imageDefinitions>
