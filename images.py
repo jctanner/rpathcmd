@@ -177,6 +177,12 @@ def __get_build_names(self, projectshortname, branchname):
       <imageDefinition>
         <name>VMware ESX (x86)</name>
     '''
+
+    # define REST session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+    
     #https://qa3.eng.rpath.com/api/products/test-centos6-automation2-1347312349/versions/1.0/imageDefinitions
     tmpxml =  h2.request('http://' + self.options.server +
                 '/api/products/' + projectshortname +
