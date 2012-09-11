@@ -15,7 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-
+import xmlrpc.client
 import shlex
 from getpass import getpass
 from optparse import Option
@@ -286,8 +286,10 @@ def do_project_branch_create(self, args):
 
  
 def help_project_branch_imagedef_create(self):
-    print "project_branch_create: create a project branch image definition (32bit vmware only)"
-    print "usage: project_branch_create project_shortname branch_name freespace"    
+    print "project_branch_imagedef_create: create " +
+            "a project branch image definition (64bit vmware only)"
+    print "usage: project_branch_imagedef_create" +
+            " project_shortname branch_name freespace"    
 
 def do_project_branch_imagedef_create(self, args):
    
@@ -335,7 +337,7 @@ def do_project_branch_imagedef_create(self, args):
                             method="PUT",
                             body=postxml)
 
-    epdb.st()
+    #epdb.st()
     #pprint(returndata)
     if returndata[0]['status'] != '200':
         print "creation failed: %s" % returndata[0]['status']
@@ -345,4 +347,41 @@ def do_project_branch_imagedef_create(self, args):
 
 
     returnxml = xobj.parse(returndata[1])
+    print returnxml
+    #epdb.st()
+
+def help_project_branch_group_create(self):
+    print "project_branch_group_create: create a default group" +
+            " in the Development stage of a group"
+    print "usage: project_branch_create project_shortname" +
+            " branch_name"   
+
+def do_project_branch_group_create(self, args):
+
+    # Entering robotframework keyword _buildGroup
+    # qa_xmlrpc.start_appcreator_session
+    # method name: startApplianceCreatorSession
+    # arguments: (37, 73, True, 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel')
+    # get_package_creator_recipe
+    # returned: ... a recipe
+
+    '''
+    self.options.username
+    self.options.password
+    self.options.server
+    '''
+
+    # xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % 
+    #                           (username, password, self.host)
+    # self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
+
+    xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" %
+        (self.options.username, self.options.password, self.options.server)
+    self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
+
+
+
+
+
+
     epdb.st()
