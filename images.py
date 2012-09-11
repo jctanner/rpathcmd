@@ -148,7 +148,7 @@ def do_image_build(self, args):
     branch_id = int(__branchname_to_id(self, projectshortname, branchname))
     rebuild = False
     stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
-    stage_label = stage_label + str(args[2])
+    stage_label = stage_label + '-' + str(args[2])
 
     # very basic input validation
     if str(args[2]) == "devel":
@@ -158,17 +158,19 @@ def do_image_build(self, args):
 
     # fetch a list of build definitions for the branch
     build_names = __get_build_names(self, projectshortname, branchname)
-    epdb.st()
+    #epdb.st()
 
     # create appcreator session
     print "starting appcreator session: %s %s %s %s" %(proj_id, branch_id, rebuild, stage_label)
     sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id, 
                                                           rebuild, stage_label)
+
     # [False, ['session-tUUlDZ', {'isApplianceCreatorManaged': True}]]
     pcreator_session = sessiondata[1][0]
 
     print "starting imagebuild with appcreator"
     
+    epdb.st()
     # newBuildsFromProductDefinition
     #   branch_id, Stagename, False, ['VMware ESX (x86)'], 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel' 
     self.proxy.newBuildsFromProductDefinition(branch_id, stagename, build_names, stage_label)
