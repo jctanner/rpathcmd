@@ -276,7 +276,7 @@ def __branchname_to_devlabel (self, projectshortname, branchname):
     return label
 
 # Return the number of child nodes (useful for collection that can have 0|1|many
-def getXobjElementChildCount(element, attributeName):
+def getXobjElementChildCount(self, element, attributeName):
     if not hasattr(element, attributeName):
         return 0
     else:
