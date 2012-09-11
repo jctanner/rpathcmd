@@ -150,6 +150,12 @@ def do_image_build(self, args):
     stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
     stage_label = stage_label + str(args[2])
 
+    # very basic input validation
+    if str(args[2]) == "devel":
+        stagename = "Development"
+    elif str(args[2]) == "qa":
+        stagename = "QA"
+
     # fetch a list of build definitions for the branch
     build_names = __get_build_names(self, projectshortname, branchname)
     epdb.st()
@@ -165,6 +171,8 @@ def do_image_build(self, args):
     
     # newBuildsFromProductDefinition
     #   branch_id, Stagename, False, ['VMware ESX (x86)'], 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel' 
+    self.proxy.newBuildsFromProductDefinition(branch_id, stagename, build_names, stage_label)
+    epdb.st()
 
 
 def __get_build_names(self, projectshortname, branchname):
