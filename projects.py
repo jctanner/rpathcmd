@@ -385,16 +385,49 @@ def do_project_branch_group_create(self, args):
     xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
     self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
 
-    params = {
-        'project_id': 26,
-        'version_id': 42,
-        'rebuild': False,
-        'stage_label': 'shortname-test0001.fe.rpath.com@r:shortname-test0001-trunk-devel'
-    }
+    project_id 26,
+    version_id 42,
+    rebuild = False
+    stage_label = 'shortname-test0001.fe.rpath.com@r:shortname-test0001-trunk-devel'
 
     #self.proxy.startApplianceCreatorSession(params)
 
+    sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id, 
+                                                          rebuild, stage_label)
+
+    # [False, ['session-tUUlDZ', {'isApplianceCreatorManaged': True}]]
+    pcreator_session = sessiondata[1][0]
+
+    # [False, [True, '# vim: ts=4 sw=4 expandtab ai\n#\n# rPath, Inc
+    recipedata = self.proxy.getPackageCreatorRecipe(pcreator_session)
+    recipe = recipedata[1][1]
+
+
+    '''
+    (Epdb) self.proxy.listApplianceSearchPaths('session-tUUlDZ')
+    [False, [['group-rpath-packages=centos6.rpath.com@rpath:centos-6-common/201207231423-1-16', False], ['group-os=centos6.rpath.com@rpath:centos-6e/2012.09.10_0638.47-1-1', False]]]
+    '''
+    # setApplianceTroves('session-6jQT5s', ['ssh-pub-key'])
+    # makeApplianceTrove('session-6jQT5s')
+    # getPackageBuildStatus('session-6jQT5s')
+    #       returned: [False, [False, 4, 'running: Loading 1 troves', []]]
+    # getPackageBuildStatus('session-6jQT5s')
+    #       returned: [False, [True, 2, 'committed: ',
+
+
+    # savePackageCreatorRecipe(session, recipe)
     epdb.st()
+
+    groupbuildstatus = False
+    groupbuilddata = self.proxy.makeApplianceTrove(pcreator_session)
+
+    while groupbuildstatus == False:
+
+        groupbuilddata = self.proxy.getPackageBuildStatus(pcreator_session)
+        groupbuildstatus = groupbuilddata[1][0] 
+        print groupbuildata[1][2] 
+        epdb.st()
+        time.sleep(5)
 
 
 
