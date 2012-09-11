@@ -41,6 +41,7 @@ help
 
 ## Example
 <pre>
+#!/bin/bash
 NEWPROJ='jt-api-rpathcmd-01'
 NEWBRANCH='trunk'
 PACKAGES='openssh-server,openssh-clients,strace'
