@@ -196,7 +196,7 @@ def __watch_image_build(self, imageid):
     h2.add_credentials(self.options.username, self.options.password)
 
     tmpxml =  h2.request('http://' + self.options.server +
-                        '/api/v1/images/' + imageid)
+                        '/api/v1/images/' + str(imageid))
 
     image_data = xobj.parse(tmpxml[1]) 
     epdb.st()
