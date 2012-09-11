@@ -18,19 +18,6 @@ from xobj import xobj
 import epdb
 
 
-'''
- 627 def _getLatestGroupAppliance(self, auth, project, stage):
- 628 logutil.info("_getLatestGroupAppliance")
- 629 repository_search = restutil.get(stage.project_branch_stage.groups.href, auth=auth)
- 630 matches = helpers.getXpathMatchList(repository_search,
- 631 "/troves/trove[name='group-%s-appliance']" % project.project.short_name)
- 632 asserts.fail_unless(len(matches) > 0, "Could not find any built group for this product.")
- 633 group_versions = [x.trove.trailingVersion for x in matches]
- 634 group_versions.sort()
- 635 trailing_version = group_versions[-1]
- 636 matches = [match for match in matches if match.trove.trailingVersion == trailing_version]
- 637 return matches 
- '''
 
 def help_group_list(self):
     print "group_list: list groups in a project branch stage"
@@ -70,8 +57,10 @@ def do_group_list(self, args):
 
     tmpdata = xobj.parse(tmpxml[1])
 
-    epdb.st()
+    #epdb.st()
 
+    for trove in tmpdata.troves.trove:
+        print "%s=%s" %(trove.name, trove.version)
 
 def help_group_create(self):
     print "project_branch_group_create: create a default group" 
