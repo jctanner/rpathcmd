@@ -353,8 +353,8 @@ def do_project_branch_imagedef_create(self, args):
 def help_project_branch_group_create(self):
     print "project_branch_group_create: create a default group" 
     print "     in the Development stage of a group"
-    print "usage: project_branch_create project_shortname" 
-    print "     branch_name"   
+    print "usage: project_branch_create project_id" 
+    print "     branch_name label"   
 
 def do_project_branch_group_create(self, args):
 
