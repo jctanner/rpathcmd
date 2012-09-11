@@ -17,6 +17,20 @@ from genshi.template import TextTemplate
 from xobj import xobj
 import epdb
 
+def do_group_argtest(self, args):
+
+    (args, options) = parse_arguments(args)
+
+    edpb.st()
+
+
+    projectshortname = args[0]
+    proj_id = int(__projectshortname_to_id(self, projectshortname))
+    branchname = args[1]
+    branch_id = int(__branchname_to_id(self, projectshortname, branchname))
+    rebuild = False
+    stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
+    stage_label = stage_label + '-devel'
 
 
 def help_group_list(self):
