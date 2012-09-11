@@ -296,6 +296,10 @@ def do_project_branch_imagedef_list(self, args):
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)
 
+    (args, options) = parse_arguments(args)
+    projectshortname = args[0]
+    branchname = args[1]
+
     tmpxml =  h2.request('http://' + self.options.server +
                 '/api/products/' + projectshortname +
                 '/versions/' + branchname + '/imageDefinitions' )    
