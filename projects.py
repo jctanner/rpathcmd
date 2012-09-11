@@ -425,7 +425,7 @@ def do_project_branch_group_create(self, args):
 
         groupbuilddata = self.proxy.getPackageBuildStatus(pcreator_session)
         groupbuildstatus = groupbuilddata[1][0] 
-        print groupbuildata[1][2] 
+        print groupbuilddata[1][2] 
         epdb.st()
         time.sleep(5)
 
