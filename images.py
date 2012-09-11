@@ -187,6 +187,28 @@ def do_image_create(self, args):
 
     self.proxy.newBuildsFromProductDefinition()
 
+def __projectshortname_to_id (self, projectshortname):
+    #create session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    # request queryset by NAME
+    tmpxml =  h2.request('http://' + self.options.server + '/api/v1/projects')
+
+    # find the queryset URL
+    tmpdata = xobj.parse(tmpxml[1])
+    fullcollectionurl = tmpdata.projects.full_collection
+
+    # filter for specific project name
+    fullcollectionurl = fullcollectionurl + ';filter_by=[project.short_name,EQUAL,' + projectshortname + ']'
+    fullxml = h2.request(fullcollectionurl)
+    fulldata = xobj.parse(fullxml[1])
+
+    # grep the project ID
+    project_id = fulldata.projects.project.project_id
+
+    return project_id
 
 def __branchname_to_id (self, projectshortname, branchname):
     #create session 
