@@ -51,22 +51,22 @@ def do_group_list(self, args):
     branchname = args[1]
     branch_id = int(__branchname_to_id(self, projectshortname, branchname))
 
-    epdb.st()
+    #epdb.st()
 
     stage = args[2]
     stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
     stage_label = stage_label + '-' + str(stage)
  
     f = { 'type' : 'group', 'label' : stage_label}
-    urllib.urlencode(f)
+    fields = urllib.urlencode(f)
 
-    epdb.st()
+    #epdb.st()
 
     # api/v1/projects/jt-pcreator/project_branches;filter_by=[name,EQUAL,trunk]
     # request queryset by NAME
     tmpxml =  h2.request('http://' + self.options.server +
                 '/api/products/' + projectshortname +
-                '/repos/search?type=group&label=' + label )
+                '/repos/search?' + fields )
 
     tmpdata = xobj.parse(tmpxml[1])
 
