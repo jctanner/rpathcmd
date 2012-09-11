@@ -66,7 +66,7 @@ def do_group_create(self, args):
     #epdb.st()
 
     # create appcreator session
-    print "starting appcreator session: %s %s %s %s" %(projec_id, branch_id, rebuild, stage_label)
+    print "starting appcreator session: %s %s %s %s" %(proj_id, branch_id, rebuild, stage_label)
     sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id, 
                                                           rebuild, stage_label)
     # [False, ['session-tUUlDZ', {'isApplianceCreatorManaged': True}]]
