@@ -57,13 +57,13 @@ def do_group_create(self, args):
     (args, options) = parse_arguments(args)
 
     projectshortname = args[0]
-    #proj_id = self.
+    proj_id = __projectshortname_to_id(self, projectshortname) 
     branchname = args[1]
-    #branch_id = 
+    branch_id = __branchname_to_id(self, projectshortname, branchname)
     rebuild = False
-    #stage_label = 
+    stage_label = __branchname_to_devlabel(self, projectshortname, branchname)
 
-    epdb.st()
+    #epdb.st()
 
     # create appcreator session
     sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id, 
