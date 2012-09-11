@@ -123,4 +123,105 @@ def do_image_info(self, options):
 
     #for file in tmpdata.images.files:
     #    epdb.st()
+   
+
+def help_image_create(self):
+    print "image_create: build an image from the latest group in a PBS"
+    print "usage: image_create projectshortname branchname stage"
+
+def do_image_create(self, args):
+
+    # create REST session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    # create XMLRPC session
+    xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
+    self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
+
+    (args, options) = parse_arguments(args)
+
+    projectshortname = args[0]
+    proj_id = int(__projectshortname_to_id(self, projectshortname))
+    branchname = args[1]
+    branch_id = int(__branchname_to_id(self, projectshortname, branchname))
+    rebuild = False
+    stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
+    stage_label = stage_label + str(args[2])
+
+    #epdb.st()
+
+    # create appcreator session
+    print "starting appcreator session: %s %s %s %s" %(proj_id, branch_id, rebuild, stage_label)
+    sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id, 
+                                                          rebuild, stage_label)
+    # [False, ['session-tUUlDZ', {'isApplianceCreatorManaged': True}]]
+    pcreator_session = sessiondata[1][0]
+
+    # fetch the current/default group recipe
+    recipedata = self.proxy.getPackageCreatorRecipe(pcreator_session)
+    # [False, [True, '# vim: ts=4 sw=4 expandtab ai\n#\n# rPath, Inc
+    recipe = recipedata[1][1]
+
+    print "starting imagebuild with appcreator"
     
+    # newBuildsFromProductDefinition
+    #   branch_id, Stagename, False, ['VMware ESX (x86)'], 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel' 
+
+    # build_names, passed as list of imageDefinitions/imageDefinition/name
+    '''
+    <?xml version='1.0' encoding='UTF-8'?>
+    <imageDefinitions>
+      <imageDefinition>
+        <name>VMware ESX (x86)</name>
+    '''
+    #https://qa3.eng.rpath.com/api/products/test-centos6-automation2-1347312349/versions/1.0/imageDefinitions
+    tmpxml =  h2.request('http://' + self.options.server +
+                '/api/products/' + projectshortname +
+                '/versions/' + branchname + '/imageDefinitions' )
+
+    tmpdata = xobj.parse(tmpxml[1])
+
+    epdb.st()
+
+    self.proxy.newBuildsFromProductDefinition()
+
+
+def __branchname_to_id (self, projectshortname, branchname):
+    #create session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    # api/v1/projects/jt-pcreator/project_branches;filter_by=[name,EQUAL,trunk]
+    # request queryset by NAME
+    tmpxml =  h2.request('http://' + self.options.server +
+                '/api/v1/projects/' + projectshortname +
+                '/project_branches;filter_by=[name,EQUAL,' + branchname + ']' )
+
+    tmpdata = xobj.parse(tmpxml[1])
+
+    #epdb.st()
+
+    branch_id = tmpdata.project_branches.project_branch.branch_id
+    return branch_id
+
+def __branchname_to_devlabel (self, projectshortname, branchname):
+    #create session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    # api/v1/projects/jt-pcreator/project_branches;filter_by=[name,EQUAL,trunk]
+    # request queryset by NAME
+    tmpxml =  h2.request('http://' + self.options.server +
+                '/api/v1/projects/' + projectshortname +
+                '/project_branches;filter_by=[name,EQUAL,' + branchname + ']' )
+
+    tmpdata = xobj.parse(tmpxml[1])
+
+    #epdb.st()
+
+    label = tmpdata.project_branches.project_branch.label
+    return label
