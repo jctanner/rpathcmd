@@ -405,6 +405,7 @@ def do_project_branch_group_create(self, args):
     # start group build
     groupbuildstatus = False
     groupbuilddata = self.proxy.makeApplianceTrove(pcreator_session)
+    epdb.st()
 
     # poll till finished
     while groupbuildstatus == False:
