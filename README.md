@@ -38,3 +38,17 @@ Undocumented commands:
 ======================
 help
 </pre>
+
+## Example
+<pre>
+NEWPROJ='jt-api-rpathcmd-01'
+NEWBRANCH='trunk'
+PACKAGES='openssh-server,openssh-clients,strace'
+PLATFORM='centos6.rpath.com@rpath:centos-6e'
+PLATFORMID=$(rpathcmd platforms_list | fgrep $PLATFORM | cut -d\: -f1)
+
+rpathcmd project_create $PROJECT $PROJECT
+project_branch_create $PROJECT $BRANCH $PLATFORMID $PLATFORM
+rpathcmd group_create $PROJECT $BRANCH $PACKAGES
+rpathcmd image_build $PROJECT $BRANCH devel
+</pre>
