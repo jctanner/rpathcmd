@@ -70,6 +70,8 @@ def do_group_list(self, args):
 
     tmpdata = xobj.parse(tmpxml[1])
 
+    epdb.st()
+
 
 def help_group_create(self):
     print "project_branch_group_create: create a default group" 
