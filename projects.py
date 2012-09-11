@@ -305,7 +305,7 @@ def do_project_branch_imagedef_list(self, args):
                 '/versions/' + branchname + '/imageDefinitions' )    
     tmpdata = xobj.parse(tmpxml[1])    
 
-    epdb.st()
+    #epdb.st()
     if isinstance(tmpdata.imageDefinitions.imageDefinition, object):
         output = tmpdata.imageDefinitions.imageDefinition.name + ' '
         output = output +  tmpdata.imageDefinitions.imageDefinition.container.name + ' '
