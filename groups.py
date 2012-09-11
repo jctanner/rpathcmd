@@ -63,7 +63,7 @@ def do_group_create(self, args):
     branchname = args[1]
     #branch_id = 
     rebuild = False
-    stage_label = 
+    #stage_label = 
 
     # create appcreator session
     sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id, 
