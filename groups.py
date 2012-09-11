@@ -44,11 +44,14 @@ def do_group_list(self, args):
     h2 = httplib2.Http("~/import_spf/.cache")
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)
-   
+  
+    (args, options) = parse_arguments(args) 
     projectshortname = args[0]
     proj_id = int(__projectshortname_to_id(self, projectshortname))
     branchname = args[1]
     branch_id = int(__branchname_to_id(self, projectshortname, branchname))
+
+    epdb.st()
 
     stage = args[2]
     stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
