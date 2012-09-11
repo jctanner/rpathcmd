@@ -5,8 +5,8 @@ framework ported from https://fedorahosted.org/spacewalk/wiki/spacecmd
 
 ## Installing
 1. install httplib2
-* yum install python-httplib2
-* conary update httplib2=contrib.rpath.org@rpl:2-py26
+** yum install python-httplib2
+** conary update httplib2=contrib.rpath.org@rpl:2-py26
 1. cd /usr/lib/python2.6/site-packages
 1. hg clone http://hg.rpath.com/xobj
 1. hg clone http://hg.rpath.com/epdb
