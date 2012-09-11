@@ -105,7 +105,7 @@ def do_group_create(self, args):
     packages = args[2]
     packages_list = re.split(r',', packages)
 
-    epdb.st()
+    #epdb.st()
 
     # create appcreator session
     print "starting appcreator session: %s %s %s %s" %(proj_id, branch_id, rebuild, stage_label)
@@ -121,6 +121,9 @@ def do_group_create(self, args):
 
 
     # setApplianceTroves('session-6jQT5s', ['ssh-pub-key'])
+    self.proxy.setApplianceTroves(pcreator_session, packages_list)
+
+
     # makeApplianceTrove('session-6jQT5s')
     # getPackageBuildStatus('session-6jQT5s')
     #       returned: [False, [False, 4, 'running: Loading 1 troves', []]]
