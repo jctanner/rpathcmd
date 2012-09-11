@@ -170,6 +170,7 @@ def do_image_create(self, args):
     #   branch_id, Stagename, False, ['VMware ESX (x86)'], 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel' 
 
     # build_names, passed as list of imageDefinitions/imageDefinition/name
+    #   if created with rpathcmd, will be 'rpathcmd_image_def'
     '''
     <?xml version='1.0' encoding='UTF-8'?>
     <imageDefinitions>
@@ -182,10 +183,13 @@ def do_image_create(self, args):
                 '/versions/' + branchname + '/imageDefinitions' )
 
     tmpdata = xobj.parse(tmpxml[1])
+    build_names = []
+    #tmpdata.imageDefinitions.imageDefinition.container.name
+    #tmpdata.imageDefinitions.imageDefinition.architecture.name
 
     epdb.st()
 
-    self.proxy.newBuildsFromProductDefinition()
+    #self.proxy.newBuildsFromProductDefinition()
 
 def __projectshortname_to_id (self, projectshortname):
     #create session 

@@ -284,6 +284,29 @@ def do_project_branch_create(self, args):
    
 
 
+def help_project_branch_imagedef_list(self):
+    print "project_branch_imagedef_list: list imagedefs for a project branch"
+    print "usage: project_branch_imagedef_list project_shortname branch_name"
+
+
+def do_project_branch_imagedef_list(self, args):    
+
+    # create REST session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    tmpxml =  h2.request('http://' + self.options.server +
+                '/api/products/' + projectshortname +
+                '/versions/' + branchname + '/imageDefinitions' )    
+    tmpdata = xobj.parse(tmpxml[1])    
+
+    for imagedef in tmpdata.imageDefinitions.imageDefinition:
+        print imagedef.container.name    
+        print imagedef.architecture.name    
+    #epdb.st()
+
+
  
 def help_project_branch_imagedef_create(self):
     print "project_branch_imagedef_create: create " 
