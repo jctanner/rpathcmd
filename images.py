@@ -199,8 +199,19 @@ def __watch_image_build(self, imageid):
                         '/api/v1/images/' + str(imageid))
 
     image_data = xobj.parse(tmpxml[1]) 
-    epdb.st()
-    image_status = image_data
+    #epdb.st()
+    image_status = image_data.image.status
+    
+    while int(image_status) != 300:
+        tmpxml =  h2.request('http://' + self.options.server +
+                            '/api/v1/images/' + str(imageid))
+        image_data = xobj.parse(tmpxml[1])
+        image_status = image_data.image.status
+        print image_data.image.status_message 
+        time.sleep(2)
+
+   if int(image_status) == 300:
+       print "image %s build completed" % imageid
 
 def __get_build_names(self, projectshortname, branchname):
 
