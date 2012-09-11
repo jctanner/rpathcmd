@@ -416,7 +416,7 @@ def do_project_branch_group_create(self, args):
 
 
     # savePackageCreatorRecipe(session, recipe)
-    epdb.st()
+    #epdb.st()
 
     groupbuildstatus = False
     groupbuilddata = self.proxy.makeApplianceTrove(pcreator_session)
@@ -426,7 +426,7 @@ def do_project_branch_group_create(self, args):
         groupbuilddata = self.proxy.getPackageBuildStatus(pcreator_session)
         groupbuildstatus = groupbuilddata[1][0] 
         print groupbuilddata[1][2] 
-        epdb.st()
+        #epdb.st()
         time.sleep(5)
 
 
