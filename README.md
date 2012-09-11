@@ -42,14 +42,16 @@ help
 ## Example
 <pre>
 #!/bin/bash
-NEWPROJ='jt-api-rpathcmd-01'
-NEWBRANCH='trunk'
+PROJECT='jt-api-rpathcmd-01'
+BRANCH='trunk'
 PACKAGES='openssh-server,openssh-clients,strace'
+FREESPACE='1024'
 PLATFORM='centos6.rpath.com@rpath:centos-6e'
 PLATFORMID=$(rpathcmd platforms_list | fgrep $PLATFORM | cut -d\: -f1)
 
 rpathcmd project_create $PROJECT $PROJECT
-project_branch_create $PROJECT $BRANCH $PLATFORMID $PLATFORM
+rpathcmd project_branch_create $PROJECT $BRANCH $PLATFORMID $PLATFORM
+rpathcmd project_branch_imagedef_create $PROJECT $BRANCH $FREESPACE
 rpathcmd group_create $PROJECT $BRANCH $PACKAGES
 rpathcmd image_build $PROJECT $BRANCH devel
 </pre>
