@@ -376,6 +376,7 @@ def do_project_branch_group_create(self, args):
     (args, options) = parse_arguments(args)
     proj_id = args[0]
     branch_id = args[1]
+    rebuild = False
     stage_label = args[2]
 
     # create appcreator session
