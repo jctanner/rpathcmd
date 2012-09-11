@@ -170,10 +170,10 @@ def do_image_build(self, args):
 
     print "starting imagebuild with appcreator"
     
-    epdb.st()
+    #epdb.st()
     # newBuildsFromProductDefinition
     #   branch_id, Stagename, False, ['VMware ESX (x86)'], 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel' 
-    self.proxy.newBuildsFromProductDefinition(branch_id, stagename, False, build_names, stage_label)
+    returndata = self.proxy.newBuildsFromProductDefinition(branch_id, stagename, False, build_names, stage_label)
     epdb.st()
 
 
