@@ -102,7 +102,7 @@ def do_group_create(self, args):
         time.sleep(5)
 
 
-def __projectshortname_to_id (projectshortname):
+def __projectshortname_to_id (self, projectshortname):
     #create session 
     h2 = httplib2.Http("~/import_spf/.cache")
     h2.disable_ssl_certificate_validation = True
@@ -125,7 +125,7 @@ def __projectshortname_to_id (projectshortname):
 
     return project_id
 
-def __branchname_to_id (projectshortname, branchname):
+def __branchname_to_id (self, projectshortname, branchname):
     #create session 
     h2 = httplib2.Http("~/import_spf/.cache")
     h2.disable_ssl_certificate_validation = True
@@ -144,7 +144,7 @@ def __branchname_to_id (projectshortname, branchname):
     branch_id = tmpdata.project_branches.project_branch.branch_id
     return branch_id
 
-def __branchname_to_devlabel (projectshortname, branchname):
+def __branchname_to_devlabel (self, projectshortname, branchname):
     #create session 
     h2 = httplib2.Http("~/import_spf/.cache")
     h2.disable_ssl_certificate_validation = True
