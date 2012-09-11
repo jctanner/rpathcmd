@@ -125,18 +125,18 @@ def do_image_info(self, options):
     #    epdb.st()
    
 
-def help_image_create(self):
-    print "image_create: build an image from the latest group in a PBS"
-    print "usage: image_create projectshortname branchname stage"
+def help_image_build(self):
+    print "image_build: build an image from the latest group in a PBS"
+    print "usage: image_build projectshortname branchname stage"
 
-def do_image_create(self, args):
+def do_image_build(self, args):
 
-    # create REST session 
+    # define REST session 
     h2 = httplib2.Http("~/import_spf/.cache")
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)
 
-    # create XMLRPC session
+    # define XMLRPC session
     xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
     self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
 
@@ -150,7 +150,9 @@ def do_image_create(self, args):
     stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
     stage_label = stage_label + str(args[2])
 
-    #epdb.st()
+    # fetch a list of build definitions for the branch
+    build_names = __get_build_names(self, projectshortname, branchname)
+    epdb.st()
 
     # create appcreator session
     print "starting appcreator session: %s %s %s %s" %(proj_id, branch_id, rebuild, stage_label)
@@ -159,15 +161,13 @@ def do_image_create(self, args):
     # [False, ['session-tUUlDZ', {'isApplianceCreatorManaged': True}]]
     pcreator_session = sessiondata[1][0]
 
-    # fetch the current/default group recipe
-    recipedata = self.proxy.getPackageCreatorRecipe(pcreator_session)
-    # [False, [True, '# vim: ts=4 sw=4 expandtab ai\n#\n# rPath, Inc
-    recipe = recipedata[1][1]
-
     print "starting imagebuild with appcreator"
     
     # newBuildsFromProductDefinition
     #   branch_id, Stagename, False, ['VMware ESX (x86)'], 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel' 
+
+
+def __get_build_names(self, projectshortname, branchname)
 
     # build_names, passed as list of imageDefinitions/imageDefinition/name
     #   if created with rpathcmd, will be 'rpathcmd_image_def'
@@ -183,13 +183,30 @@ def do_image_create(self, args):
                 '/versions/' + branchname + '/imageDefinitions' )
 
     tmpdata = xobj.parse(tmpxml[1])
+    resultcount = self.getXobjElementChildCount(tmpdata.imageDefinitions, 'imageDefinition')
+
     build_names = []
-    #tmpdata.imageDefinitions.imageDefinition.container.name
-    #tmpdata.imageDefinitions.imageDefinition.architecture.name
+    if (resultcount == 0):
+        print "no imagedefs found, exiting ..."
+        sys.exit(1)
+    elif(resultcount == 1):
+        print "single imagedef found"
+        print tmpdata.imageDefinitions.imageDefinition.name
+        print tmpdata.imageDefinitions.imageDefinition.container.name
+        print tmpdata.imageDefinitions.imageDefinition.architecture.name
+        build_names.append(tmpdata.imageDefinitions.imageDefinition.name)
+    elif (resultcount > 1):
+        for imagedef in tmpdata.imageDefinitions.imageDefinition:
+            print imagedef.name
+            print imagedef.container.name
+            print imagedef.architecture.name
+            build_names.append(imagedef.name)
 
-    epdb.st()
+    return build_names
+            
+    
 
-    #self.proxy.newBuildsFromProductDefinition()
+
 
 def __projectshortname_to_id (self, projectshortname):
     #create session 
@@ -251,3 +268,13 @@ def __branchname_to_devlabel (self, projectshortname, branchname):
 
     label = tmpdata.project_branches.project_branch.label
     return label
+
+# Return the number of child nodes (useful for collection that can have 0|1|many
+def getXobjElementChildCount(element, attributeName):
+    if not hasattr(element, attributeName):
+        return 0
+    else:
+        if isinstance(getattr(element, attributeName), list):
+            return len(getattr(element, attributeName))
+        else:
+            return 1
