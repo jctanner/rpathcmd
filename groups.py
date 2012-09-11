@@ -32,6 +32,33 @@ import epdb
  637 return matches 
  '''
 
+def help_group_list(self):
+    print "group_list: list groups in a project branch"
+    print "usage: group_list projectshortname branchname"
+
+def do_group_list(self, args):
+    xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
+    self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)    
+
+    (args, options) = parse_arguments(args)
+    projectshortname = args[0]
+    proj_id = int(__projectshortname_to_id(self, projectshortname))
+    branchname = args[1]
+    branch_id = int(__branchname_to_id(self, projectshortname, branchname))
+    rebuild = False
+    stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
+    stage_label = stage_label + '-devel'
+
+    # create appcreator session
+    print "starting appcreator session: %s %s %s %s" %(proj_id, branch_id, rebuild, stage_label)
+    sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id,
+                                                          rebuild, stage_label)
+    # [False, ['session-tUUlDZ', {'isApplianceCreatorManaged': True}]]
+    pcreator_session = sessiondata[1][0]
+
+    epdb.st()
+
+
 def help_group_create(self):
     print "project_branch_group_create: create a default group" 
     print "     in the Development stage of a group"
