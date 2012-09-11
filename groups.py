@@ -21,7 +21,7 @@ def do_group_argtest(self, args):
 
     (args, options) = parse_arguments(args)
 
-    edpb.st()
+    epdb.st()
 
 
     projectshortname = args[0]
