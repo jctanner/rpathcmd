@@ -62,6 +62,7 @@ def do_group_create(self, args):
     branch_id = int(__branchname_to_id(self, projectshortname, branchname))
     rebuild = False
     stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
+    stage_label = stage_label + '-devel'
 
     #epdb.st()
 
