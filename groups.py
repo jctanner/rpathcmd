@@ -56,14 +56,13 @@ def do_group_create(self, args):
 
     (args, options) = parse_arguments(args)
 
-    epdb.st()
-
     projectshortname = args[0]
     #proj_id = self.
     branchname = args[1]
     #branch_id = 
     rebuild = False
     #stage_label = 
+    epdb.st()
 
     # create appcreator session
     sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id, 
@@ -106,7 +105,7 @@ def __projectshortname_to_id (self, projectshortname):
     #create session 
     h2 = httplib2.Http("~/import_spf/.cache")
     h2.disable_ssl_certificate_validation = True
-    h2.add_credentials(self.optioons.username, self.options.password)
+    h2.add_credentials(self.options.username, self.options.password)
 
     # request queryset by NAME
     tmpxml =  h2.request('http://' + self.options.server + '/api/v1/projects')
