@@ -174,8 +174,33 @@ def do_image_build(self, args):
     # newBuildsFromProductDefinition
     #   branch_id, Stagename, False, ['VMware ESX (x86)'], 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel' 
     returndata = self.proxy.newBuildsFromProductDefinition(branch_id, stagename, False, build_names, stage_label)
-    epdb.st()
 
+    # newBuildsFromProductDefinition is going to return the imageID
+    #       [False, [34]]
+    imageid = returndata[1][0]
+    #epdb.st()
+
+    # http://poc3.fe.rpath.com/api/v1/images/34  image/status = 100 or 300
+    # http://poc3.fe.rpath.com/api/v1/images/34  image/status_message = Creating VMware (R) ESX Image or 'Job Finished'
+
+    # fetch image status
+
+    __watch_image_build(self, imageid)
+
+
+def __watch_image_build(self, imageid):
+    
+    # define REST session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    tmpxml =  h2.request('http://' + self.options.server +
+                        '/api/v1/images/' + imageid)
+
+    image_data = xobj.parse(tmpxml[1]) 
+    epdb.st()
+    image_status = image_data
 
 def __get_build_names(self, projectshortname, branchname):
 
