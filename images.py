@@ -167,7 +167,7 @@ def do_image_build(self, args):
     #   branch_id, Stagename, False, ['VMware ESX (x86)'], 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel' 
 
 
-def __get_build_names(self, projectshortname, branchname)
+def __get_build_names(self, projectshortname, branchname):
 
     # build_names, passed as list of imageDefinitions/imageDefinition/name
     #   if created with rpathcmd, will be 'rpathcmd_image_def'
