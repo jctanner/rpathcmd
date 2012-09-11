@@ -33,30 +33,39 @@ import epdb
  '''
 
 def help_group_list(self):
-    print "group_list: list groups in a project branch"
-    print "usage: group_list projectshortname branchname"
+    print "group_list: list groups in a project branch stage"
+    print "usage: group_list projectshortname branchname stage"
 
 def do_group_list(self, args):
-    xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
-    self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)    
 
-    (args, options) = parse_arguments(args)
+    # https://poc3.fe.rpath.com/api/products/shortname-test0001/repos/search?type=group&label=shortname-test0001.fe.rpath.com@r%3Ashortname-test0001-trunk-devel&_method=GET
+
+    #create session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+   
     projectshortname = args[0]
     proj_id = int(__projectshortname_to_id(self, projectshortname))
     branchname = args[1]
     branch_id = int(__branchname_to_id(self, projectshortname, branchname))
-    rebuild = False
-    stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
-    stage_label = stage_label + '-devel'
 
-    # create appcreator session
-    print "starting appcreator session: %s %s %s %s" %(proj_id, branch_id, rebuild, stage_label)
-    sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id,
-                                                          rebuild, stage_label)
-    # [False, ['session-tUUlDZ', {'isApplianceCreatorManaged': True}]]
-    pcreator_session = sessiondata[1][0]
+    stage = args[2]
+    stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
+    stage_label = stage_label + '-' + str(stage)
+ 
+    f = { 'type' : 'group', 'label' : stage_label}
+    urllib.urlencode(f)
 
     epdb.st()
+
+    # api/v1/projects/jt-pcreator/project_branches;filter_by=[name,EQUAL,trunk]
+    # request queryset by NAME
+    tmpxml =  h2.request('http://' + self.options.server +
+                '/api/products/' + projectshortname +
+                '/repos/search?type=group&label=' + label )
+
+    tmpdata = xobj.parse(tmpxml[1])
 
 
 def help_group_create(self):
