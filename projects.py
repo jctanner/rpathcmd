@@ -354,22 +354,9 @@ def help_project_branch_group_create(self):
     print "project_branch_group_create: create a default group" 
     print "     in the Development stage of a group"
     print "usage: project_branch_create project_id" 
-    print "     branch_name label"   
+    print "     branch_id label"   
 
 def do_project_branch_group_create(self, args):
-
-    # Entering robotframework keyword _buildGroup
-    # qa_xmlrpc.start_appcreator_session
-    # method name: startApplianceCreatorSession
-    # arguments: (37, 73, True, 'test-centos6-automation2-1347312349.eng.rpath.com@rpath:test-centos6-automation2-1347312349-1.0-devel')
-    # get_package_creator_recipe
-    # returned: ... a recipe
-
-    '''
-    self.options.username
-    self.options.password
-    self.options.server
-    '''
 
     '''
     project_id = 26
@@ -378,35 +365,31 @@ def do_project_branch_group_create(self, args):
     label = shortname-test0001.fe.rpath.com@r:shortname-test0001-trunk-devel
     '''
 
-    # xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % 
-    #                           (username, password, self.host)
-    # self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
-
     xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
     self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
 
-    proj_id = 26
-    branch_id = 42
-    rebuild = False
-    stage_label = 'shortname-test0001.fe.rpath.com@r:shortname-test0001-trunk-devel'
+    #proj_id = 26
+    #branch_id = 42
+    #rebuild = False
+    #stage_label = 'shortname-test0001.fe.rpath.com@r:shortname-test0001-trunk-devel'
 
-    #self.proxy.startApplianceCreatorSession(params)
+    (args, options) = parse_arguments(args)
+    proj_id = args[0]
+    branch_id = args[1]
+    stage_label = args[2]
 
+    # create appcreator session
     sessiondata = self.proxy.startApplianceCreatorSession(proj_id, branch_id, 
                                                           rebuild, stage_label)
-
     # [False, ['session-tUUlDZ', {'isApplianceCreatorManaged': True}]]
     pcreator_session = sessiondata[1][0]
 
-    # [False, [True, '# vim: ts=4 sw=4 expandtab ai\n#\n# rPath, Inc
+    # fetch the current/default group recipe
     recipedata = self.proxy.getPackageCreatorRecipe(pcreator_session)
+    # [False, [True, '# vim: ts=4 sw=4 expandtab ai\n#\n# rPath, Inc
     recipe = recipedata[1][1]
 
 
-    '''
-    (Epdb) self.proxy.listApplianceSearchPaths('session-tUUlDZ')
-    [False, [['group-rpath-packages=centos6.rpath.com@rpath:centos-6-common/201207231423-1-16', False], ['group-os=centos6.rpath.com@rpath:centos-6e/2012.09.10_0638.47-1-1', False]]]
-    '''
     # setApplianceTroves('session-6jQT5s', ['ssh-pub-key'])
     # makeApplianceTrove('session-6jQT5s')
     # getPackageBuildStatus('session-6jQT5s')
@@ -418,11 +401,12 @@ def do_project_branch_group_create(self, args):
     # savePackageCreatorRecipe(session, recipe)
     #epdb.st()
 
+    # start group build
     groupbuildstatus = False
     groupbuilddata = self.proxy.makeApplianceTrove(pcreator_session)
 
+    # poll till finished
     while groupbuildstatus == False:
-
         groupbuilddata = self.proxy.getPackageBuildStatus(pcreator_session)
         groupbuildstatus = groupbuilddata[1][0] 
         print groupbuilddata[1][2] 
