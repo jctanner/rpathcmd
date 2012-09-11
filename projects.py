@@ -286,10 +286,10 @@ def do_project_branch_create(self, args):
 
  
 def help_project_branch_imagedef_create(self):
-    print "project_branch_imagedef_create: create " +
-            "a project branch image definition (64bit vmware only)"
-    print "usage: project_branch_imagedef_create" +
-            " project_shortname branch_name freespace"    
+    print "project_branch_imagedef_create: create " 
+    print "     a project branch image definition (64bit vmware only)"
+    print "usage: project_branch_imagedef_create"
+    print "     project_shortname branch_name freespace"    
 
 def do_project_branch_imagedef_create(self, args):
    
@@ -351,10 +351,10 @@ def do_project_branch_imagedef_create(self, args):
     #epdb.st()
 
 def help_project_branch_group_create(self):
-    print "project_branch_group_create: create a default group" +
-            " in the Development stage of a group"
-    print "usage: project_branch_create project_shortname" +
-            " branch_name"   
+    print "project_branch_group_create: create a default group" 
+    print "     in the Development stage of a group"
+    print "usage: project_branch_create project_shortname" 
+    print "     branch_name"   
 
 def do_project_branch_group_create(self, args):
 
