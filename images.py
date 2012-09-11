@@ -210,13 +210,13 @@ def __get_build_names(self, projectshortname, branchname):
         print tmpdata.imageDefinitions.imageDefinition.name
         print tmpdata.imageDefinitions.imageDefinition.container.name
         print tmpdata.imageDefinitions.imageDefinition.architecture.name
-        build_names.append(tmpdata.imageDefinitions.imageDefinition.name)
+        str(build_names.append(tmpdata.imageDefinitions.imageDefinition.name))
     elif (resultcount > 1):
         for imagedef in tmpdata.imageDefinitions.imageDefinition:
             print imagedef.name
             print imagedef.container.name
             print imagedef.architecture.name
-            build_names.append(imagedef.name)
+            str(build_names.append(imagedef.name))
 
     return build_names
             
