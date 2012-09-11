@@ -374,8 +374,8 @@ def do_project_branch_group_create(self, args):
     #stage_label = 'shortname-test0001.fe.rpath.com@r:shortname-test0001-trunk-devel'
 
     (args, options) = parse_arguments(args)
-    proj_id = args[0]
-    branch_id = args[1]
+    proj_id = int(args[0])
+    branch_id = int(args[1])
     rebuild = False
     stage_label = args[2]
 
