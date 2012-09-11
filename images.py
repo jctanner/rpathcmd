@@ -210,7 +210,7 @@ def __watch_image_build(self, imageid):
         print image_data.image.status_message 
         time.sleep(2)
 
-   if int(image_status) == 300:
+    if int(image_status) == 300:
        print "image %s build completed" % imageid
 
 def __get_build_names(self, projectshortname, branchname):
