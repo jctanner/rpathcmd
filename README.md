@@ -19,3 +19,22 @@ framework ported from https://fedorahosted.org/spacewalk/wiki/spacecmd
 1. echo "password=\<password\>" >> ~/.rpathcmd/config
 1. echo "server=\<rcehostname\>" >> ~/.rpathcmd/config
 
+
+## Help
+
+<pre>
+[poc3.jtanner@jtshell ~]$ rpathcmd help
+
+Documented commands (type help <topic>):
+========================================
+api_v1_info   platforms_list                  projects_list      
+api_versions  project_branch_create           system_group_update
+group_create  project_branch_imagedef_create  system_info        
+group_list    project_branch_stages_list      systems_list       
+image_info    project_branches_list         
+images_list   project_create                
+
+Undocumented commands:
+======================
+help
+</pre>
