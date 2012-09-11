@@ -305,10 +305,11 @@ def do_project_branch_imagedef_list(self, args):
                 '/versions/' + branchname + '/imageDefinitions' )    
     tmpdata = xobj.parse(tmpxml[1])    
 
+    epdb.st()
     for imagedef in tmpdata.imageDefinitions.imageDefinition:
         print imagedef.container.name    
         print imagedef.architecture.name    
-    #epdb.st()
+    epdb.st()
 
 
  
