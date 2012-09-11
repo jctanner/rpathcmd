@@ -5,6 +5,7 @@ import shlex
 from getpass import getpass
 from optparse import Option
 from rpathcmd.utils import *
+import re
 
 import time
 import urllib
@@ -70,9 +71,9 @@ def do_group_list(self, args):
             print "%s=%s" %(trove.name, trove.version)
 
 def help_group_create(self):
-    print "project_branch_group_create: create a default group" 
-    print "     in the Development stage of a group"
-    print "usage: project_branch_create projectshortname branchname" 
+    print "group_create: create a group" 
+    print "     in the \"Development\" stage of a project branch"
+    print "usage: group_create projectshortname branchname package1,package2,package3" 
 
 def do_group_create(self, args):
 
@@ -101,7 +102,10 @@ def do_group_create(self, args):
     stage_label = str(__branchname_to_devlabel(self, projectshortname, branchname))
     stage_label = stage_label + '-devel'
 
-    #epdb.st()
+    packages = args[2]
+    packages_list = re.split(r',', packages)
+
+    epdb.st()
 
     # create appcreator session
     print "starting appcreator session: %s %s %s %s" %(proj_id, branch_id, rebuild, stage_label)
