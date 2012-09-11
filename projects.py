@@ -307,9 +307,10 @@ def do_project_branch_imagedef_list(self, args):
 
     epdb.st()
     if isinstance(tmpdata.imageDefinitions.imageDefinition, object):
-        print tmpdata.imageDefinitions.imageDefinition.name
-        print tmpdata.imageDefinitions.imageDefinition.container.name
-        print tmpdata.imageDefinitions.imageDefinition.architecture.name
+        output = tmpdata.imageDefinitions.imageDefinition.name + ' '
+        output = output +  tmpdata.imageDefinitions.imageDefinition.container.name + ' '
+        output = output + tmpdata.imageDefinitions.imageDefinition.architecture.name
+        print output
     else:    
         for imagedef in tmpdata.imageDefinitions.imageDefinition:
             print imagedef.name
