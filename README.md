@@ -14,7 +14,7 @@ framework ported from https://fedorahosted.org/spacewalk/wiki/spacecmd
 
 1. mkdir ~/.rpathcmd
 2. echo '[rpathcmd]' > ~/.rpathcmd/config
-3. echo "username=<username>" >> ~/.rpathcmd/config
-4. echo "password=<password>" >> ~/.rpathcmd/config
-5. echo "server=<rcehostname>" >> ~/.rpathcmd/config
+3. echo "username=\<username\>" >> ~/.rpathcmd/config
+4. echo "password=\<password\>" >> ~/.rpathcmd/config
+5. echo "server=\<rcehostname\>" >> ~/.rpathcmd/config
 
