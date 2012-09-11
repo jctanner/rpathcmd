@@ -59,8 +59,10 @@ def do_group_list(self, args):
 
     #epdb.st()
 
+    expectedgroupname = "group-" + projectshortname + "-appliance"
     for trove in tmpdata.troves.trove:
-        print "%s=%s" %(trove.name, trove.version)
+        if (str(trove.name) == expectedgroupname):
+            print "%s=%s" %(trove.name, trove.version)
 
 def help_group_create(self):
     print "project_branch_group_create: create a default group" 
