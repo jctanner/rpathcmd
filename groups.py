@@ -158,8 +158,8 @@ def __branchname_to_devlabel (self, projectshortname, branchname):
 
     tmpdata = xobj.parse(tmpxml[1])
 
-    epdb.st()
+    #epdb.st()
 
-    branch_id = tmpdata.project_branches.project_branch.branch_id
-    return branch_id
+    label = tmpdata.project_branches.project_branch.label
+    return label
 
