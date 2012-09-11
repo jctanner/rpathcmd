@@ -313,9 +313,10 @@ def do_project_branch_imagedef_list(self, args):
         print output
     else:    
         for imagedef in tmpdata.imageDefinitions.imageDefinition:
-            print imagedef.name
-            print imagedef.container.name    
-            print imagedef.architecture.name    
+            output = imagedef.name + ' '
+            output = output +  imagedef.container.name + ' '    
+            output = output +  imagedef.architecture.name    
+            print output
 
 
  
