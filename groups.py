@@ -116,9 +116,7 @@ def __projectshortname_to_id (projectshortname):
     fullcollectionurl = tmpdata.projects.full_collection
 
     # filter for specific project name
-    fullcollectionurl = fullcollectionurl + 
-        ';filter_by=[project.short_name,EQUAL,' + 
-        projectshortname + ']'
+    fullcollectionurl = fullcollectionurl + ';filter_by=[project.short_name,EQUAL,' + projectshortname + ']'
     fullxml = h2.request(fullcollectionurl)
     fulldata = xobj.parse(fullxml[1])
 
