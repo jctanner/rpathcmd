@@ -148,8 +148,8 @@ if __name__ == '__main__':
         if not options.quiet:
             print _INTRO
 
-        if not shell.do_login(''):
-            sys.exit(1)
+        #if not shell.do_login(''):
+        #    sys.exit(1)
 
         # stay in the interactive shell forever
         while True:

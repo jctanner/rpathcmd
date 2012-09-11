@@ -145,13 +145,6 @@ def do_system_info(self, options):
     print "latestsurvey: " + tmpdata.system.latest_survey.id
 
 
-def do_system_test(self, args):
-    epdb.st()
-    moduledir = os.path.dirname(self.sys.modules['rpathcmd.systems'].__file__)    
-    xmldir = moduledir + '/xml/'
-    templatefile = xmldir + 'system_group_update_template.xml'
-    print templatefile
-
 def help_system_group_update(self):
     print 'system_group_update: update the group on a single system'
     print '''usage: system_group_update [SYSTEMID] [TROVE]'''
