@@ -385,8 +385,8 @@ def do_project_branch_group_create(self, args):
     xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
     self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
 
-    project_id 26,
-    version_id 42,
+    project_id = 26
+    version_id = 42
     rebuild = False
     stage_label = 'shortname-test0001.fe.rpath.com@r:shortname-test0001-trunk-devel'
 
