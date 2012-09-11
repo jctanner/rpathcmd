@@ -375,8 +375,7 @@ def do_project_branch_group_create(self, args):
     #                           (username, password, self.host)
     # self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
 
-    xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" %
-        (self.options.username, self.options.password, self.options.server)
+    xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
     self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
 
 
