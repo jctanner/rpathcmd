@@ -46,6 +46,8 @@ def do_targets_list(self, options):
     images_data_pages = []
 
     # fetch first page, save and parse 
-    tmpxml =  h2.request('http://' + self.options.server + '/api/v1/images')
+    tmpxml =  h2.request('http://' + self.options.server + '/api/v1/targets')
     images_data_pages.append(tmpxml[1])
     tmpdata = xobj.parse(tmpxml[1])
+
+    epdb.st()
