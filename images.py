@@ -330,3 +330,17 @@ def getXobjElementChildCount(self, element, attributeName):
             return len(getattr(element, attributeName))
         else:
             return 1
+
+def help_image_launchdescriptor(self):
+    print "image_launchdescriptor: fetch the launch descriptor for an image on a given target"
+    print "usage: image_launchdescriptor imageid targetid" 
+
+def do_image_launchdescriptor(self, imageid, targetid):
+
+    # define REST session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    tmpxml =  h2.request('http://' + self.options.server +
+                        '/api/v1/images/' + str(imageid))            
