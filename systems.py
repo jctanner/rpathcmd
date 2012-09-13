@@ -49,7 +49,7 @@ def do_systems_list(self, options):
     h2.add_credentials(self.options.username, self.options.password)
 
     # get the querysetid for 'All systems'
-    queryset_id = __get_querysetid_by_name(self, name)
+    queryset_id = __get_querysetid_by_name(self, 'All systems')
 
     #a list of each page's xml
     systems_data_pages = []
