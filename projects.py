@@ -42,6 +42,7 @@ def do_projects_list(self, options):
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)
 
+    epdb.st()
     queryset_id = __get_querysetid_by_name(self, 'All projects')
 
     projectsdatapages = []
@@ -77,6 +78,7 @@ def __get_querysetid_by_name(self, name):
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)        
 
+    epdb.st()
     filterterm = urllib.urlencode(name)
     print filterterm 
     epdb.st()
