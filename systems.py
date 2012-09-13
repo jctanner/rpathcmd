@@ -111,7 +111,7 @@ def do_my_systems_list(self, options):
 
     # get the querysetid for 'All systems'
     #   <name>My Systems (admin)</name>
-    queryset_id = __get_querysetid_by_name(self, "My systems(%s)" % self.options.username)
+    queryset_id = __get_querysetid_by_name(self, "My systems (%s)" % self.options.username)
 
     #a list of each page's xml
     systems_data_pages = []
