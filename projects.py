@@ -78,9 +78,15 @@ def __get_querysetid_by_name(self, name):
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)        
 
-    epdb.st()
-    filterterm = urllib.urlencode(name)
+    #epdb.st()
+    filterterm = urllib.quote(name)
     print filterterm 
+    #epdb.st()
+
+    tmpxml = h2.request('http://' + self.options.server + 
+                        '/api/v1/query_sets;filter_by=[query_set.name,EQUAL,' +
+                        filterterm + ']'
+    tmpdata = xobj.parse(tmpxml[1])                     
     epdb.st()
     
 def help_project_branches_list(self):
