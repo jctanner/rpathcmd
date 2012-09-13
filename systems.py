@@ -99,6 +99,67 @@ def do_systems_list(self, options):
 
 
             print "%s: %s %s %s %s" %(id, name, ip, state, owner)
+
+def help_my_systems_list(self):
+    print "my_systems_list: show all systems owned by your username"
+
+def do_my_systems_list(self, options):
+
+    h2 = httplib2.Http("~/.rpathcmd/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    # get the querysetid for 'All systems'
+    #   <name>My Systems (admin)</name>
+    queryset_id = __get_querysetid_by_name(self, "My systems(%s)" % self.options.username)
+
+    #a list of each page's xml
+    systems_data_pages = []
+ 
+    # fetch first page, save and parse 
+    #tmpxml =  h2.request('http://' + self.options.server + '/api/v1/inventory/systems')
+    tmpxml = h2.request('http://' + self.options.server + '/api/v1/query_sets/' +
+                            str(queryset_id) + '/all;limit=200')    
+    systems_data_pages.append(tmpxml[1])
+    tmpdata = xobj.parse(tmpxml[1])
+
+    #epdb.st()
+    # to paginate or not to paginate, that is the question.
+    if int(tmpdata.systems.num_pages) == 1:
+        print "#one page"
+    else:
+        print "%s pages" % tmpdata.systems.num_pages
+        next_page_url = tmpdata.systems.next_page
+        while next_page_url != '':
+            # fetch next page
+            print "fetching %s" % next_page_url
+            #nextxml = h2.request(tmpdata.systems.next_page)
+            nextxml = h2.request(next_page_url)
+            # save data
+            systems_data_pages.append(nextxml[1])
+            # parse xml
+            nextdata = xobj.parse(nextxml[1])
+            # check next page
+            next_page_url = nextdata.systems.next_page
+            #epdb.st()
+
+    #epdb.st()
+    for systems_data_page in systems_data_pages:
+        systems_data = xobj.parse(systems_data_page)
+        #epdb.st()
+        for system in systems_data.systems.system:
+            #epdb.st()
+
+            name = system.name
+            id = system.system_id
+            state = system.current_state.name
+            owner = system.launching_user
+
+            ip = "NULL"
+            if hasattr(system, "network_address"):
+                ip = system.network_address.address
+
+
     
 def help_system_info(self):
     print 'system_info: show information about a system'
