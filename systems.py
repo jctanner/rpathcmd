@@ -146,9 +146,9 @@ def do_my_systems_list(self, options):
     #epdb.st()
     for systems_data_page in systems_data_pages:
         systems_data = xobj.parse(systems_data_page)
-        #epdb.st()
+        epdb.st()
         for system in systems_data.systems.system:
-            #epdb.st()
+            epdb.st()
 
             name = system.name
             id = system.system_id
