@@ -44,6 +44,7 @@ def do_projects_list(self, options):
 
     #epdb.st()
     queryset_id = __get_querysetid_by_name(self, 'All projects')
+    epdb.st()
 
     projectsdatapages = []
   
@@ -87,7 +88,8 @@ def __get_querysetid_by_name(self, name):
                         '/api/v1/query_sets;filter_by=[query_set.name,EQUAL,' +
                         filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])                     
-    epdb.st()
+    #epdb.st()
+    return tmpdata.query_sets.query_set.query_set_id
     
 def help_project_branches_list(self):
     print 'project_branches_list: list project branches'
