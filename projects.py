@@ -68,6 +68,16 @@ def do_projects_list(self, options):
 
             print "%s: %s %s" % (project.project_id, user_name, project.short_name)
 
+def __get_querysetid_by_name(self, name):
+    # /api/v1/query_sets;filter_by=[query_set.name,EQUAL,All%20projects]
+
+    h2 = httplib2.Http("~/.rpathcmd/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)        
+
+    filterterm = urllib.urlencode(name)
+    print filterterm 
+    epdb.st()
     
 def help_project_branches_list(self):
     print 'project_branches_list: list project branches'
