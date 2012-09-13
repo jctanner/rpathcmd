@@ -81,7 +81,7 @@ def __get_querysetid_by_name(self, name):
 
     #epdb.st()
     filterterm = urllib.quote(name)
-    print filterterm 
+    print "#%s" % filterterm 
     #epdb.st()
 
     tmpxml = h2.request('http://' + self.options.server + 
@@ -89,7 +89,7 @@ def __get_querysetid_by_name(self, name):
                         filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])                     
     #epdb.st()
-    return tmpdata.query_sets.query_set.query_set_id
+    return int(tmpdata.query_sets.query_set.query_set_id)
     
 def help_project_branches_list(self):
     print 'project_branches_list: list project branches'
