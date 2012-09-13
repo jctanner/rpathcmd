@@ -44,11 +44,13 @@ def do_projects_list(self, options):
 
     #epdb.st()
     queryset_id = __get_querysetid_by_name(self, 'All projects')
-    epdb.st()
+    #epdb.st()
 
     projectsdatapages = []
   
-    tmpxml =  h2.request('http://' + self.options.server + '/api/v1/projects')
+    #tmpxml =  h2.request('http://' + self.options.server + '/api/v1/projects')
+    tmpxml = h2.request('http://' + self.options.server + '/api/v1/querysets/' +
+                        str(queryset_id) + '/all;limit=1000'
     projectsdatapages.append(tmpxml[1])
 
     tmpdata = xobj.parse(tmpxml[1])
