@@ -85,7 +85,7 @@ def __get_querysetid_by_name(self, name):
 
     tmpxml = h2.request('http://' + self.options.server + 
                         '/api/v1/query_sets;filter_by=[query_set.name,EQUAL,' +
-                        filterterm + ']'
+                        filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])                     
     epdb.st()
     
