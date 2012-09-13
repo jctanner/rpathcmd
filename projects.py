@@ -51,6 +51,7 @@ def do_projects_list(self, options):
     #tmpxml =  h2.request('http://' + self.options.server + '/api/v1/projects')
     tmpxml = h2.request('http://' + self.options.server + '/api/v1/querysets/' +
                         str(queryset_id) + '/all;limit=1000')
+    epdb.st()
     projectsdatapages.append(tmpxml[1])
 
     tmpdata = xobj.parse(tmpxml[1])
