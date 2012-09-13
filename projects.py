@@ -42,6 +42,8 @@ def do_projects_list(self, options):
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)
 
+    queryset_id = __get_querysetid_by_name(self, 'All projects')
+
     projectsdatapages = []
   
     tmpxml =  h2.request('http://' + self.options.server + '/api/v1/projects')
