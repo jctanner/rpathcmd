@@ -57,7 +57,7 @@ def do_systems_list(self, options):
     # fetch first page, save and parse 
     #tmpxml =  h2.request('http://' + self.options.server + '/api/v1/inventory/systems')
     tmpxml = h2.request('http://' + self.options.server + '/api/v1/query_sets/' +
-                            str(queryset_id) + '/all;limit=1000')    
+                            str(queryset_id) + '/all;limit=200')    
     systems_data_pages.append(tmpxml[1])
     tmpdata = xobj.parse(tmpxml[1])
 
