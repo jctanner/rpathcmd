@@ -48,11 +48,16 @@ def do_systems_list(self, options):
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)
 
+    # get the querysetid for 'All systems'
+    queryset_id = __get_querysetid_by_name(self, name)
+
     #a list of each page's xml
     systems_data_pages = []
  
     # fetch first page, save and parse 
-    tmpxml =  h2.request('http://' + self.options.server + '/api/v1/inventory/systems')
+    #tmpxml =  h2.request('http://' + self.options.server + '/api/v1/inventory/systems')
+    tmpxml = h2.request('http://' + self.options.server + '/api/v1/query_sets/' +
+                            str(queryset_id) + '/all;limit=1000')    
     systems_data_pages.append(tmpxml[1])
     tmpdata = xobj.parse(tmpxml[1])
 
@@ -267,3 +272,22 @@ def do_system_group_update(self, args):
         time.sleep(2)
 
 
+def __get_querysetid_by_name(self, name):
+    # /api/v1/query_sets;filter_by=[query_set.name,EQUAL,All%20projects]
+
+    h2 = httplib2.Http("~/.rpathcmd/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    #epdb.st()
+    filterterm = urllib.quote(name)
+    #print "#%s" % filterterm 
+    #epdb.st()
+
+    tmpxml = h2.request('http://' + self.options.server +
+                        '/api/v1/query_sets;filter_by=[query_set.name,EQUAL,' +
+                        filterterm + ']')
+    tmpdata = xobj.parse(tmpxml[1])
+    #epdb.st()
+    print "#%s == %s" % (filterterm, int(tmpdata.query_sets.query_set.query_set_id))
+    return int(tmpdata.query_sets.query_set.query_set_id)
