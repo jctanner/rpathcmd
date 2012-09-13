@@ -49,7 +49,7 @@ def do_projects_list(self, options):
     projectsdatapages = []
   
     #tmpxml =  h2.request('http://' + self.options.server + '/api/v1/projects')
-    tmpxml = h2.request('http://' + self.options.server + '/api/v1/querysets/' +
+    tmpxml = h2.request('http://' + self.options.server + '/api/v1/query_sets/' +
                         str(queryset_id) + '/all;limit=1000')
     epdb.st()
     projectsdatapages.append(tmpxml[1])
