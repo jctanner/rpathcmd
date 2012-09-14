@@ -126,7 +126,7 @@ def do_package_spfimport(self, args):
                 self.options.password,
                 int(proj_id),
                 int(branch_id),
-                str(spfname),
+                True,
                 str(stage_label) )
 
     epdb.st()
