@@ -74,7 +74,7 @@ def help_package_spfimport(self):
 def do_package_spfimport(self, args):
     
     # setup pretty printing
-    pp = pprint.PrettyPrinter(indent=4)
+    #pp = pprint.PrettyPrinter(indent=4)
 
     maxAttempts = 540
     requestDelay = 1
@@ -122,7 +122,8 @@ def do_package_spfimport(self, args):
                 str(label) )
 
     # output session info
-    pp.pprint(start_appcreator_session_rsp)
+    #pp.pprint(start_appcreator_session_rsp)
+    pprint(start_appcreator_session_rsp)
     print "session: %s" % start_appcreator_session_rsp[1][0]
     print "isApplianceCreatorManaged: %s" % start_appcreator_session_rsp[1][1]['isApplianceCreatorManaged']
     sessionToken = start_appcreator_session_rsp[1][0]
@@ -138,7 +139,8 @@ def do_package_spfimport(self, args):
     url = 'http://'+rba+'/cgi-bin/urldownloader.cgi?fileUrl='+pkgurl+'&uploadId='+create_temp_package_dir[1]
     print "cgiurl: %s" % url
     upload_file_rsp = restutil.rawGet(url)
-    pp.pprint(upload_file_rsp)
+    #pp.pprint(upload_file_rsp)
+    pprint(upload_file_rsp)
 
     # fail if not Ok
     assert upload_file_rsp == 'Ok\n'
