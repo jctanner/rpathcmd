@@ -118,7 +118,7 @@ def do_package_spfimport(self, args):
     start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(
                 int(proj_id),
                 int(branch_id),
-                False,
+                True,
                 str(stage_label) )
 
     # output session info
