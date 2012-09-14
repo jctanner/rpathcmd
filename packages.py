@@ -140,7 +140,10 @@ def do_package_spfimport(self, args):
     url = 'http://'+self.options.server+'/cgi-bin/urldownloader.cgi?fileUrl='+spfurl+'&uploadId='+create_temp_package_dir[1]
     print "cgiurl: %s" % url
     upload_file_rsp = restutil.rawGet(url)
-    #pp.pprint(upload_file_rsp)
+    # GET the url, so the cgi runs
+    h = httplib2.Http(".cache")
+    upload_file_rsp = h.request(url, "GET") 
+    epdb.st()
     pprint(upload_file_rsp)
 
     # fail if not Ok
