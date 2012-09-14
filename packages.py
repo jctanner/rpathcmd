@@ -192,6 +192,7 @@ def do_package_spfimport(self, args):
     save_package_response = self.proxy.savePackage(session_Token,
                                     factoryHandle,
                                     configdata,
+                                    True,
                                     packageCreatorRecipeRsp[1][1])
 
     epdb.st()
