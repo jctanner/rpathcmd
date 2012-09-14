@@ -81,6 +81,7 @@ def do_package_spfimport(self, args):
 
     # define XMLRPC session
     xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
+    self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
 
     (args, options) = parse_arguments(args)    
     projectshortname = args[0]    
@@ -113,7 +114,8 @@ def do_package_spfimport(self, args):
                     'description': 'rpathcmd imported spf' }    
 
     # start pcreator/appcreator session
-    start_appcreator_session_rsp = xmlrpcclient.start_appcreator_session(
+    #start_appcreator_session_rsp = xmlrpcclient.start_appcreator_session(
+    start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(
                 self.options.username,
                 self.options.password,
                 int(proj_id),
@@ -147,7 +149,8 @@ def do_package_spfimport(self, args):
 
 
     # tell pcreator to start the build
-    package_factory_rsp = xmlrpcclient.get_package_Factories(int(proj_id),
+    #package_factory_rsp = xmlrpcclient.get_package_Factories(int(proj_id),
+    package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
                 create_temp_package_dir[1],
                 int(branch_id),
                 str(label))
@@ -159,17 +162,20 @@ def do_package_spfimport(self, args):
     factoryHandle = package_factory_rsp[1][1][0][0]
 
     # DO NOT UNDERSTAND THIS ... not sure if necessary
-    packageCreatorRecipeRsp = xmlrpcclient.get_package_creator_recipe(username,password,session_Token)
+    #packageCreatorRecipeRsp = xmlrpcclient.get_package_creator_recipe(username,password,session_Token)
+    packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(username,password,session_Token)
 
     # send over the recipe and config data
-    save_package_response = xmlrpcclient.save_Package(session_Token,factoryHandle,configdata,recipe)
+    #save_package_response = xmlrpcclient.save_Package(session_Token,factoryHandle,configdata,recipe)
+    save_package_response = self.proxy.savePackage(session_Token,factoryHandle,configdata,recipe)
 
 
     # poll job till finished, failure or thresholds met
     for i in range(maxAttempts):
 
         # fetch status
-        package_build_status = xmlrpcclient.get_package_status(session_Token)
+        #package_build_status = xmlrpcclient.get_package_status(session_Token)
+        package_build_status = self.proxy.getPackageBuildStatus(session_Token)
         #pp.pprint(package_build_status[1][2])
         now = time.strftime('%Y%m%d%H%M%S')
         print "%s - %s" % (now, package_build_status[1][2])
