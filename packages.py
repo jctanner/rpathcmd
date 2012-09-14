@@ -160,6 +160,7 @@ def do_package_spfimport(self, args):
     package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
                 create_temp_package_dir[1],
                 int(branch_id),
+                sessionToken,
                 spfurl,
                 str(stage_label))
 
