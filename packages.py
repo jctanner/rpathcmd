@@ -188,7 +188,11 @@ def do_package_spfimport(self, args):
 
     # send over the recipe and config data
     #save_package_response = xmlrpcclient.save_Package(session_Token,factoryHandle,configdata,recipe)
-    save_package_response = self.proxy.savePackage(session_Token,factoryHandle,configdata,recipe)
+    #save_package_response = self.proxy.savePackage(session_Token,factoryHandle,configdata,recipe)
+    save_package_response = self.proxy.savePackage(session_Token,
+                                    factoryHandle,
+                                    configdata,
+                                    packageCreatorRecipeRsp[1][1])
 
     epdb.st()
     # poll job till finished, failure or thresholds met
