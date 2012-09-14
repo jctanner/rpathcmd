@@ -123,6 +123,8 @@ def do_package_spfimport(self, args):
                 str(spfname),
                 str(stage_label) )
 
+    epdb.st()
+
     # output session info
     #pp.pprint(start_appcreator_session_rsp)
     pprint(start_appcreator_session_rsp)
