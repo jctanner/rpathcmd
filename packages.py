@@ -196,6 +196,8 @@ class OverrideRecipe(FactoryRecipeClass):
                                     recipe)
                                     #packageCreatorRecipeRsp[1][1])
 
+    pprint(save_package_response)
+
     epdb.st()
     # poll job till finished, failure or thresholds met
     for i in range(maxAttempts):
