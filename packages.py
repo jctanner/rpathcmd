@@ -67,11 +67,11 @@ def __get_querysetid_by_name(self, name):
     
 
 
-def help_import_spf(self):
-    print 'import_spf: import an spf package from a url'
-    print 'usage import_spf projectshortname branchname spfurl spfname spfversion spfextractdir'
+def help_package_spfimport(self):
+    print 'package_spfimport: import an spf package from a url'
+    print 'usage package_spfimport projectshortname branchname spfurl spfname spfversion spfextractdir'
 
-def do_import_spf(self, args):
+def do_package_spfimport(self, args):
     
     # setup pretty printing
     pp = pprint.PrettyPrinter(indent=4)
