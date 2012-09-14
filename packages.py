@@ -162,7 +162,7 @@ class OverrideRecipe(FactoryRecipeClass):
 
     # tell pcreator to start the build
     #package_factory_rsp = xmlrpcclient.get_package_Factories(int(proj_id),
-    #epdb.st()
+    epdb.st()
     # def getPackageFactories(self, projectId, uploadDirectoryHandle, 
     #               versionId, sessionHandle='', upload_url='', label=''):
     package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
