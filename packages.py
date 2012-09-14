@@ -129,7 +129,8 @@ def do_package_spfimport(self, args):
     sessionToken = start_appcreator_session_rsp[1][0]
 
     #create temp dir on the rbuilderto push the spf file into
-    create_temp_package_dir = xmlrpcclient.create_temp_package_dir()
+    #create_temp_package_dir = xmlrpcclient.create_temp_package_dir()
+    create_temp_package_dir = self.proxy.createPackageTmpDir()
     print "Temp Package Dir: %s" % create_temp_package_dir
     print "Package URL: %s" % spfurl
 
