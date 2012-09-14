@@ -113,7 +113,7 @@ def do_package_spfimport(self, args):
                     'summary': 'rpathcmd imported spf',
                     'description': 'rpathcmd imported spf' }    
 
-    epdb.st()
+    #epdb.st()
     # start pcreator/appcreator session
     #start_appcreator_session_rsp = xmlrpcclient.start_appcreator_session(
     start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(int(proj_id),
@@ -154,7 +154,7 @@ def do_package_spfimport(self, args):
 
     # tell pcreator to start the build
     #package_factory_rsp = xmlrpcclient.get_package_Factories(int(proj_id),
-    epdb.st()
+    #epdb.st()
     # def getPackageFactories(self, projectId, uploadDirectoryHandle, 
     #               versionId, sessionHandle='', upload_url='', label=''):
     package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
@@ -175,7 +175,8 @@ def do_package_spfimport(self, args):
 
     # DO NOT UNDERSTAND THIS ... not sure if necessary
     #packageCreatorRecipeRsp = xmlrpcclient.get_package_creator_recipe(username,password,session_Token)
-    packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(self.options.username,self.options.password,session_Token)
+    #packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(self.options.username,self.options.password,session_Token)
+    packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(session_Token)
 
     # send over the recipe and config data
     #save_package_response = xmlrpcclient.save_Package(session_Token,factoryHandle,configdata,recipe)
