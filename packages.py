@@ -147,7 +147,8 @@ def do_package_spfimport(self, args):
     pprint(upload_file_rsp)
 
     # fail if not Ok
-    assert upload_file_rsp == 'Ok\n'
+    #assert upload_file_rsp == 'Ok\n'
+    assert upload_file_rsp[1] == 'Ok\n'
 
 
     # tell pcreator to start the build
