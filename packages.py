@@ -100,9 +100,9 @@ def do_package_spfimport(self, args):
 
     # A DEFAULT RECIPE
     recipe ="""
-    class OverrideRecipe(FactoryRecipeClass):
-     \tdef postProcess(r):
-      \t\t'''This function is run at the end of setup'''"""
+class OverrideRecipe(FactoryRecipeClass):
+    def postProcess(r):
+        '''This function is run at the end of setup'''"""
 
     # SET PACKAGE INFO JUST LIKE IN UI AFTER IMPORTING URL
     configdata = {  'name': spfname,
@@ -193,7 +193,8 @@ def do_package_spfimport(self, args):
                                     factoryHandle,
                                     configdata,
                                     True,
-                                    packageCreatorRecipeRsp[1][1])
+                                    recipe)
+                                    #packageCreatorRecipeRsp[1][1])
 
     epdb.st()
     # poll job till finished, failure or thresholds met
