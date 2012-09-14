@@ -159,12 +159,14 @@ def do_package_spfimport(self, args):
                 int(branch_id),
                 str(stage_label))
 
-    epdb.st()
+    #epdb.st()
 
     # output response
     #pp.pprint(package_factory_rsp)
     session_Token = package_factory_rsp [1][0]
     factoryHandle = package_factory_rsp[1][1][0][0]
+
+    epdb.st()
 
     # DO NOT UNDERSTAND THIS ... not sure if necessary
     #packageCreatorRecipeRsp = xmlrpcclient.get_package_creator_recipe(username,password,session_Token)
