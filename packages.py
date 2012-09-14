@@ -130,7 +130,7 @@ def do_package_spfimport(self, args):
 
     #create temp dir on the rbuilderto push the spf file into
     #create_temp_package_dir = xmlrpcclient.create_temp_package_dir()
-    epdb.st()
+    #epdb.st()
     create_temp_package_dir = self.proxy.createPackageTmpDir()
     print "Temp Package Dir: %s" % create_temp_package_dir
     print "Package URL: %s" % spfurl
@@ -155,9 +155,12 @@ def do_package_spfimport(self, args):
     # tell pcreator to start the build
     #package_factory_rsp = xmlrpcclient.get_package_Factories(int(proj_id),
     epdb.st()
+    # def getPackageFactories(self, projectId, uploadDirectoryHandle, 
+    #               versionId, sessionHandle='', upload_url='', label=''):
     package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
                 create_temp_package_dir[1],
                 int(branch_id),
+                spfurl,
                 str(stage_label))
 
     #epdb.st()
