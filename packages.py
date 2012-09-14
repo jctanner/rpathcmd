@@ -158,6 +158,7 @@ def do_package_spfimport(self, args):
                 int(branch_id),
                 str(label))
 
+    epdb.st()
 
     # output response
     #pp.pprint(package_factory_rsp)
