@@ -121,7 +121,7 @@ def do_package_spfimport(self, args):
                 int(proj_id),
                 int(branch_id),
                 True,
-                str(label) )
+                str(stage_label) )
 
     # output session info
     #pp.pprint(start_appcreator_session_rsp)
