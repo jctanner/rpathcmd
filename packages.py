@@ -116,9 +116,7 @@ def do_package_spfimport(self, args):
     epdb.st()
     # start pcreator/appcreator session
     #start_appcreator_session_rsp = xmlrpcclient.start_appcreator_session(
-    start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(str(self.options.username),
-                str(self.options.password),
-                int(proj_id),
+    start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(int(proj_id),
                 int(branch_id),
                 True,
                 str(stage_label) )
