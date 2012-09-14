@@ -116,8 +116,6 @@ def do_package_spfimport(self, args):
     # start pcreator/appcreator session
     #start_appcreator_session_rsp = xmlrpcclient.start_appcreator_session(
     start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(
-                self.options.username,
-                self.options.password,
                 int(proj_id),
                 int(branch_id),
                 True,
@@ -157,6 +155,8 @@ def do_package_spfimport(self, args):
     #package_factory_rsp = xmlrpcclient.get_package_Factories(int(proj_id),
     epdb.st()
     package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
+                self.options.username,
+                self.options.password,
                 create_temp_package_dir[1],
                 int(branch_id),
                 str(stage_label))
