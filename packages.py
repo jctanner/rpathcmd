@@ -137,7 +137,7 @@ def do_package_spfimport(self, args):
 
     # invoke CGI script with file url and the tempdir ID
     #       file will land in ... /srv/rbuilder/tmp/rb-pc-upload-$ID/tmp_$ID.ccs
-    url = 'http://'+rba+'/cgi-bin/urldownloader.cgi?fileUrl='+pkgurl+'&uploadId='+create_temp_package_dir[1]
+    url = 'http://'+self.options.server+'/cgi-bin/urldownloader.cgi?fileUrl='+pkgurl+'&uploadId='+create_temp_package_dir[1]
     print "cgiurl: %s" % url
     upload_file_rsp = restutil.rawGet(url)
     #pp.pprint(upload_file_rsp)
