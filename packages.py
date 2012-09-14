@@ -116,11 +116,9 @@ def do_package_spfimport(self, args):
     # start pcreator/appcreator session
     #start_appcreator_session_rsp = xmlrpcclient.start_appcreator_session(
     start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(
-                self.options.username,
-                self.options.password,
                 int(proj_id),
                 int(branch_id),
-                True,
+                False,
                 str(stage_label) )
 
     # output session info
