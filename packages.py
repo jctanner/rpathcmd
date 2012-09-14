@@ -143,7 +143,7 @@ def do_package_spfimport(self, args):
     # GET the url, so the cgi runs
     h = httplib2.Http(".cache")
     upload_file_rsp = h.request(url, "GET") 
-    epdb.st()
+    #epdb.st()
     pprint(upload_file_rsp)
 
     # fail if not Ok
@@ -153,6 +153,7 @@ def do_package_spfimport(self, args):
 
     # tell pcreator to start the build
     #package_factory_rsp = xmlrpcclient.get_package_Factories(int(proj_id),
+    epdb.st()
     package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
                 create_temp_package_dir[1],
                 int(branch_id),
