@@ -113,7 +113,7 @@ class OverrideRecipe(FactoryRecipeClass):
                     'summary': 'rpathcmd imported spf',
                     'description': 'rpathcmd imported spf' }    
 
-    epdb.st()
+    #epdb.st()
 
     # startPackageCreatorSession(self, projectId, prodVer, namespace, troveName, label):
 
@@ -127,7 +127,7 @@ class OverrideRecipe(FactoryRecipeClass):
                 True,
                 str(stage_label) )
 
-    epdb.st()
+    #epdb.st()
 
     # output session info
     #pp.pprint(start_appcreator_session_rsp)
@@ -189,6 +189,7 @@ class OverrideRecipe(FactoryRecipeClass):
     # send over the recipe and config data
     #save_package_response = xmlrpcclient.save_Package(session_Token,factoryHandle,configdata,recipe)
     #save_package_response = self.proxy.savePackage(session_Token,factoryHandle,configdata,recipe)
+    epdb.st()
     save_package_response = self.proxy.savePackage(session_Token,
                                     factoryHandle,
                                     configdata,
