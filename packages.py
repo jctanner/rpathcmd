@@ -170,7 +170,7 @@ def do_package_spfimport(self, args):
 
     # DO NOT UNDERSTAND THIS ... not sure if necessary
     #packageCreatorRecipeRsp = xmlrpcclient.get_package_creator_recipe(username,password,session_Token)
-    packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(username,password,session_Token)
+    packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(self.options.username,self.options.password,session_Token)
 
     # send over the recipe and config data
     #save_package_response = xmlrpcclient.save_Package(session_Token,factoryHandle,configdata,recipe)
