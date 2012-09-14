@@ -113,7 +113,7 @@ def do_package_spfimport(self, args):
                     'summary': 'rpathcmd imported spf',
                     'description': 'rpathcmd imported spf' }    
 
-    #epdb.st()
+    epdb.st()
     # start pcreator/appcreator session
     #start_appcreator_session_rsp = xmlrpcclient.start_appcreator_session(
     #start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(int(proj_id),
