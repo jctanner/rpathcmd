@@ -184,7 +184,7 @@ def do_system_showconfig(self, options):
     # get descriptor
     tmpxml =  h2.request('http://' + self.options.server + 
                             '/api/v1/inventory/systems/' +
-                            system_id + '/configuration')
+                            str(system_id) + '/configuration')
     tmpdata = xobj.parse(tmpxml[1])
     epdb.st()
 
@@ -396,7 +396,7 @@ def __get_systemid_by_name(self, name):
     queryset_id = __get_querysetid_by_name(self, "All systems")
 
     tmpxml = h2.request('http://' + self.options.server +
-                        '/api/v1/query_sets/' + queryset_id + 
+                        '/api/v1/query_sets/' + str(queryset_id) + 
                         ';filter_by=[system.name,EQUAL,' +
                         filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])
