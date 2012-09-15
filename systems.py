@@ -401,5 +401,5 @@ def __get_systemid_by_name(self, name):
                         filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])
     epdb.st()
-    print "#%s == %s" % (filterterm, int(tmpdata.query_sets.query_set.query_set_id))
-    return int(tmpdata.query_sets.query_set.query_set_id)
+    print "system_id: %s" tmpdata.systems.system.system_id
+    return int(tmpdata.systems.system.system_id)
