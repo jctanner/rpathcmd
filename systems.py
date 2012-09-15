@@ -397,7 +397,7 @@ def __get_systemid_by_name(self, name):
 
     tmpxml = h2.request('http://' + self.options.server +
                         '/api/v1/query_sets/' + str(queryset_id) + 
-                        ';filter_by=[system.name,EQUAL,' +
+                        '/all;filter_by=[system.name,EQUAL,' +
                         filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])
     epdb.st()
