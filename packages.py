@@ -55,7 +55,6 @@ def __get_querysetid_by_name(self, name):
     #epdb.st()
     filterterm = urllib.quote(name)
     #print "#%s" % filterterm 
-    #epdb.st()
 
     tmpxml = h2.request('http://' + self.options.server + 
                         '/api/v1/query_sets;filter_by=[query_set.name,EQUAL,' +
@@ -73,8 +72,6 @@ def help_package_spfimport(self):
 
 def do_package_spfimport(self, args):
     
-    # setup pretty printing
-    #pp = pprint.PrettyPrinter(indent=4)
 
     maxAttempts = 540
     requestDelay = 1
@@ -83,6 +80,7 @@ def do_package_spfimport(self, args):
     xmlrpc_endpoint = "https://%s:%s@%s/xmlrpc-private" % (self.options.username, self.options.password, self.options.server)
     self.proxy = xmlrpclib.ServerProxy(xmlrpc_endpoint)
 
+    # set options
     (args, options) = parse_arguments(args)    
     projectshortname = args[0]    
     proj_id = int(__projectshortname_to_id(self, projectshortname))    
@@ -118,9 +116,6 @@ class OverrideRecipe(FactoryRecipeClass):
     # startPackageCreatorSession(self, projectId, prodVer, namespace, troveName, label):
 
     # start pcreator/appcreator session
-    #start_appcreator_session_rsp = xmlrpcclient.start_appcreator_session(
-    #start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(int(proj_id),
-    #start_appcreator_session_rsp = self.proxy.startPackageCreatorSession(int(proj_id),
     start_appcreator_session_rsp = self.proxy.startApplianceCreatorSession(
                 int(proj_id),
                 int(branch_id),
@@ -137,7 +132,6 @@ class OverrideRecipe(FactoryRecipeClass):
     sessionToken = start_appcreator_session_rsp[1][0]
 
     #create temp dir on the rbuilderto push the spf file into
-    #create_temp_package_dir = xmlrpcclient.create_temp_package_dir()
     #epdb.st()
     create_temp_package_dir = self.proxy.createPackageTmpDir()
     print "Temp Package Dir: %s" % create_temp_package_dir
@@ -161,10 +155,6 @@ class OverrideRecipe(FactoryRecipeClass):
 
 
     # tell pcreator to start the build
-    #package_factory_rsp = xmlrpcclient.get_package_Factories(int(proj_id),
-    epdb.st()
-    # def getPackageFactories(self, projectId, uploadDirectoryHandle, 
-    #               versionId, sessionHandle='', upload_url='', label=''):
     package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
                 create_temp_package_dir[1],
                 int(branch_id),
@@ -175,38 +165,26 @@ class OverrideRecipe(FactoryRecipeClass):
     #epdb.st()
 
     # output response
-    #pp.pprint(package_factory_rsp)
     session_Token = package_factory_rsp [1][0]
     factoryHandle = package_factory_rsp[1][1][0][0]
 
     #epdb.st()
 
     # DO NOT UNDERSTAND THIS ... not sure if necessary
-    #packageCreatorRecipeRsp = xmlrpcclient.get_package_creator_recipe(username,password,session_Token)
-    #packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(self.options.username,self.options.password,session_Token)
     packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(session_Token)
-
-    # send over the recipe and config data
-    #save_package_response = xmlrpcclient.save_Package(session_Token,factoryHandle,configdata,recipe)
-    #save_package_response = self.proxy.savePackage(session_Token,factoryHandle,configdata,recipe)
-    epdb.st()
     save_package_response = self.proxy.savePackage(session_Token,
                                     factoryHandle,
                                     configdata,
                                     True,
                                     recipe)
-                                    #packageCreatorRecipeRsp[1][1])
 
     pprint(save_package_response)
 
-    epdb.st()
     # poll job till finished, failure or thresholds met
     for i in range(maxAttempts):
 
         # fetch status
-        #package_build_status = xmlrpcclient.get_package_status(session_Token)
         package_build_status = self.proxy.getPackageBuildStatus(session_Token)
-        #pp.pprint(package_build_status[1][2])
         now = time.strftime('%Y%m%d%H%M%S')
         print "%s - %s" % (now, package_build_status[1][2])
 
