@@ -161,6 +161,32 @@ def do_my_systems_list(self, options):
 
             print "%s: %s %s %s %s" %(id, name, ip, state, owner)
 
+def help_system_showconfig(self):
+    print 'system_showconfig: show the current config descriptor for a system'
+    print 'usage; system_showconfig systemname'
+
+
+def do_system_showconfig(self, options):
+
+    h2 = httplib2.Http("~/.rpathcmd/.cache")
+    h2.disable_ssl_certificate_validation = True    
+    h2.add_credentials(self.options.username, self.options.password)        
+
+    # set options    
+    (args, options) = parse_arguments(args)    
+    systemname = args[0]
+
+    # get systemid from name
+    system_id = __get_systemid_by_name(self, systemname)
+
+    # api/v1/inventory/systems/$SYSTEM_ID/configuration
+
+    # get descriptor
+    tmpxml =  h2.request('http://' + self.options.server + 
+                            '/api/v1/inventory/systems/' +
+                            system_id + '/configuration')
+    tmpdata = xobj.parse(tmpxml[1])
+    epdb.st()
 
     
 def help_system_info(self):
@@ -352,5 +378,28 @@ def __get_querysetid_by_name(self, name):
                         filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])
     #epdb.st()
+    print "#%s == %s" % (filterterm, int(tmpdata.query_sets.query_set.query_set_id))
+    return int(tmpdata.query_sets.query_set.query_set_id)
+
+def __get_systemid_by_name(self, name):
+    # /api/v1/query_sets;filter_by=[query_set.name,EQUAL,All%20projects]
+
+    h2 = httplib2.Http("~/.rpathcmd/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    #epdb.st()
+    filterterm = urllib.quote(name)
+    #print "#%s" % filterterm 
+    #epdb.st()
+
+    queryset_id = __get_querysetid_by_name(self, "All systems")
+
+    tmpxml = h2.request('http://' + self.options.server +
+                        '/api/v1/query_sets/' + queryset_id + 
+                        ';filter_by=[system.name,EQUAL,' +
+                        filterterm + ']')
+    tmpdata = xobj.parse(tmpxml[1])
+    epdb.st()
     print "#%s == %s" % (filterterm, int(tmpdata.query_sets.query_set.query_set_id))
     return int(tmpdata.query_sets.query_set.query_set_id)
