@@ -173,7 +173,7 @@ def do_system_showconfig(self, options):
     h2.add_credentials(self.options.username, self.options.password)        
 
     # set options    
-    (args, options) = parse_arguments(args)    
+    (args, options) = parse_arguments(options)    
     systemname = args[0]
 
     # get systemid from name
