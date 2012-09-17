@@ -104,7 +104,7 @@ def do_package_spfimport(self, args):
                 True,
                 str(stage_label) )
 
-    epdb.st()
+    #epdb.st()
 
     # output session info
     #pp.pprint(start_appcreator_session_rsp)
@@ -159,7 +159,7 @@ def do_package_spfimport(self, args):
     spfversion = ''
     spfextractdir = ''
     for field in packagemeta.factory.dataFields.field:
-        #epdb.st()
+        epdb.st()
         #print field.name
         '''
         *name --required
@@ -173,7 +173,7 @@ def do_package_spfimport(self, args):
         # required fields, will have <default> elements if set in defaults.txt
         print field.name
         if field.name == 'name':
-            spfname = str(field.name)
+            spfname = str(field.default)
         if field.name == 'version':
             spfversion == str(field.default)
         if field.name == 'location':
