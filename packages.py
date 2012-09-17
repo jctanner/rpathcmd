@@ -91,27 +91,9 @@ def do_package_spfimport(self, args):
     stage_label = stage_label + '-devel'   
 
     spfurl = args[2]
-    spfname = args[3]
-    spfversion = args[4]
-    spfextractdir = args[5] 
-
-
-    # A DEFAULT RECIPE
-    recipe ="""
-class OverrideRecipe(FactoryRecipeClass):
-    def postProcess(r):
-        '''This function is run at the end of setup'''"""
-
-    # SET PACKAGE INFO JUST LIKE IN UI AFTER IMPORTING URL
-    configdata = {  'name': spfname,
-                    'version': spfversion,
-                    'manufacturer': 'rPath',
-                    'applicationType': 'app',
-                    'location': spfextractdir,
-                    'summary': 'rpathcmd imported spf',
-                    'description': 'rpathcmd imported spf' }    
-
-    #epdb.st()
+    #spfname = args[3]
+    #spfversion = args[4]
+    #spfextractdir = args[5] 
 
     # startPackageCreatorSession(self, projectId, prodVer, namespace, troveName, label):
 
@@ -177,14 +159,15 @@ class OverrideRecipe(FactoryRecipeClass):
         #epdb.st()
         #print field.name
         '''
-        *name
-        *version
+        *name --required
+        *version --required
         license
         summary
         description
-        *location
+        *location --required
         config_descriptor
         '''
+        # required fields, will have <default> elements if set in defaults.txt
         print field.name
         if field.name == 'name':
             spfname = str(field.name)
@@ -192,7 +175,6 @@ class OverrideRecipe(FactoryRecipeClass):
             spfversion == str(field.default)
         if field.name == 'location':
             spfextractdir = str(field.default)
-    #epdb.st()
 
     #print package_factory_rsp[1][1][0][1]
 
@@ -200,6 +182,7 @@ class OverrideRecipe(FactoryRecipeClass):
                     'version': spfversion,
                     'location': spfextractdir }
 
+    pprint(configdata)
     #epdb.st()
 
     # getPackageCreateRecipe is "supposed" to return whatever recipe
