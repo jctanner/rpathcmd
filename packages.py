@@ -174,22 +174,31 @@ class OverrideRecipe(FactoryRecipeClass):
     #epdb.st()
     packagemeta = xobj.parse(smartformdetails)
     for field in packagemeta.factory.dataFields.field:
-        epdb.st()
+        #epdb.st()
+        #print field.name
         '''
-        name
-        version
+        *name
+        *version
         license
         summary
         description
-        location
+        *location
         config_descriptor
         '''
         print field.name
-        print field.default
-    epdb.st()
+        if field.name == 'name':
+            spfname = str(field.name)
+        if field.name == 'version':
+            spfversion == str(field.default)
+        if field.name == 'location':
+            spfextractdir = str(field.default)
+    #epdb.st()
 
+    #print package_factory_rsp[1][1][0][1]
 
-    print package_factory_rsp[1][1][0][1]
+    configdata = {  'name': spfname,
+                    'version': spfversion,
+                    'location': spfextractdir }
 
     #epdb.st()
 
