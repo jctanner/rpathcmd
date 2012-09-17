@@ -174,7 +174,17 @@ class OverrideRecipe(FactoryRecipeClass):
     #epdb.st()
     packagemeta = xobj.parse(smartformdetails)
     for field in packagemeta.factory.dataFields.field:
+        '''
+        name
+        version
+        license
+        summary
+        description
+        location
+        config_descriptor
+        '''
         print field.name
+        print field.default
     epdb.st()
 
 
