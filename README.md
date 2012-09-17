@@ -23,16 +23,18 @@ framework ported from https://fedorahosted.org/spacewalk/wiki/spacecmd
 ## Help
 
 <pre>
-[poc3.jtanner@jtshell ~]$ rpathcmd help
+[rba.admin@jtshell ~]$ rpathcmd help
 
 Documented commands (type help <topic>):
 ========================================
-api_v1_info   platforms_list                  projects_list      
-api_versions  project_branch_create           system_group_update
-group_create  project_branch_imagedef_create  system_info        
-group_list    project_branch_stages_list      systems_list       
-image_info    project_branches_list         
-images_list   project_create                
+api_v1_info             my_systems_list                 project_branches_list
+api_versions            package_spfimport               project_create       
+group_create            packages_list                   projects_list        
+group_list              platforms_list                  system_group_update  
+image_build             project_branch_create           system_info          
+image_info              project_branch_imagedef_create  system_showconfig    
+image_launchdescriptor  project_branch_imagedef_list    systems_list         
+images_list             project_branch_stages_list      targets_list         
 
 Undocumented commands:
 ======================
