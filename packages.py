@@ -176,6 +176,7 @@ def do_package_spfimport(self, args):
         if field.name == 'location':
             spfextractdir = str(field.default)
 
+    epdb.st()
     #print package_factory_rsp[1][1][0][1]
 
     configdata = {  'name': spfname,
