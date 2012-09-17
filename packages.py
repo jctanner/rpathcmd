@@ -104,7 +104,7 @@ def do_package_spfimport(self, args):
                 True,
                 str(stage_label) )
 
-    #epdb.st()
+    epdb.st()
 
     # output session info
     #pp.pprint(start_appcreator_session_rsp)
