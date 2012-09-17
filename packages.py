@@ -154,7 +154,7 @@ class OverrideRecipe(FactoryRecipeClass):
     assert upload_file_rsp[1] == 'Ok\n'
 
 
-    # tell pcreator to start the build
+    # get all meta about the imported file
     package_factory_rsp = self.proxy.getPackageFactories(int(proj_id),
                 create_temp_package_dir[1],
                 int(branch_id),
@@ -164,15 +164,23 @@ class OverrideRecipe(FactoryRecipeClass):
 
     epdb.st()
 
-    # output response
+    # parse session
     session_Token = package_factory_rsp [1][0]
+    # get factory type
     factoryHandle = package_factory_rsp[1][1][0][0]
+    # get contents of defaults.txt
+    smartformdetails = package_factory_rsp[1][1][0][1]
+
+
+    print package_factory_rsp[1][1][0][1]
 
     #epdb.st()
 
     # getPackageCreateRecipe is "supposed" to return whatever recipe
-    #   is in the spf, or a default override recipe if nothing in spf
+    #   is in the spf. A default override recipe is returned if
+    #   the spf does not include recipe.txt
     packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(session_Token)
+
     # set the recipe to whatever pcreator returns
     recipe = packageCreatorRecipeRsp[1][1]
 
