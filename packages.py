@@ -187,7 +187,8 @@ def do_package_spfimport(self, args):
 
     configdata = {  'name': spfname,
                     'version': spfversion,
-                    'location': spfextractdir }
+                    'location': spfextractdir,
+                    'config_descriptor': spfconfigdescriptor }
 
     pprint(configdata)
     #epdb.st()
@@ -201,6 +202,10 @@ def do_package_spfimport(self, args):
     recipe = packageCreatorRecipeRsp[1][1]
 
     # send back whatever recipe/configdata we have
+    """
+    Store a package creator recipe. using an empty string for recipeData
+    will return recipe to default.
+    """
     save_package_response = self.proxy.savePackage(session_Token,
                                     factoryHandle,
                                     configdata,
