@@ -67,7 +67,7 @@ PACKAGES='openssh-server,openssh-clients,strace,httpd,httpd-configurator'
 FREESPACE='1024'
 PLATFORM='centos6.rpath.com@rpath:centos-6e'
 PLATFORMID=$(rpathcmd platforms_list | fgrep $PLATFORM | cut -d\: -f1)
-
+SPFURL='http://tannerjc.net/rpath/packages/linux/httpd-configurator/httpd-configurator-3.0.0.0.tar.gz'
 
 rpathcmd project_create $PROJECT $PROJECT
 rpathcmd project_branch_create $PROJECT $BRANCH $PLATFORMID $PLATFORM
