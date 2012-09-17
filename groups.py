@@ -18,12 +18,6 @@ from genshi.template import TextTemplate
 from xobj import xobj
 import epdb
 
-def do_group_argtest(self, args):
-
-    (args, options) = parse_arguments(args)
-
-    epdb.st()
-
 
 def help_group_list(self):
     print "group_list: list groups in a project branch stage"
