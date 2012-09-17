@@ -162,7 +162,7 @@ class OverrideRecipe(FactoryRecipeClass):
                 '',
                 str(stage_label))
 
-    #epdb.st()
+    epdb.st()
 
     # output response
     session_Token = package_factory_rsp [1][0]
@@ -173,7 +173,8 @@ class OverrideRecipe(FactoryRecipeClass):
     # getPackageCreateRecipe is "supposed" to return whatever recipe
     #   is in the spf, or a default override recipe if nothing in spf
     packageCreatorRecipeRsp = self.proxy.getPackageCreatorRecipe(session_Token)
-    epdb.st()
+    # set the recipe to whatever pcreator returns
+    recipe = packageCreatorRecipeRsp[1][1]
 
     # send back whatever recipe/configdata we have
     save_package_response = self.proxy.savePackage(session_Token,
