@@ -155,6 +155,9 @@ def do_package_spfimport(self, args):
 
     #epdb.st()
     packagemeta = xobj.parse(smartformdetails)
+    spfname = ''
+    spfversion = ''
+    spfextractdir = ''
     for field in packagemeta.factory.dataFields.field:
         #epdb.st()
         #print field.name
