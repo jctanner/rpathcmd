@@ -68,15 +68,11 @@ FREESPACE='1024'
 PLATFORM='centos6.rpath.com@rpath:centos-6e'
 PLATFORMID=$(rpathcmd platforms_list | fgrep $PLATFORM | cut -d\: -f1)
 
-SPFURL='http://tannerjc.net/rpath/packages/linux/httpd-configurator/httpd-configurator-3.0.0.0.tar.gz'
-SPFNAME='httpd-configurator'
-SPFVERSION='3.0.0.0'
-SPFEXTRACTDIR='/usr/lib/rpath-tools'
 
 rpathcmd project_create $PROJECT $PROJECT
 rpathcmd project_branch_create $PROJECT $BRANCH $PLATFORMID $PLATFORM
 rpathcmd project_branch_imagedef_create $PROJECT $BRANCH $FREESPACE
-rpathcmd package_spfimport $PROJECT $BRANCH $SPFURL $SPFNAME $SPFVERSION $SPFEXTRACTDIR
+rpathcmd package_spfimport $PROJECT $BRANCH $SPFURL 
 rpathcmd group_create $PROJECT $BRANCH $PACKAGES
 rpathcmd image_build $PROJECT $BRANCH devel
 </pre>
