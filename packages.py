@@ -175,7 +175,7 @@ def do_package_spfimport(self, args):
         if field.name == 'name':
             spfname = str(field.default)
         if field.name == 'version':
-            spfversion == str(field.default)
+            spfversion = str(field.default)
         if field.name == 'location':
             spfextractdir = str(field.default)
 
