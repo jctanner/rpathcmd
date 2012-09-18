@@ -366,6 +366,6 @@ def do_image_launchdescriptor(self, args):
 
         #print "%s %s %s" %(action_words[6], action_words[8], action_words[10])
         if  (action_words[6] == targetid) and (action_words[8] == 'launch'):
-            print action.descriptor.id
-            print "match: %s %s %s" %(action_words[6], action_words[8], action_words[10])
+            print "#%s" % action.descriptor.id
+            print "#match: %s %s %s" %(action_words[6], action_words[8], action_words[10])
 
