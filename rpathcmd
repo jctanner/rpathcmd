@@ -28,6 +28,7 @@ from pwd import getpwuid
 from rpathcmd.shell import RpathShell
 
 import pdb
+import epdb
     
 _INTRO = '''Welcome to rpathcmd, a command-line interface to rPath rBuilder/CloudEngine.
 
