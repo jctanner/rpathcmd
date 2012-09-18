@@ -356,8 +356,11 @@ def do_image_launchdescriptor(self, args):
    
     tmpdata = xobj.parse(tmpxml[1])
    
-    epdb.st()  
+    #epdb.st()  
     for action in tmpdata.image.actions.action:
         # descriptor.id
         #   api/v1/targets/1/descriptors/deploy/file/53'
-        if action 
+
+        #m = re.search('(?<=/targets/)\w+', action.descriptor.id)
+        #m.group(0) 
+        print action.descriptor.id
