@@ -364,5 +364,6 @@ def do_image_launchdescriptor(self, args):
         print action.descriptor.id
         m = re.search('(?<=/targets/)\w+', str(action.descriptor.id))
         action_targetid = m.group(0) 
+        epdb.st()
         if action_targetid == targetid:
             print "match"
