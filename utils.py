@@ -27,7 +27,7 @@ from textwrap import wrap
 __EDITORS = ['vim', 'vi', 'nano', 'emacs']
 
 def parse_arguments(args, options = []):
-    epdb.st()
+    #epdb.st()
     try:
         parts = shlex.split(args)
 
