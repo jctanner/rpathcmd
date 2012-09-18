@@ -123,7 +123,7 @@ def do_my_systems_list(self, options):
     systems_data_pages.append(tmpxml[1])
     tmpdata = xobj.parse(tmpxml[1])
 
-    #epdb.st()
+    epdb.st()
     # to paginate or not to paginate, that is the question.
     if int(tmpdata.systems.num_pages) == 1:
         print "#one page"
