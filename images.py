@@ -362,15 +362,10 @@ def do_image_launchdescriptor(self, args):
         #   api/v1/targets/1/descriptors/deploy/file/53'
 
         print action.descriptor.id
-        t = re.search('(?<=/targets/)\w+', str(action.descriptor.id))
-        action_targetid = t.group(0) 
-        a = re.search('(?<=/targets/[0-9]/descriptors/)\w+', str(action.descriptor.id))
-        action_type = a.group(0)
-        #f = re.search('(?<=/targets/[0-9]/descriptors/)[deploy|launch]/file/\w+', str(action.descriptor.id))
-        #action_file = f.group(0)
-        epdb.st()
-        #print "%s %s %s" % (action_targetid,action_type,action_file)
-        '''
-        if action_targetid == targetid:
-            print "match"
-        '''
+
+        action_words = action.descriptor.id.split('/')
+
+        print "%s %s %s" %(action_words[6], action_words[8], action_words[10])
+        if  (action_words[6] == targetid) and (action_words[8] == 'launch'):
+            print "match: %s %s %s" %(action_words[6], action_words[8], action_words[10])
+
