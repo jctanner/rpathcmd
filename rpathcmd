@@ -29,6 +29,7 @@ from rpathcmd.shell import RpathShell
 
 import pdb
 import epdb
+import argparse
     
 _INTRO = '''Welcome to rpathcmd, a command-line interface to rPath rBuilder/CloudEngine.
 
