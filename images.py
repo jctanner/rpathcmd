@@ -365,7 +365,11 @@ def do_image_launchdescriptor(self, args):
         action_words = action.descriptor.id.split('/')
 
         #print "%s %s %s" %(action_words[6], action_words[8], action_words[10])
-        if  (action_words[6] == targetid) and (action_words[8] == 'launch'):
+        if (action_words[6] == targetid) and (action_words[8] == 'launch'):
             print "#%s" % action.descriptor.id
             print "#match: %s %s %s" %(action_words[6], action_words[8], action_words[10])
 
+            # get the descriptor data
+            tmpxml = h2.request(action.descriptor.id)
+
+            epdb.st()
