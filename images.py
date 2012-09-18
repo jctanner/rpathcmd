@@ -373,3 +373,46 @@ def do_image_descriptor_launch(self, args):
             tmpxml = h2.request(action.descriptor.id)
             print tmpxml[1]
             #epdb.st()
+
+def help_image_descriptor_deploy(self):
+    print "image_descriptor_deploy: fetch the deployment descriptor for an image on a given target"
+    print "usage: image_descriptor_descriptor imageid targetid" 
+
+def do_image_descriptor_deploy(self, args):
+
+    # api/v1/targets/1/descriptors/launch/file/53
+
+    #epdb.st()
+    (args, options) = parse_arguments(args)
+    imageid = args[0]
+    targetid = args[1]
+
+    #epdb.st()
+
+    # define REST session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    tmpxml =  h2.request('http://' + self.options.server +
+                        '/api/v1/images/' + str(imageid))            
+   
+    tmpdata = xobj.parse(tmpxml[1])
+   
+    #epdb.st()  
+    for action in tmpdata.image.actions.action:
+        # descriptor.id
+        #   api/v1/targets/1/descriptors/deploy/file/53'
+
+        #print action.descriptor.id
+        action_words = action.descriptor.id.split('/')
+
+        #print "%s %s %s" %(action_words[6], action_words[8], action_words[10])
+        if (action_words[6] == targetid) and (action_words[8] == 'deploy'):
+            print "#%s" % action.descriptor.id
+            print "#match: %s %s %s" %(action_words[6], action_words[8], action_words[10])
+
+            # get the descriptor data
+            tmpxml = h2.request(action.descriptor.id)
+            print tmpxml[1]
+            #epdb.st()
