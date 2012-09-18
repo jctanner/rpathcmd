@@ -366,8 +366,10 @@ def do_image_launchdescriptor(self, args):
         action_targetid = t.group(0) 
         a = re.search('(?<=/targets/[0-9]/descriptors/)\w+', str(action.descriptor.id))
         action_type = a.group(0)
+        f = re.search('(?<=/targets/[0-9]/descriptors/deploy|launch/file/)\w+', str(action.descriptor.id))
+        action_file = f.group(0)
         #epdb.st()
-        print "%s %s" % (action_targetid,action_type)
+        print "%s %s %s" % (action_targetid,action_type,action_file)
         '''
         if action_targetid == targetid:
             print "match"
