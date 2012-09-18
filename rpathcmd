@@ -38,6 +38,7 @@ Type: 'help' for a list of commands
 '''
 
 if __name__ == '__main__':
+    '''
     optionsTable = [
         Option('-u', '--username', action='store',
                help='use this username to connect to the server'),
@@ -67,6 +68,7 @@ if __name__ == '__main__':
     # enable debugging as early as possible
     if options.debug:
         level = logging.DEBUG
+    '''
 
     # files are loaded from ~/.spacecmd/
     userinfo = getpwuid(os.getuid())
