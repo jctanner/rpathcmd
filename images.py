@@ -337,6 +337,8 @@ def help_image_launchdescriptor(self):
 
 def do_image_launchdescriptor(self, args):
 
+    epdb.st()
+
     parser = OptionParser()
     parser.add_option("-i", "--imageid", dest="imageid",
                       help="imageid", metavar="IMAGEID")
