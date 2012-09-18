@@ -371,5 +371,6 @@ def do_image_launchdescriptor(self, args):
 
             # get the descriptor data
             tmpxml = h2.request(action.descriptor.id)
+            print tmpxml[1]
 
-            epdb.st()
+            #epdb.st()
