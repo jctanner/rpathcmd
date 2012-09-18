@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
     usage = 'usage: %prog [options] [command]'
 
-    epdb.st()
+    #epdb.st()
     parser = OptionParser(option_list=optionsTable, usage=usage)
     #pdb.set_trace()
     (options, args) = parser.parse_args()

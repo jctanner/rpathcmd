@@ -337,15 +337,10 @@ def help_image_launchdescriptor(self):
 
 def do_image_launchdescriptor(self, args):
 
-    epdb.st()
+    #epdb.st()
+    (args, options) = parse_arguments(args)
 
-    parser = OptionParser()
-    parser.add_option("-i", "--imageid", dest="imageid",
-                      help="imageid", metavar="IMAGEID")
-    (options, args) = parser.parse_args()
-    #(args, options) = parse_arguments(args)
-
-    epdb.st()
+    #epdb.st()
 
     # define REST session 
     h2 = httplib2.Http("~/import_spf/.cache")
