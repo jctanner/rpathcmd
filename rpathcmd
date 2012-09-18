@@ -69,6 +69,8 @@ if __name__ == '__main__':
     if options.debug:
         level = logging.DEBUG
     '''
+    parser = OptionParser()
+    (options, args) = parser.parse_args()
 
     # files are loaded from ~/.spacecmd/
     userinfo = getpwuid(os.getuid())
