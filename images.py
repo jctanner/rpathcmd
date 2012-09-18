@@ -361,6 +361,8 @@ def do_image_launchdescriptor(self, args):
         # descriptor.id
         #   api/v1/targets/1/descriptors/deploy/file/53'
 
+        print action.descriptor.id
         m = re.search('(?<=/targets/)\w+', str(action.descriptor.id))
-        print m.group(0) 
-        #print action.descriptor.id
+        action_targetid = m.group(0) 
+        if action_targetid == targetid:
+            print "match"
