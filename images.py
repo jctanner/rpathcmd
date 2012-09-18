@@ -337,10 +337,14 @@ def help_image_launchdescriptor(self):
 
 def do_image_launchdescriptor(self, args):
 
+    # api/v1/targets/1/descriptors/launch/file/53
+
     #epdb.st()
     (args, options) = parse_arguments(args)
+    imageid = args[0]
+    targetid = args[1]
 
-    epdb.st()
+    #epdb.st()
 
     # define REST session 
     h2 = httplib2.Http("~/import_spf/.cache")
@@ -349,4 +353,7 @@ def do_image_launchdescriptor(self, args):
 
     tmpxml =  h2.request('http://' + self.options.server +
                         '/api/v1/images/' + str(imageid))            
-    
+   
+    tmpdata = xobj.parse(tmpxml[1])
+   
+    epdb.st()  
