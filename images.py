@@ -340,7 +340,7 @@ def do_image_launchdescriptor(self, args):
     #epdb.st()
     (args, options) = parse_arguments(args)
 
-    #epdb.st()
+    epdb.st()
 
     # define REST session 
     h2 = httplib2.Http("~/import_spf/.cache")
