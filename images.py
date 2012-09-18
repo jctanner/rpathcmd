@@ -337,14 +337,19 @@ def help_image_launchdescriptor(self):
 
 def do_image_launchdescriptor(self, args):
 
+    parser = OptionParser()
+    parser.add_option("-i", "--imageid", dest="imageid",
+                      help="imageid", metavar="IMAGEID")
+    (options, args) = parser.parse_args()
+    #(args, options) = parse_arguments(args)
+
+    epdb.st()
+
     # define REST session 
     h2 = httplib2.Http("~/import_spf/.cache")
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)
 
-    (args, options) = parse_arguments(args)
-
-    epdb.st()
-
     tmpxml =  h2.request('http://' + self.options.server +
                         '/api/v1/images/' + str(imageid))            
+    
