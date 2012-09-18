@@ -342,5 +342,7 @@ def do_image_launchdescriptor(self, imageid, targetid):
     h2.disable_ssl_certificate_validation = True
     h2.add_credentials(self.options.username, self.options.password)
 
+    (args, options) = parse_arguments(args)
+
     tmpxml =  h2.request('http://' + self.options.server +
                         '/api/v1/images/' + str(imageid))            
