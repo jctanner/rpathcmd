@@ -331,11 +331,11 @@ def getXobjElementChildCount(self, element, attributeName):
         else:
             return 1
 
-def help_image_launchdescriptor(self):
-    print "image_launchdescriptor: fetch the launch descriptor for an image on a given target"
-    print "usage: image_launchdescriptor imageid targetid" 
+def help_image_descriptor_launch(self):
+    print "image_descriptor_launch: fetch the launch descriptor for an image on a given target"
+    print "usage: image_descriptor_launch imageid targetid" 
 
-def do_image_launchdescriptor(self, args):
+def do_image_descriptor_launch(self, args):
 
     # api/v1/targets/1/descriptors/launch/file/53
 
