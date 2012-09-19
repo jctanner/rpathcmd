@@ -175,6 +175,7 @@ def do_package_spfimport(self, args):
         print field.name
         if field.name == 'name':
             spfname = str(field.default)
+            epdb.st()
         if field.name == 'version':
             spfversion = str(field.default)
         if field.name == 'location':
