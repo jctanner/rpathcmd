@@ -19,7 +19,8 @@
 import shlex
 from getpass import getpass
 from optparse import Option
-from rpathcmd.utils import *
+#from rpathcmd.utils import *
+from utils import *
 
 # rest stuff
 import time
