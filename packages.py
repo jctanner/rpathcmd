@@ -158,6 +158,7 @@ def do_package_spfimport(self, args):
     spfname = ''
     spfversion = ''
     spfextractdir = ''
+    spftype = 'app'
     spfconfigdescriptor = ''
     for field in packagemeta.factory.dataFields.field:
         #epdb.st()
@@ -188,6 +189,7 @@ def do_package_spfimport(self, args):
 
     configdata = {  'name': spfname,
                     'version': spfversion,
+                    'applicationType': spftype,
                     'location': spfextractdir,
                     'config_descriptor': spfconfigdescriptor }
 
