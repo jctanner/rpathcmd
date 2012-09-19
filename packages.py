@@ -157,8 +157,9 @@ def do_package_spfimport(self, args):
     packagemeta = xobj.parse(smartformdetails)
     spfname = ''
     spfversion = ''
-    spfextractdir = ''
-    spftype = 'app'
+    spflocation = ''
+    spftype = ''
+    spfdestdir = '' 
     spfconfigdescriptor = ''
     for field in packagemeta.factory.dataFields.field:
         #epdb.st()
@@ -180,7 +181,11 @@ def do_package_spfimport(self, args):
         if field.name == 'version':
             spfversion = str(field.default)
         if field.name == 'location':
-            spfextractdir = str(field.default)
+            spflocation = str(field.default)
+        if field.name == 'destdir':
+            spfdestdir = str(field.default)
+        if field.name == 'applicationType':
+            spftype = str(field.default)
         if field.name == 'config_descriptor':
             spfconfigdescriptor = str(field.default)
 
@@ -190,7 +195,8 @@ def do_package_spfimport(self, args):
     configdata = {  'name': spfname,
                     'version': spfversion,
                     'applicationType': spftype,
-                    'location': spfextractdir,
+                    'location': spflocation,
+                    'destdir': spfdestdir,
                     'config_descriptor': spfconfigdescriptor }
 
     pprint(configdata)
