@@ -512,3 +512,17 @@ def __get_event_type_id_by_name(self, name):
         if name == "deploy" and et.name == "deploy image on target":
             etid = int(et.job_type_id)
     return etid
+
+def help_image_descriptor_run(self):
+    print "image_descriptor_run: post a job with a descriptor yaml file"
+    print "usage: image_descriptor_run <path.to.yml.file>"
+
+def do_image_descriptor_run(self, args):
+
+    h2 = httplib2.Http("~/.rpathcmd/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    (args, options) = parse_arguments(args)
+
+    epdb.st()
