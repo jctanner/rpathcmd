@@ -542,13 +542,13 @@ def do_image_descriptor_run(self, args):
     # basic validation of inputs 
     for item in dataMap:
         print item
-        epdb.st()
+        #epdb.st()
         try:
             print "%s %s" % (item, dataMap[item]['required']) 
             if dataMap[item]['required'] == True:
-                print "%s %s" % (item, dataMap[item]['required']) 
+                print "\t%s %s" % (item, dataMap[item]['required']) 
             elif dataMap[item]['required'] == False:
-                print "%s %s" % (item, dataMap[item]['required'])
+                print "\t%s %s" % (item, dataMap[item]['required'])
         except:
             #pass
             print "blah"
