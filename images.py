@@ -569,7 +569,7 @@ def do_image_descriptor_run(self, args):
             if dataMap[item]['required'] == True:
                 #print "\t%s: required ==  %s" % (item, dataMap[item]['required']) 
                 if dataMap[item]['default'] == 'NULL':
-                    print "please set the default for %s in %s" % (item, filename)
+                    print "please set the default for \"%s\" in %s" % (item, filename)
                     sys.exit(1)
             #elif dataMap[item]['required'] == False:
             #    print "\t%s: required ==  %s" % (item, dataMap[item]['required'])
