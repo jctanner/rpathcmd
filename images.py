@@ -417,4 +417,12 @@ def do_image_descriptor_deploy(self, args):
             print tmpxml[1]
             #epdb.st()
             descriptordata = xobj.parse(tmpxml[1])
-            epdb.st()
+            #epdb.st()
+            print descriptordata.descriptor.metadata.displayName
+            print descriptordata.descriptor.metadata.descriptions.desc
+            for field in descriptordata.descriptor.dataFields.field:
+                print field.name
+                print field.descriptions.desc
+                print field.default
+                for value in field.enumeratedType.describedValue:
+                    epdb.st()
