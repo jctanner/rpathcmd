@@ -425,22 +425,27 @@ def do_image_descriptor_deploy(self, args):
             print "## DESCRIPTOR INFO ##"
             print "# %s \"%s\"" % (descriptordata.descriptor.metadata.displayName,
                                 descriptordata.descriptor.metadata.descriptions.desc)
+            print ""
             for field in descriptordata.descriptor.dataFields.field:
                 try:
-                    print "%s \"%s\" required: %s" % (field.name, 
+                    print "%s \"%s\", required: %s" % (field.name, 
                                                     field.descriptions.desc, 
                                                     field.required)
                 except:
-                    print "%s \"%s\" required: N/A" % (field.name, 
+                    print "%s \"%s\", required: N/A" % (field.name, 
                                                     field.descriptions.desc)
                 try:
-                    print "\t*%s = default" % field.default
+                    print "\t*%s == default" % field.default
                 except:
                     pass
                     #print "\tno default"
                 try:
-                    for value in field.enumeratedType.describedValue:
-                        print "\t%s \"%s\"" % (value.key, value.descriptions.desc)
+                    if len(field.enumeratedType.describedValue) > 1:
+                        for value in field.enumeratedType.describedValue:
+                            print "\t%s \"%s\"" % (value.key, value.descriptions.desc)
+                    else:
+                        print "\t%s \"%s\"" % (field.enumeratedType.describedValue.key,
+                                                field.enumeratedType.describedValue.desc)
                 except:
                     pass
                     #print "\tno enumerated types"
