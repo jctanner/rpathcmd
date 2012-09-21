@@ -580,7 +580,7 @@ def do_image_descriptor_run(self, args):
         except:
             pass
 
-    print "ERRORS: %s" errors
+    print "ERRORS: %s" % errors
     if errors > 0:
         sys.exit(1)
 
