@@ -423,7 +423,10 @@ def do_image_descriptor_deploy(self, args):
             for field in descriptordata.descriptor.dataFields.field:
                 print field.name
                 print field.descriptions.desc
-                print field.default
+                try:
+                    print field.default
+                except:
+                    print "no default"
                 try:
                     for value in field.enumeratedType.describedValue:
                         print "test"
