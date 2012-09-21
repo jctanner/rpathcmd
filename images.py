@@ -414,12 +414,14 @@ def do_image_descriptor_deploy(self, args):
 
             # get the raw descriptor data
             tmpxml = h2.request(action.descriptor.id)
-            print "-------DESCRIPTOR_DATA------"
+            print "-------RAW_DESCRIPTOR_DATA------"
             print tmpxml[1]
-            print "-------DESCRIPTOR_DATA------"
+            print "-------RAW_DESCRIPTOR_DATA------"
 
             # make descriptor human readable
             descriptordata = xobj.parse(tmpxml[1])
+            descriptordict = {  'image': imageid,
+                                'target': targetid } 
             #epdb.st()
             print ""
             print "## DESCRIPTOR INFO ##"
@@ -431,6 +433,7 @@ def do_image_descriptor_deploy(self, args):
                     print "%s \"%s\", required: %s" % (field.name, 
                                                     field.descriptions.desc, 
                                                     field.required)
+                    descriptordict[field.name] = field.descriptions.desc
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
                                                     field.descriptions.desc)
@@ -456,3 +459,4 @@ def do_image_descriptor_deploy(self, args):
                     #print "\tno enumerated types"
 
             print "## DESCRIPTOR INFO ##"
+            pprint(descriptordict)
