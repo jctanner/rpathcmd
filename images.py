@@ -412,14 +412,19 @@ def do_image_descriptor_deploy(self, args):
             print "#%s" % action.descriptor.id
             print "#match: %s %s %s" %(action_words[6], action_words[8], action_words[10])
 
-            # get the descriptor data
+            # get the raw descriptor data
             tmpxml = h2.request(action.descriptor.id)
+            print "-------DESCRIPTOR_DATA------"
             print tmpxml[1]
-            #epdb.st()
+            print "-------DESCRIPTOR_DATA------"
+
+            # make descriptor human readable
             descriptordata = xobj.parse(tmpxml[1])
             #epdb.st()
-            print descriptordata.descriptor.metadata.displayName
-            print descriptordata.descriptor.metadata.descriptions.desc
+            print ""
+            print "## DESCRIPTOR INFO ##"
+            print "#%s \"%s\"" % (descriptordata.descriptor.metadata.displayName,
+                                descriptordata.descriptor.metadata.descriptions.desc)
             for field in descriptordata.descriptor.dataFields.field:
                 try:
                     print "%s \"%s\" required: %s" % (field.name, 
