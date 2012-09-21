@@ -436,10 +436,16 @@ def do_image_descriptor_deploy(self, args):
                     print "%s \"%s\", required: %s" % (field.name, 
                                                     field.descriptions.desc, 
                                                     field.required)
-                    descriptordict[field.name.encode('ascii','ignore')] = \
-                            field.descriptions.desc.encode('ascii','ignore')
+
+                    fname = field.name.encode('ascii','ignore')
+                    fdesc = field.descriptions.desc.encode('ascii','ignore')
+                    freq = field.required.encode('ascii','ignore')
+
+                    #descriptordict[field.name.encode('ascii','ignore')] = \
+                    #        field.descriptions.desc.encode('ascii','ignore')
                     #descriptordict[field.name.encode('ascii','ignore')] = \
                     #        dict([('description', field.descriptions.desc.encode('ascii','ignore'))])
+                    descriptordict[fname] = fdesc
                     epdb.st()
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
@@ -466,4 +472,5 @@ def do_image_descriptor_deploy(self, args):
                     #print "\tno enumerated types"
 
             print "## DESCRIPTOR INFO ##"
+            epdb.st()
             pprint(descriptordict)
