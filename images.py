@@ -562,12 +562,12 @@ def do_image_descriptor_run(self, args):
 
     # basic validation of dynamic/unknown inputs
     for item in dataMap:
-        print item
+        #print item
         #epdb.st()
         try:
             #print "%s %s" % (item, dataMap[item]['required']) 
             if dataMap[item]['required'] == True:
-                print "\t%s: required ==  %s" % (item, dataMap[item]['required']) 
+                #print "\t%s: required ==  %s" % (item, dataMap[item]['required']) 
                 if dataMap[item]['default'] == 'NULL':
                     print "please set the default for %s in %s" % (item, filename)
                     sys.exit(1)
