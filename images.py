@@ -424,5 +424,6 @@ def do_image_descriptor_deploy(self, args):
                 print field.name
                 print field.descriptions.desc
                 print field.default
-                for value in field.enumeratedType.describedValue:
-                    epdb.st()
+                try:
+                    for value in field.enumeratedType.describedValue:
+                        epdb.st()
