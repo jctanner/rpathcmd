@@ -423,7 +423,7 @@ def do_image_descriptor_deploy(self, args):
             #epdb.st()
             print ""
             print "## DESCRIPTOR INFO ##"
-            print "#%s \"%s\"" % (descriptordata.descriptor.metadata.displayName,
+            print "# %s \"%s\"" % (descriptordata.descriptor.metadata.displayName,
                                 descriptordata.descriptor.metadata.descriptions.desc)
             for field in descriptordata.descriptor.dataFields.field:
                 try:
