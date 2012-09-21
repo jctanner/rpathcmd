@@ -434,11 +434,15 @@ def do_image_descriptor_deploy(self, args):
                     print "%s \"%s\" required: N/A" % (field.name, 
                                                     field.descriptions.desc)
                 try:
-                    print "\t*%s" % field.default
+                    print "\t*%s = default" % field.default
                 except:
-                    print "\tno default"
+                    pass
+                    #print "\tno default"
                 try:
                     for value in field.enumeratedType.describedValue:
                         print "\t%s \"%s\"" % (value.key, value.descriptions.desc)
                 except:
-                    print "\tno enumerated types"
+                    pass
+                    #print "\tno enumerated types"
+
+            print "## DESCRIPTOR INFO ##"
