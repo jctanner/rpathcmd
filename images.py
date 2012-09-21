@@ -472,8 +472,8 @@ def __get_descriptor(self, args, desctype):
             import yaml
             FORMAT = '%Y%m%d%H%M%S'
             timestamp = datetime.now().strftime(FORMAT)
-            ymlfile = desctype + 'descriptor' + timestamp + '.yaml'
-            xmlfile = desctype + 'descriptor' + timestamp + '.xml'
+            ymlfile = desctype + '-descriptor-' + timestamp + '.yml'
+            xmlfile = desctype + '-descriptor-' + timestamp + '.xml'
 
             f = open(ymlfile, "w")
             yaml.dump(descriptordict, f)
