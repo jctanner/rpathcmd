@@ -501,5 +501,5 @@ def do_image_descriptor_deploy(self, args):
             import yaml
 
             f = open('newtree.yaml', "w")
-            yaml.dump(dataMap, f)
+            yaml.dump(descriptordict, f)
             f.close()
