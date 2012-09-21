@@ -445,12 +445,18 @@ def do_image_descriptor_deploy(self, args):
                     #        field.descriptions.desc.encode('ascii','ignore')
                     #descriptordict[field.name.encode('ascii','ignore')] = \
                     #        dict([('description', field.descriptions.desc.encode('ascii','ignore'))])
+                    descriptordict[fname] = {}
                     descriptordict[fname]['description'] = fdesc
                     descriptordict[fname]['required'] = freq
                     epdb.st()
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
                                                     field.descriptions.desc)
+                    fname = field.name.encode('ascii','ignore')
+                    fdesc = field.descriptions.desc.encode('ascii','ignore')
+                    descriptordict[fname] = {}
+                    descriptordict[fname]['description'] = fdesc
+                    descriptordict[fname]['required'] = false
                 try:
                     print "\t*%s == default" % field.default
                 except:
