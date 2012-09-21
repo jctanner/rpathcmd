@@ -384,8 +384,16 @@ def do_image_descriptor_deploy(self, args):
 
     __get_descriptor(self, args, "deploy")
 
+def help_image_descriptor_launch(self):
+    print "image_descriptor_launch: fetch the launch descriptor for an image on a given target"
+    print "usage: image_descriptor_launch imageid targetid" 
 
-def __get_descriptor(self, args, type):
+def do_image_descriptor_launch(self, args):
+
+    __get_descriptor(self, args, "launch")
+
+
+def __get_descriptor(self, args, desctype):
 
     # api/v1/targets/1/descriptors/launch/file/53
 
@@ -415,7 +423,8 @@ def __get_descriptor(self, args, type):
         action_words = action.descriptor.id.split('/')
 
         #print "%s %s %s" %(action_words[6], action_words[8], action_words[10])
-        if (action_words[6] == targetid) and (action_words[8] == 'deploy'):
+        #if (action_words[6] == targetid) and (action_words[8] == 'deploy'):
+        if (action_words[6] == targetid) and (action_words[8] == desctype):
             print "#%s" % action.descriptor.id
             print "#match: %s %s %s" %(action_words[6], action_words[8], action_words[10])
 
