@@ -448,7 +448,7 @@ def do_image_descriptor_deploy(self, args):
                     descriptordict[fname] = {}
                     descriptordict[fname]['description'] = fdesc
                     descriptordict[fname]['required'] = freq
-                    epdb.st()
+                    #epdb.st()
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
                                                     field.descriptions.desc)
@@ -480,5 +480,5 @@ def do_image_descriptor_deploy(self, args):
                     #print "\tno enumerated types"
 
             print "## DESCRIPTOR INFO ##"
-            epdb.st()
+            #epdb.st()
             pprint(descriptordict)
