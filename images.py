@@ -475,10 +475,11 @@ def do_image_descriptor_deploy(self, args):
                         #epdb.st()
                         for value in field.enumeratedType.describedValue:
                             print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
+
                             vkey = value.key.encode('ascii','ignore')
                             vdesc = value.descriptions.desc.encode('ascii','ignore')
 
-                            descriptordict[fname]['values'].append({vkey = vdesc})
+                            descriptordict[fname]['values'].append({vkey : vdesc})
                     else:
                         #epdb.st()
                         print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
