@@ -446,7 +446,7 @@ def do_image_descriptor_deploy(self, args):
                     # add info to dictionary
                     descriptordict[fname] = {}
                     descriptordict[fname]['description'] = fdesc
-                    descriptordict[fname]['required'] = freq
+                    descriptordict[fname]['required'] = bool(freq)
                     #epdb.st()
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
