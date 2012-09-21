@@ -442,7 +442,7 @@ def do_image_descriptor_deploy(self, args):
                 try:
                     #epdb.st()
                     #if len(field.enumeratedType) > 1:
-                    print "describedValue length == %s" % len(field.enumeratedType.describedValue)
+                    #print "describedValue length == %s" % len(field.enumeratedType.describedValue)
                     if len(field.enumeratedType.describedValue) > 1:
                         #epdb.st()
                         for value in field.enumeratedType.describedValue:
