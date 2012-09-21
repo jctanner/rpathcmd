@@ -600,7 +600,7 @@ def do_image_descriptor_run(self, args):
                 'IMAGE_ID': dataMap['imageid'], 
                 'INSTANCE_NAME': dataMap['Instance Name']['default'],
                 'EVENT_TYPE': dataMap['event_type'],
-                'EXTRADATA': descriptorxml  }
+                'EXTRA_DATA': descriptorxml  }
 
     template = TextTemplate(templatedata, lookup='lenient')
     #stream = template.generate(**datadict)
