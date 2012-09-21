@@ -539,6 +539,11 @@ def do_image_descriptor_run(self, args):
      'imageid': 85,
      'targetid': 1}
     '''
-    
+    # basic validation of inputs 
     for item in dataMap:
         print item
+        try:
+            if dataMap[item]['required'] = True:
+                print "%s %s" % (item, dataMap[item]['required']) 
+        except:
+            pass
