@@ -422,7 +422,8 @@ def do_image_descriptor_deploy(self, args):
 
             # make descriptor human readable
             descriptordata = xobj.parse(tmpxml[1])
-            descriptordict = {  'image': imageid,
+            descriptordict = {  'imageid': imageid,
+                                'fileid' : action_words[12],
                                 'target': targetid } 
             #epdb.st()
             print ""
