@@ -428,3 +428,5 @@ def do_image_descriptor_deploy(self, args):
                     for value in field.enumeratedType.describedValue:
                         print "test"
                         epdb.st()
+                except:
+                    print "no enumerated types"
