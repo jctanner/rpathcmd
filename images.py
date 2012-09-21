@@ -504,4 +504,11 @@ def __get_event_type_id_by_name(self, name):
 
     tmpdata = xobj.parse(tmpxml[1])
 
-    epdb.st()
+    #epdb.st()
+    etid = ""
+    for et in tmpdata.event_types.event_type:
+        if name == "launch" and et.name == "launch system on target":
+            etid = int(et.job_type_id)
+        if name == "deploy" and et.name == "deploy image on target":
+            etid = int(et.job_type_id)
+    return etid
