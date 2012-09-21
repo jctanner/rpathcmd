@@ -562,19 +562,19 @@ def do_image_descriptor_run(self, args):
         print "please set the descriptor_type in %s" % filename   
         sys.exit(1)
 
+    descriptorxml = ""  #this will get splattered into the POST XML
+
     # basic validation of dynamic/unknown inputs
     for item in dataMap:
-        #print item
-        #epdb.st()
         try:
-            #print "%s %s" % (item, dataMap[item]['required']) 
+            # determine if item is required, and default is not NULL.
+            # add item to descriptor xml if both conditions are true
             if dataMap[item]['required'] == True:
-                #print "\t%s: required ==  %s" % (item, dataMap[item]['required']) 
                 if dataMap[item]['default'] == 'NULL':
                     print "please set the default for \"%s\" in %s" % (item, filename)
                     sys.exit(1)
-            #elif dataMap[item]['required'] == False:
-            #    print "\t%s: required ==  %s" % (item, dataMap[item]['required'])
+                else:
+                    descriptorxml += "<%s>%s<%s>" %(dataMap[item]['tag'], dataMap[item]['default'], dataMap[item]['tag'])
         except:
             pass
 
@@ -599,7 +599,8 @@ def do_image_descriptor_run(self, args):
                 'FILE_ID': dataMap['fileid'],
                 'IMAGE_ID': dataMap['imageid'], 
                 'INSTANCE_NAME': dataMap['Instance Name']['default'],
-                'EVENT_TYPE': dataMap['event_type']  }
+                'EVENT_TYPE': dataMap['event_type'],
+                'EXTRADATA': descriptorxml  }
 
     template = TextTemplate(templatedata, lookup='lenient')
     #stream = template.generate(**datadict)
