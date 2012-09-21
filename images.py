@@ -421,7 +421,14 @@ def do_image_descriptor_deploy(self, args):
             print descriptordata.descriptor.metadata.displayName
             print descriptordata.descriptor.metadata.descriptions.desc
             for field in descriptordata.descriptor.dataFields.field:
-                print "%s \"%s\" required: %s" % (field.name, field.descriptions.desc, field.required)
+                try:
+                    print "%s \"%s\" required: %s" % (field.name, 
+                                                    field.descriptions.desc, 
+                                                    field.required)
+                except:
+                    print "%s \"%s\" required: N/A" % (field.name, 
+                                                    field.descriptions.desc, 
+                                                    field.required)
                 try:
                     print "\t*%s" % field.default
                 except:
