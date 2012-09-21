@@ -440,7 +440,7 @@ def do_image_descriptor_deploy(self, args):
                     pass
                     #print "\tno default"
                 try:
-                    epdb.st()
+                    #epdb.st()
                     #if len(field.enumeratedType) > 1:
                     print "describedValue length == %s" % len(field.enumeratedType.describedValue)
                     if len(field.enumeratedType.describedValue) > 1:
@@ -448,9 +448,9 @@ def do_image_descriptor_deploy(self, args):
                         for value in field.enumeratedType.describedValue:
                             print "\t%s \"%s\"" % (value.key, value.descriptions.desc)
                     else:
-                        epdb.st()
+                        #epdb.st()
                         print "\t%s \"%s\"" % (field.enumeratedType.describedValue.key,
-                                                field.enumeratedType.describedValue.desc)
+                                            field.enumeratedType.describedValue.descriptions.desc)
                 except:
                     pass
                     #print "\tno enumerated types"
