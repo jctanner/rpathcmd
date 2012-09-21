@@ -563,6 +563,7 @@ def do_image_descriptor_run(self, args):
         sys.exit(1)
 
     descriptorxml = ""  #this will get splattered into the POST XML
+    errors = 0
 
     # basic validation of dynamic/unknown inputs
     for item in dataMap:
@@ -573,11 +574,14 @@ def do_image_descriptor_run(self, args):
                 if dataMap[item]['default'] == 'NULL':
                     print "please set the default for \"%s\" in %s" % (item, filename)
                     sys.exit(1)
+                    errors += 1
                 else:
                     descriptorxml += "<%s>%s</%s>" %(dataMap[item]['tag'], dataMap[item]['default'], dataMap[item]['tag'])
         except:
             pass
 
+    if errors > 0:
+        sys.exit(1)
 
     # open template and templatize
     #   xml/image_launch.xml
