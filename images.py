@@ -574,13 +574,12 @@ def do_image_descriptor_run(self, args):
                 if dataMap[item]['default'] == 'NULL':
                     print "please set the default for \"%s\" in %s" % (item, filename)
                     errors = errors + 1
-                    sys.exit(1)
                 else:
                     descriptorxml += "<%s>%s</%s>" %(dataMap[item]['tag'], dataMap[item]['default'], dataMap[item]['tag'])
         except:
             pass
 
-    print "ERRORS: %s" % errors
+    print "ERROR_COUNT: %s" % errors
     if errors > 0:
         sys.exit(1)
 
