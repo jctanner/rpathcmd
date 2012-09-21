@@ -496,3 +496,10 @@ def do_image_descriptor_deploy(self, args):
             print "## DESCRIPTOR INFO ##"
             #epdb.st()
             pprint(descriptordict)
+            print ""
+
+            import yaml
+
+            f = open('newtree.yaml', "w")
+            yaml.dump(dataMap, f)
+            f.close()
