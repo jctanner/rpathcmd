@@ -539,7 +539,28 @@ def do_image_descriptor_run(self, args):
      'imageid': 85,
      'targetid': 1}
     '''
-    # basic validation of inputs 
+    # basic validation of static/known inputs 
+    if dataMap['imageid'] == 'NULL':
+        print "please set the imageid in %s" % filename
+        sys.exit(1)
+
+    if dataMap['fileid'] == 'NULL':
+        print "please set the fileid in %s" % filename
+        sys.exit(1)
+
+    if dataMap['targetid'] == 'NULL':
+        print "please set the targetid in %s" % filename   
+        sys.exit(1)
+
+    if dataMap['event_type'] == 'NULL':
+        print "please set the event_type in %s" % filename   
+        sys.exit(1)
+
+    if dataMap['descriptor_type'] == 'NULL':
+        print "please set the descriptor_type in %s" % filename   
+        sys.exit(1)
+
+    # basic validation of dynamic/unknown inputs
     for item in dataMap:
         print item
         #epdb.st()
@@ -547,8 +568,10 @@ def do_image_descriptor_run(self, args):
             #print "%s %s" % (item, dataMap[item]['required']) 
             if dataMap[item]['required'] == True:
                 print "\t%s: required ==  %s" % (item, dataMap[item]['required']) 
-            elif dataMap[item]['required'] == False:
-                print "\t%s: required ==  %s" % (item, dataMap[item]['required'])
+                if dataMap[item]['default'] == 'NULL':
+                    print "please set the default for %s in %s" % (item, filename)
+                    sys.exit(1)
+            #elif dataMap[item]['required'] == False:
+            #    print "\t%s: required ==  %s" % (item, dataMap[item]['required'])
         except:
             pass
-            #print "blah"
