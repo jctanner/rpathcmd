@@ -382,6 +382,11 @@ def help_image_descriptor_deploy(self):
 
 def do_image_descriptor_deploy(self, args):
 
+    __get_descriptor(self, args, "deploy")
+
+
+def __get_descriptor(self, args, type):
+
     # api/v1/targets/1/descriptors/launch/file/53
 
     #epdb.st()
@@ -424,7 +429,7 @@ def do_image_descriptor_deploy(self, args):
             descriptordata = xobj.parse(tmpxml[1])
             descriptordict = {  'imageid': int(imageid),
                                 'fileid' : int(action_words[10]),
-                                'target': int(targetid) } 
+                                'targetid': int(targetid) } 
             #epdb.st()
             print ""
             print "## DESCRIPTOR INFO ##"
