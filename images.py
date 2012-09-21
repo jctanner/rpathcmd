@@ -575,3 +575,33 @@ def do_image_descriptor_run(self, args):
             #    print "\t%s: required ==  %s" % (item, dataMap[item]['required'])
         except:
             pass
+
+
+    # open template and templatize
+    #   xml/image_launch.xml
+
+    moduledir = os.path.dirname(self.sys.modules['rpathcmd.systems'].__file__)
+    xmldir = moduledir + '/xml/'
+    '''
+    if dataMap['descriptor_type'] == 'deploy': 
+        templatefile = xmldir + 'image_deploy.xml'
+    elif dataMap['descriptor_type'] == 'launch':
+        templatefile = xmldir + 'image_launch.xml'
+    '''    
+    templatefile = xmldir + 'image_job.xml'
+
+    templatedata = open(templatefile, 'r')
+
+    values = {  'RBA': self.options.server,
+                'TARGET_ID': dataMap['targetid']
+                'FILE_ID': dataMap['fileid']
+                'IMAGE_ID': dataMap['imageid'], 
+                'INSTANCE_NAME': dataMap['Instance Name']['default'],
+                'EVENT_TYPE': dataMap['event_type']  }
+
+    template = TextTemplate(templatedata, lookup='lenient')
+    #stream = template.generate(**datadict)
+    stream = template.generate(**values)
+    postxml = stream.render('text')
+
+    print postxml
