@@ -395,7 +395,8 @@ def __get_descriptor(self, args, desctype):
             descriptordata = xobj.parse(tmpxml[1])
             descriptordict = {  'imageid': int(imageid),
                                 'fileid' : int(action_words[10]),
-                                'targetid': int(targetid) } 
+                                'targetid': int(targetid),
+                                'descriptor_type': desctype } 
             #epdb.st()
             print ""
             print "## DESCRIPTOR INFO ##"
