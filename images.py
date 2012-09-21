@@ -416,3 +416,5 @@ def do_image_descriptor_deploy(self, args):
             tmpxml = h2.request(action.descriptor.id)
             print tmpxml[1]
             #epdb.st()
+            descriptordata = xobj.parse(tmpxml[1])
+            epdb.st()
