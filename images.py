@@ -593,8 +593,8 @@ def do_image_descriptor_run(self, args):
     templatedata = open(templatefile, 'r')
 
     values = {  'RBA': self.options.server,
-                'TARGET_ID': dataMap['targetid']
-                'FILE_ID': dataMap['fileid']
+                'TARGET_ID': dataMap['targetid'],
+                'FILE_ID': dataMap['fileid'],
                 'IMAGE_ID': dataMap['imageid'], 
                 'INSTANCE_NAME': dataMap['Instance Name']['default'],
                 'EVENT_TYPE': dataMap['event_type']  }
