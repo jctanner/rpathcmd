@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<job>
+  <descriptor id="https://$RBA/api/v1/targets/$TARGET_ID/descriptors/launch/file/$FILE_ID" href="https://$RBA/api/v1/targets/$TARGET_ID/descriptors/launch/file/$FILE_ID">
+    <description/>
+    <descriptor/>
+    <name/>
+    <resource_type/>
+  </descriptor>
+  <descriptor_data>
+    <descriptor/>
+    <image id="https://$RBA/api/v1/images/$IMAGE_ID" href="https://$RBA/api/v1/images/$IMAGE_ID">
+    </image>
+    <imageId>$IMAGE_ID</imageId>
+    <instanceName>$INSTANCE_NAME</instanceName>
+  </descriptor_data>
+  <job_type id="https://$RBA/api/v1/inventory/event_types/$EVENT_TYPE" href="https://$RBA/api/v1/inventory/event_types/$EVENT_TYPE"/>
+</job>
