@@ -574,7 +574,7 @@ def do_image_descriptor_run(self, args):
                     print "please set the default for \"%s\" in %s" % (item, filename)
                     sys.exit(1)
                 else:
-                    descriptorxml += "<%s>%s<%s>" %(dataMap[item]['tag'], dataMap[item]['default'], dataMap[item]['tag'])
+                    descriptorxml += "<%s>%s</%s>" %(dataMap[item]['tag'], dataMap[item]['default'], dataMap[item]['tag'])
         except:
             pass
 
