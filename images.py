@@ -432,19 +432,18 @@ def do_image_descriptor_deploy(self, args):
                                 descriptordata.descriptor.metadata.descriptions.desc)
             print ""
             for field in descriptordata.descriptor.dataFields.field:
+
+                # figure out what this field is called
                 try:
                     print "%s \"%s\", required: %s" % (field.name, 
                                                     field.descriptions.desc, 
                                                     field.required)
 
+                    # convert from unicode to ascii
                     fname = field.name.encode('ascii','ignore')
                     fdesc = field.descriptions.desc.encode('ascii','ignore')
                     freq = field.required.encode('ascii','ignore')
-
-                    #descriptordict[field.name.encode('ascii','ignore')] = \
-                    #        field.descriptions.desc.encode('ascii','ignore')
-                    #descriptordict[field.name.encode('ascii','ignore')] = \
-                    #        dict([('description', field.descriptions.desc.encode('ascii','ignore'))])
+                    # add info to dictionary
                     descriptordict[fname] = {}
                     descriptordict[fname]['description'] = fdesc
                     descriptordict[fname]['required'] = freq
@@ -452,25 +451,34 @@ def do_image_descriptor_deploy(self, args):
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
                                                     field.descriptions.desc)
+                    # convert from unicode to ascii
                     fname = field.name.encode('ascii','ignore')
                     fdesc = field.descriptions.desc.encode('ascii','ignore')
+                    # add info to dictionary
                     descriptordict[fname] = {}
                     descriptordict[fname]['description'] = fdesc
                     descriptordict[fname]['required'] = False
+
+                # check for a default value    
                 try:
                     print "\t*%s == default" % field.default
                     descriptordict[fname]['default'] = field.default.encode('ascii','ignore')
                 except:
                     descriptordict[fname]['default'] = "NULL"
-                    #print "\tno default"
+
+                # iterate through possible values    
+                descriptordict[fname]['values'] = []
                 try:
                     #epdb.st()
-                    #if len(field.enumeratedType) > 1:
-                    #print "describedValue length == %s" % len(field.enumeratedType.describedValue)
+                    descriptordict[fname]['values'] = []
                     if len(field.enumeratedType.describedValue) > 1:
                         #epdb.st()
                         for value in field.enumeratedType.describedValue:
                             print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
+                            vkey = value.key.encode('ascii','ignore')
+                            vdesc = value.descriptions.desc.encode('ascii','ignore')
+
+                            descriptordict[fname]['values'].append({vkey = vdesc})
                     else:
                         #epdb.st()
                         print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
