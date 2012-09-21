@@ -31,6 +31,7 @@ from pprint import pprint
 from xobj import xobj
 import epdb
 
+import yaml
 import unicodedata
 
     
@@ -475,7 +476,6 @@ def __get_descriptor(self, args, desctype):
             descriptordict['event_type'] = int(eventtypeid)
 
 
-            import yaml
             FORMAT = '%Y%m%d%H%M%S'
             timestamp = datetime.now().strftime(FORMAT)
             ymlfile = desctype + '-descriptor-' + timestamp + '.yml'
@@ -524,5 +524,12 @@ def do_image_descriptor_run(self, args):
     h2.add_credentials(self.options.username, self.options.password)
 
     (args, options) = parse_arguments(args)
+
+    epdb.st()
+    filename = args[0]
+
+    f = open(filename)
+    dataMap = yaml.load(f)
+    f.close
 
     epdb.st()
