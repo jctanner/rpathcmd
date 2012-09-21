@@ -31,6 +31,8 @@ from pprint import pprint
 from xobj import xobj
 import epdb
 
+import unicodedata
+
     
 def help_images_list(self):
     print 'images_list: list all images'
@@ -433,7 +435,8 @@ def do_image_descriptor_deploy(self, args):
                     print "%s \"%s\", required: %s" % (field.name, 
                                                     field.descriptions.desc, 
                                                     field.required)
-                    descriptordict[field.name] = field.descriptions.desc
+                    descriptordict[field.nameencode('ascii','ignore')] = field.descriptions.descencode('ascii','ignore')
+
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
                                                     field.descriptions.desc)
