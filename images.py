@@ -456,7 +456,7 @@ def do_image_descriptor_deploy(self, args):
                     fdesc = field.descriptions.desc.encode('ascii','ignore')
                     descriptordict[fname] = {}
                     descriptordict[fname]['description'] = fdesc
-                    descriptordict[fname]['required'] = false
+                    descriptordict[fname]['required'] = False
                 try:
                     print "\t*%s == default" % field.default
                 except:
