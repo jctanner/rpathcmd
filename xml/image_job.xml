@@ -11,7 +11,6 @@
     <image id="https://$RBA/api/v1/images/$IMAGE_ID" href="https://$RBA/api/v1/images/$IMAGE_ID">
     </image>
     <imageId>$IMAGE_ID</imageId>
-    <instanceName>$INSTANCE_NAME</instanceName>
     $EXTRA_DATA
   </descriptor_data>
   <job_type id="https://$RBA/api/v1/inventory/event_types/$EVENT_TYPE" href="https://$RBA/api/v1/inventory/event_types/$EVENT_TYPE"/>
