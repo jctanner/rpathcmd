@@ -443,7 +443,7 @@ def do_image_descriptor_deploy(self, args):
                     if len(field.enumeratedType.describedValue) > 1:
                         for value in field.enumeratedType.describedValue:
                             print "\t%s \"%s\"" % (value.key, value.descriptions.desc)
-                        epdb.st()
+                        #epdb.st()
                     else:
                         print "\t%s \"%s\"" % (field.enumeratedType.describedValue.key,
                                                 field.enumeratedType.describedValue.desc)
