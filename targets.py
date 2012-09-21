@@ -50,8 +50,11 @@ def do_targets_list(self, options):
     images_data_pages.append(tmpxml[1])
     tmpdata = xobj.parse(tmpxml[1])
 
-    epdb.st()
+    #epdb.st()
 
-    for target in tmpdata.targets.target:
-        print "%s: %s" % (target.target_id, target.name)
+    if len(tmpdata.targets.target) == 0:
+        print "%s: %s" % (tmpdata.targets.target.target_id, tmpdata.targets.target.name)
+    else:
+        for target in tmpdata.targets.target:
+            print "%s: %s" % (target.target_id, target.name)
 
