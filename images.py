@@ -444,9 +444,9 @@ def do_image_descriptor_deploy(self, args):
                     fdesc = field.descriptions.desc.encode('ascii','ignore')
                     freq = field.required.encode('ascii','ignore')
                     # add info to dictionary
-                    descriptordict[fname] = {}
-                    descriptordict[fname]['description'] = fdesc
-                    descriptordict[fname]['required'] = bool(freq)
+                    descriptordict[fdesc] = {}
+                    descriptordict[fdesc]['tag'] = fname
+                    descriptordict[fdesc]['required'] = bool(freq)
                     #epdb.st()
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
@@ -455,22 +455,22 @@ def do_image_descriptor_deploy(self, args):
                     fname = field.name.encode('ascii','ignore')
                     fdesc = field.descriptions.desc.encode('ascii','ignore')
                     # add info to dictionary
-                    descriptordict[fname] = {}
-                    descriptordict[fname]['description'] = fdesc
-                    descriptordict[fname]['required'] = False
+                    descriptordict[fdesc] = {}
+                    descriptordict[fdesc]['tag'] = fname
+                    descriptordict[fdesc]['required'] = False
 
                 # check for a default value    
                 try:
                     print "\t*%s == default" % field.default
-                    descriptordict[fname]['default'] = field.default.encode('ascii','ignore')
+                    descriptordict[desc]['default'] = field.default.encode('ascii','ignore')
                 except:
-                    descriptordict[fname]['default'] = "NULL"
+                    descriptordict[desc]['default'] = "NULL"
 
                 # iterate through possible values    
-                descriptordict[fname]['values'] = []
+                descriptordict[fdesc]['values'] = []
                 try:
                     #epdb.st()
-                    descriptordict[fname]['values'] = []
+                    descriptordict[fdesc]['values'] = []
                     if len(field.enumeratedType.describedValue) > 1:
                         #epdb.st()
                         for value in field.enumeratedType.describedValue:
@@ -479,7 +479,7 @@ def do_image_descriptor_deploy(self, args):
                             vkey = value.key.encode('ascii','ignore')
                             vdesc = value.descriptions.desc.encode('ascii','ignore')
 
-                            descriptordict[fname]['values'].append({vdesc : vkey})
+                            descriptordict[fdesc]['values'].append({vdesc : vkey})
                     else:
                         #epdb.st()
                         print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
@@ -488,7 +488,7 @@ def do_image_descriptor_deploy(self, args):
                         vkey = field.enumeratedType.describedValue.key.encode('ascii','ignore')
                         vdesc = field.enumeratedType.describedValue.descriptions.desc.encode('ascii','ignore')
 
-                        descriptordict[fname]['values'].append({vdesc : vkey})
+                        descriptordict[fdesc]['values'].append({vdesc : vkey})
                 except:
                     pass
                     #print "\tno enumerated types"
