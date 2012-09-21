@@ -544,6 +544,7 @@ def do_image_descriptor_run(self, args):
         print item
         epdb.st()
         try:
+            print "%s %s" % (item, dataMap[item]['required']) 
             if dataMap[item]['required'] == True:
                 print "%s %s" % (item, dataMap[item]['required']) 
             elif dataMap[item]['required'] == False:
