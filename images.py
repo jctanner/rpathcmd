@@ -606,4 +606,34 @@ def do_image_descriptor_run(self, args):
     stream = template.generate(**values)
     postxml = stream.render('text')
 
+    print "-----POST_DATA-----"
     print postxml
+    print "-----POST_DATA-----"
+
+    # start job
+    jobxml =  h2.request('http://' + self.options.server +
+                            '/api/v1/images/' + str(dataMap['imageid']) + '/jobs',
+                            headers={'Content-Type': 'application/xml'},
+                            method="POST",
+                            body=postxml)
+
+    if jobxml[0]['status'] != '200':
+        print "job failed: %s" % jobxml[0]['status']
+        sys.exit(1)
+
+    jobdata = xobj.parse(jobxml[1])
+
+    job_url = jobdata.job.id
+    job_status = jobdata.job.status_text
+    job_status_code = jobdata.job.status_code
+
+    while ((job_status != "Done") and
+            (job_status != "Failed") and
+            (job_status_code != '430')):
+        jobxml = h2.request(job_url)
+        jobdata = xobj.parse(jobxml[1])
+        job_status = jobdata.job.status_text
+        job_status_code = jobdata.job.status_code
+        print job_status
+        #epdb.st()
+        time.sleep(2)    
