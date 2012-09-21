@@ -439,7 +439,7 @@ def do_image_descriptor_deploy(self, args):
                     #descriptordict[field.name.encode('ascii','ignore')] = \
                     #        field.descriptions.desc.encode('ascii','ignore')
                     descriptordict[field.name.encode('ascii','ignore')] = \
-                            { 'description' = field.descriptions.desc.encode('ascii','ignore') }
+                            dict([('description' = field.descriptions.desc.encode('ascii','ignore'))])
                 except:
                     print "%s \"%s\", required: N/A" % (field.name, 
                                                     field.descriptions.desc)
