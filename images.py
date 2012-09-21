@@ -446,10 +446,10 @@ def do_image_descriptor_deploy(self, args):
                     if len(field.enumeratedType.describedValue) > 1:
                         #epdb.st()
                         for value in field.enumeratedType.describedValue:
-                            print "\t%s \"%s\"" % (value.key, value.descriptions.desc)
+                            print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
                     else:
                         #epdb.st()
-                        print "\t%s \"%s\"" % (field.enumeratedType.describedValue.key,
+                        print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
                                             field.enumeratedType.describedValue.descriptions.desc)
                 except:
                     pass
