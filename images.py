@@ -27,10 +27,12 @@ import urllib2
 import httplib2
 from pprint import pprint
 
-
 from xobj import xobj
 import epdb
 
+# templating
+from genshi.template import TextTemplate
+import ast
 import yaml
 import unicodedata
 
