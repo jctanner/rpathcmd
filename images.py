@@ -427,8 +427,7 @@ def do_image_descriptor_deploy(self, args):
                                                     field.required)
                 except:
                     print "%s \"%s\" required: N/A" % (field.name, 
-                                                    field.descriptions.desc, 
-                                                    field.required)
+                                                    field.descriptions.desc)
                 try:
                     print "\t*%s" % field.default
                 except:
