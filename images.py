@@ -387,9 +387,9 @@ def __get_descriptor(self, args, desctype):
 
             # get the raw descriptor data
             tmpxml = h2.request(action.descriptor.id)
-            print "-------RAW_DESCRIPTOR_DATA------"
-            print tmpxml[1]
-            print "-------RAW_DESCRIPTOR_DATA------"
+            #print "-------RAW_DESCRIPTOR_DATA------"
+            #print tmpxml[1]
+            #print "-------RAW_DESCRIPTOR_DATA------"
 
             # make descriptor human readable
             descriptordata = xobj.parse(tmpxml[1])
@@ -470,6 +470,11 @@ def __get_descriptor(self, args, desctype):
             pprint(descriptordict)
             print ""
 
+            # fetch the event type
+            eventtypeid = __get_event_type_id_by_name(self, desctype)
+            descriptordict['event_type'] = int(eventtypeid)
+
+
             import yaml
             FORMAT = '%Y%m%d%H%M%S'
             timestamp = datetime.now().strftime(FORMAT)
@@ -484,3 +489,19 @@ def __get_descriptor(self, args, desctype):
             f.write(tmpxml[1])
             f.close()
 
+def __get_event_type_id_by_name(self, name):
+
+    # filter terms do not seem to work for event types
+    #   so we are forced to string match manually
+
+    # define REST session 
+    h2 = httplib2.Http("~/import_spf/.cache")
+    h2.disable_ssl_certificate_validation = True
+    h2.add_credentials(self.options.username, self.options.password)
+
+    tmpxml =  h2.request('http://' + self.options.server +
+                        '/api/v1/inventory/event_types')
+
+    tmpdata = xobj.parse(tmpxml[1])
+
+    epdb.st()
