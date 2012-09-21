@@ -459,8 +459,9 @@ def do_image_descriptor_deploy(self, args):
                     descriptordict[fname]['required'] = False
                 try:
                     print "\t*%s == default" % field.default
+                    descriptordict[fname]['default'] = field.default.encode('ascii','ignore')
                 except:
-                    pass
+                    descriptordict[fname]['default'] = "NULL"
                     #print "\tno default"
                 try:
                     #epdb.st()
