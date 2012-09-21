@@ -550,5 +550,5 @@ def do_image_descriptor_run(self, args):
             elif dataMap[item]['required'] == False:
                 print "\t%s: required ==  %s" % (item, dataMap[item]['required'])
         except:
-            #pass
-            print "blah"
+            pass
+            #print "blah"
