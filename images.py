@@ -525,11 +525,20 @@ def do_image_descriptor_run(self, args):
 
     (args, options) = parse_arguments(args)
 
-    epdb.st()
+    #epdb.st()
     filename = args[0]
 
     f = open(filename)
     dataMap = yaml.load(f)
     f.close
-
-    epdb.st()
+    #epdb.st()
+    '''
+     'descriptor_type': 'launch',
+     'event_type': 18,
+     'fileid': 53,
+     'imageid': 85,
+     'targetid': 1}
+    '''
+    
+    for item in dataMap:
+        print item
