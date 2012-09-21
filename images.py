@@ -462,9 +462,9 @@ def do_image_descriptor_deploy(self, args):
                 # check for a default value    
                 try:
                     print "\t*%s == default" % field.default
-                    descriptordict[desc]['default'] = field.default.encode('ascii','ignore')
+                    descriptordict[fdesc]['default'] = field.default.encode('ascii','ignore')
                 except:
-                    descriptordict[desc]['default'] = "NULL"
+                    descriptordict[fdesc]['default'] = "NULL"
 
                 # iterate through possible values    
                 descriptordict[fdesc]['values'] = []
