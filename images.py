@@ -479,11 +479,16 @@ def do_image_descriptor_deploy(self, args):
                             vkey = value.key.encode('ascii','ignore')
                             vdesc = value.descriptions.desc.encode('ascii','ignore')
 
-                            descriptordict[fname]['values'].append({vkey : vdesc})
+                            descriptordict[fname]['values'].append({vdesc : vkey})
                     else:
                         #epdb.st()
                         print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
                                             field.enumeratedType.describedValue.descriptions.desc)
+
+                        vkey = field.enumeratedType.describedValue.key.encode('ascii','ignore')
+                        vdesc = field.enumeratedType.describedValue.descriptions.desc.encode('ascii','ignore')
+
+                        descriptordict[fname]['values'].append({vdesc : vkey})
                 except:
                     pass
                     #print "\tno enumerated types"
