@@ -178,6 +178,7 @@ def do_system_showconfig(self, options):
     systemname = args[0]
 
     # get systemid from name
+    epdb.st()
     system_id = __get_systemid_by_name(self, systemname)
     epdb.st()
 
