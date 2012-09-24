@@ -179,6 +179,7 @@ def do_system_showconfig(self, options):
 
     # get systemid from name
     system_id = __get_systemid_by_name(self, systemname)
+    epdb.st()
 
     # api/v1/inventory/systems/$SYSTEM_ID/configuration
 
