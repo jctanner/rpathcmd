@@ -178,9 +178,9 @@ def do_system_showconfig(self, options):
     systemname = args[0]
 
     # get systemid from name
-    epdb.st()
+    #epdb.st()
     system_id = __get_systemid_by_name(self, systemname)
-    epdb.st()
+    #epdb.st()
 
     # api/v1/inventory/systems/$SYSTEM_ID/configuration
 
@@ -402,7 +402,7 @@ def __get_systemid_by_name(self, name):
                         '/all;filter_by=[system.name,EQUAL,' +
                         filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])
-    epdb.st()
+    #epdb.st()
     print "# system_id: %s" % tmpdata.systems.system.system_id
     return int(tmpdata.systems.system.system_id)
 
