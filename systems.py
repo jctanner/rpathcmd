@@ -447,7 +447,7 @@ def __get_config_descriptor(self, systemid):
             fdesc = field.descriptions.desc.encode('ascii','ignore')
             freq = field.required.encode('ascii','ignore')
             fsection = field.section.key.encode('ascii','ignore')
-            ftype = field.type.key.encode('ascii','ignore')
+            ftype = field.type.encode('ascii','ignore')
 
             # add info to dictionary
             descriptordict[fdesc] = {}
@@ -463,7 +463,7 @@ def __get_config_descriptor(self, systemid):
             fname = field.name.encode('ascii','ignore')
             fdesc = field.descriptions.desc.encode('ascii','ignore')
             fsection = field.section.key.encode('ascii','ignore')
-            ftype = field.type.key.encode('ascii','ignore')
+            ftype = field.type.encode('ascii','ignore')
             # add info to dictionary
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
