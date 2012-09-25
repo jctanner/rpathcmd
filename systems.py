@@ -481,13 +481,13 @@ def __get_config_descriptor(self, systemid):
         # iterate through possible values    
         descriptordict[fdesc]['values'] = []
         try:
-            epdb.st()
+            #epdb.st()
             descriptordict[fdesc]['values'] = []
             if len(field.enumeratedType.describedValue) > 1:
-                epdb.st()
+                #epdb.st()
                 for value in field.enumeratedType.describedValue:
                     print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
-                    epdb.st()
+                    #epdb.st()
 
                     vkey = value.key.encode('ascii','ignore')
                     vdesc = value.descriptions.desc.encode('ascii','ignore')
