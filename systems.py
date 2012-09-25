@@ -433,7 +433,7 @@ def __get_config_descriptor(self, systemid):
     descriptordata = xobj.parse(tmpxml[1])
     descriptordict = {}
    
-    epdb.st()  
+    #epdb.st()  
     for field in descriptordata.configuration_descriptor.dataFields.field:
 
         # figure out what this field is called
@@ -501,4 +501,15 @@ def __get_config_descriptor(self, systemid):
     pprint(descriptordict)
     print ""
 
+    FORMAT = '%Y%m%d%H%M%S'
+    timestamp = datetime.now().strftime(FORMAT)
+    ymlfile = 'config' + '-descriptor-' + timestamp + '.yml'
+    xmlfile = 'config' + '-descriptor-' + timestamp + '.xml'
 
+    f = open(ymlfile, "w")
+    yaml.dump(descriptordict, f)
+    f.close()
+
+    f = open(xmlfile, "w")
+    f.write(tmpxml[1])
+    f.close()
