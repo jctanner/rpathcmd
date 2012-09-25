@@ -446,21 +446,30 @@ def __get_config_descriptor(self, systemid):
             fname = field.name.encode('ascii','ignore')
             fdesc = field.descriptions.desc.encode('ascii','ignore')
             freq = field.required.encode('ascii','ignore')
+            fsection = field.section.key.encode('ascii','ignore')
+            ftype = field.type.key.encode('ascii','ignore')
+
             # add info to dictionary
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
             descriptordict[fdesc]['required'] = bool(freq)
-            epdb.st()
+            descriptordict[fdesc]['section'] = fsection
+            descriptordict[fdesc]['type'] = ftype
+            #epdb.st()
         except:
             print "%s \"%s\", required: N/A" % (field.name, 
                                             field.descriptions.desc)
             # convert from unicode to ascii
             fname = field.name.encode('ascii','ignore')
             fdesc = field.descriptions.desc.encode('ascii','ignore')
+            fsection = field.section.key.encode('ascii','ignore')
+            ftype = field.type.key.encode('ascii','ignore')
             # add info to dictionary
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
             descriptordict[fdesc]['required'] = False
+            descriptordict[fdesc]['section'] = fsection
+            descriptordict[fdesc]['type'] = ftype
 
         # check for a default value    
         try:
