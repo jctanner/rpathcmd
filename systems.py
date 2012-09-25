@@ -190,7 +190,7 @@ def do_system_showconfig(self, options):
     tmpxml =  h2.request('http://' + self.options.server + 
                             '/api/v1/inventory/systems/' +
                             str(system_id) + '/configuration')
-    epdb.st()
+    #epdb.st()
     print tmpxml[1]
 
     __get_config_descriptor(self, system_id)
@@ -434,7 +434,7 @@ def __get_config_descriptor(self, systemid):
     descriptordict = {}
    
     epdb.st()  
-    for field in descriptordata.descriptor.dataFields.field:
+    for field in descriptordata.configuration_descriptor.dataFields.field:
 
         # figure out what this field is called
         try:
