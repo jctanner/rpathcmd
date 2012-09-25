@@ -188,6 +188,7 @@ def do_system_showconfig(self, options):
     tmpxml =  h2.request('http://' + self.options.server + 
                             '/api/v1/inventory/systems/' +
                             str(system_id) + '/configuration')
+    epdb.st()
     print tmpxml[1]
 
     
