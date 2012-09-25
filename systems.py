@@ -430,122 +430,75 @@ def __get_config_descriptor(self, systemid):
                         '/api/v1/inventory/systems/' + str(systemid) +
                         '/configuration_descriptor')           
    
-    tmpdata = xobj.parse(tmpxml[1])
+    descriptordata = xobj.parse(tmpxml[1])
+    descriptordict = {}
    
     epdb.st()  
-    for action in tmpdata.image.actions.action:
-        # descriptor.id
-        #   api/v1/targets/1/descriptors/deploy/file/53'
+    for field in descriptordata.descriptor.dataFields.field:
 
-        #print action.descriptor.id
-        action_words = action.descriptor.id.split('/')
+        # figure out what this field is called
+        try:
+            print "%s \"%s\", required: %s" % (field.name, 
+                                            field.descriptions.desc, 
+                                            field.required)
 
-        #print "%s %s %s" %(action_words[6], action_words[8], action_words[10])
-        #if (action_words[6] == targetid) and (action_words[8] == 'deploy'):
-        if (action_words[6] == targetid) and (action_words[8] == desctype):
-            print "#%s" % action.descriptor.id
-            print "#match: %s %s %s" %(action_words[6], action_words[8], action_words[10])
-
-            # get the raw descriptor data
-            tmpxml = h2.request(action.descriptor.id)
-            #print "-------RAW_DESCRIPTOR_DATA------"
-            #print tmpxml[1]
-            #print "-------RAW_DESCRIPTOR_DATA------"
-
-            # make descriptor human readable
-            descriptordata = xobj.parse(tmpxml[1])
-            descriptordict = {  'imageid': int(imageid),
-                                'fileid' : int(action_words[10]),
-                                'targetid': int(targetid),
-                                'descriptor_type': desctype } 
+            # convert from unicode to ascii
+            fname = field.name.encode('ascii','ignore')
+            fdesc = field.descriptions.desc.encode('ascii','ignore')
+            freq = field.required.encode('ascii','ignore')
+            # add info to dictionary
+            descriptordict[fdesc] = {}
+            descriptordict[fdesc]['tag'] = fname
+            descriptordict[fdesc]['required'] = bool(freq)
             #epdb.st()
-            print ""
-            print "## DESCRIPTOR INFO ##"
-            print "# %s \"%s\"" % (descriptordata.descriptor.metadata.displayName,
-                                descriptordata.descriptor.metadata.descriptions.desc)
-            print ""
-            for field in descriptordata.descriptor.dataFields.field:
+        except:
+            print "%s \"%s\", required: N/A" % (field.name, 
+                                            field.descriptions.desc)
+            # convert from unicode to ascii
+            fname = field.name.encode('ascii','ignore')
+            fdesc = field.descriptions.desc.encode('ascii','ignore')
+            # add info to dictionary
+            descriptordict[fdesc] = {}
+            descriptordict[fdesc]['tag'] = fname
+            descriptordict[fdesc]['required'] = False
 
-                # figure out what this field is called
-                try:
-                    print "%s \"%s\", required: %s" % (field.name, 
-                                                    field.descriptions.desc, 
-                                                    field.required)
+        # check for a default value    
+        try:
+            print "\t*%s == default" % field.default
+            descriptordict[fdesc]['default'] = field.default.encode('ascii','ignore')
+        except:
+            descriptordict[fdesc]['default'] = "NULL"
 
-                    # convert from unicode to ascii
-                    fname = field.name.encode('ascii','ignore')
-                    fdesc = field.descriptions.desc.encode('ascii','ignore')
-                    freq = field.required.encode('ascii','ignore')
-                    # add info to dictionary
-                    descriptordict[fdesc] = {}
-                    descriptordict[fdesc]['tag'] = fname
-                    descriptordict[fdesc]['required'] = bool(freq)
-                    #epdb.st()
-                except:
-                    print "%s \"%s\", required: N/A" % (field.name, 
-                                                    field.descriptions.desc)
-                    # convert from unicode to ascii
-                    fname = field.name.encode('ascii','ignore')
-                    fdesc = field.descriptions.desc.encode('ascii','ignore')
-                    # add info to dictionary
-                    descriptordict[fdesc] = {}
-                    descriptordict[fdesc]['tag'] = fname
-                    descriptordict[fdesc]['required'] = False
-
-                # check for a default value    
-                try:
-                    print "\t*%s == default" % field.default
-                    descriptordict[fdesc]['default'] = field.default.encode('ascii','ignore')
-                except:
-                    descriptordict[fdesc]['default'] = "NULL"
-
-                # iterate through possible values    
-                descriptordict[fdesc]['values'] = []
-                try:
-                    #epdb.st()
-                    descriptordict[fdesc]['values'] = []
-                    if len(field.enumeratedType.describedValue) > 1:
-                        #epdb.st()
-                        for value in field.enumeratedType.describedValue:
-                            print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
-
-                            vkey = value.key.encode('ascii','ignore')
-                            vdesc = value.descriptions.desc.encode('ascii','ignore')
-
-                            descriptordict[fdesc]['values'].append({vdesc : vkey})
-                    else:
-                        #epdb.st()
-                        print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
-                                            field.enumeratedType.describedValue.descriptions.desc)
-
-                        vkey = field.enumeratedType.describedValue.key.encode('ascii','ignore')
-                        vdesc = field.enumeratedType.describedValue.descriptions.desc.encode('ascii','ignore')
-
-                        descriptordict[fdesc]['values'].append({vdesc : vkey})
-                except:
-                    pass
-                    #print "\tno enumerated types"
-
-            print "## DESCRIPTOR INFO ##"
+        # iterate through possible values    
+        descriptordict[fdesc]['values'] = []
+        try:
             #epdb.st()
-            pprint(descriptordict)
-            print ""
+            descriptordict[fdesc]['values'] = []
+            if len(field.enumeratedType.describedValue) > 1:
+                #epdb.st()
+                for value in field.enumeratedType.describedValue:
+                    print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
 
-            # fetch the event type
-            eventtypeid = __get_event_type_id_by_name(self, desctype)
-            descriptordict['event_type'] = int(eventtypeid)
+                    vkey = value.key.encode('ascii','ignore')
+                    vdesc = value.descriptions.desc.encode('ascii','ignore')
 
+                    descriptordict[fdesc]['values'].append({vdesc : vkey})
+            else:
+                #epdb.st()
+                print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
+                                    field.enumeratedType.describedValue.descriptions.desc)
 
-            FORMAT = '%Y%m%d%H%M%S'
-            timestamp = datetime.now().strftime(FORMAT)
-            ymlfile = desctype + '-descriptor-' + timestamp + '.yml'
-            xmlfile = desctype + '-descriptor-' + timestamp + '.xml'
+                vkey = field.enumeratedType.describedValue.key.encode('ascii','ignore')
+                vdesc = field.enumeratedType.describedValue.descriptions.desc.encode('ascii','ignore')
 
-            f = open(ymlfile, "w")
-            yaml.dump(descriptordict, f)
-            f.close()
+                descriptordict[fdesc]['values'].append({vdesc : vkey})
+        except:
+            pass
+            #print "\tno enumerated types"
 
-            f = open(xmlfile, "w")
-            f.write(tmpxml[1])
-            f.close()
+    print "## DESCRIPTOR INFO ##"
+    #epdb.st()
+    pprint(descriptordict)
+    print ""
+
 
