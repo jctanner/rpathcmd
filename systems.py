@@ -193,7 +193,7 @@ def do_system_showconfig(self, options):
     epdb.st()
     print tmpxml[1]
 
-    __get_config_descriptor(self, system_id):
+    __get_config_descriptor(self, system_id)
 
     
 def help_system_info(self):
