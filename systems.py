@@ -427,7 +427,7 @@ def __get_config_descriptor(self, systemid):
     h2.add_credentials(self.options.username, self.options.password)
 
     tmpxml =  h2.request('http://' + self.options.server +
-                        '/api/v1/inventory/systems/' + str(systemid)) +
+                        '/api/v1/inventory/systems/' + str(systemid) +
                         '/configuration_descriptor')           
    
     tmpdata = xobj.parse(tmpxml[1])
