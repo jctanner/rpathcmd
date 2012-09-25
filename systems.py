@@ -417,7 +417,7 @@ def __get_config_descriptor(self, systemid):
     # api/v1/targets/1/descriptors/launch/file/53
 
     #epdb.st()
-    (args, options) = parse_arguments(args)
+    #(args, options) = parse_arguments(args)
 
     #epdb.st()
 
