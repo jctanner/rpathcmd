@@ -478,6 +478,7 @@ def __get_config_descriptor(self, systemid):
                 #epdb.st()
                 for value in field.enumeratedType.describedValue:
                     print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
+                    epdb.st()
 
                     vkey = value.key.encode('ascii','ignore')
                     vdesc = value.descriptions.desc.encode('ascii','ignore')
