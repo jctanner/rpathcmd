@@ -450,7 +450,7 @@ def __get_config_descriptor(self, systemid):
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
             descriptordict[fdesc]['required'] = bool(freq)
-            #epdb.st()
+            epdb.st()
         except:
             print "%s \"%s\", required: N/A" % (field.name, 
                                             field.descriptions.desc)
@@ -472,10 +472,10 @@ def __get_config_descriptor(self, systemid):
         # iterate through possible values    
         descriptordict[fdesc]['values'] = []
         try:
-            #epdb.st()
+            epdb.st()
             descriptordict[fdesc]['values'] = []
             if len(field.enumeratedType.describedValue) > 1:
-                #epdb.st()
+                epdb.st()
                 for value in field.enumeratedType.describedValue:
                     print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
                     epdb.st()
