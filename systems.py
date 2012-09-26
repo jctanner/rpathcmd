@@ -552,7 +552,7 @@ def __descriptor_to_dict(self, descriptor):
     epdb.st()
     descriptordict = {}
     for field in descriptor.dataFields.field:
-        epdb.st()
+        #epdb.st()
 
         # figure out what this field is called
         try:
@@ -569,7 +569,7 @@ def __descriptor_to_dict(self, descriptor):
 
             # test if "complex" configurator
             if ftype == 'listType':
-                epdb.st()
+                #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
 
             # add info to dictionary
