@@ -477,6 +477,13 @@ def __get_config_descriptor(self, systemid):
             fdesc = field.descriptions.desc.encode('ascii','ignore')
             fsection = field.section.key.encode('ascii','ignore')
             ftype = field.type.encode('ascii','ignore')
+
+            # test if "complex" configurator
+            if ftype == 'listType':
+                #epdb.st()
+                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                epdb.st()
+
             # add info to dictionary
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
