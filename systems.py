@@ -576,6 +576,7 @@ def __descriptor_to_dict(self, descriptor):
             if ftype == 'listType':
                 #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                descriptordict[fdesc]['listType'] = listfieldsdict
 
             # add info to dictionary
             descriptordict[fdesc] = {}
@@ -592,6 +593,13 @@ def __descriptor_to_dict(self, descriptor):
             fdesc = field.descriptions.desc.encode('ascii','ignore')
             fsection = field.section.key.encode('ascii','ignore')
             ftype = field.type.encode('ascii','ignore')
+
+            # test if "complex" configurator
+            if ftype == 'listType':
+                #epdb.st()
+                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                descriptordict[fdesc]['listType'] = listfieldsdict
+
             # add info to dictionary
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
