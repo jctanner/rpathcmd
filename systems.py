@@ -415,6 +415,7 @@ def __get_systemid_by_name(self, name):
         print "exiting..."
         sys.exit(1)
     print "# system_id: %s" % tmpdata.systems.system.system_id
+    epdb.st()
     return int(tmpdata.systems.system.system_id)
 
 
