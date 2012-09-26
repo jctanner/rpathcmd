@@ -582,9 +582,9 @@ def __descriptor_to_dict(self, descriptor):
 
             # test if "complex" configurator
             if ftype == 'listType':
-                epdb.st()
+                #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
-                epdb.st()
+                #epdb.st()
 
             #epdb.st()
         except:
@@ -608,9 +608,9 @@ def __descriptor_to_dict(self, descriptor):
 
             # test if "complex" configurator
             if ftype == 'listType':
-                epdb.st()
+                #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
-                epdb.st()
+                #epdb.st()
 
         # check for a default value    
         try:
