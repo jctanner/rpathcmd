@@ -541,6 +541,7 @@ def __descriptor_to_dict(self, descriptor):
     epdb.st()
     descriptordict = {}
     for field in descriptor.dataFields.field:
+        epb.st()
 
         # figure out what this field is called
         try:
