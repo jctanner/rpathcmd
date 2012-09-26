@@ -439,6 +439,9 @@ def __get_config_descriptor(self, systemid):
    
     descriptordata = xobj.parse(tmpxml[1])
     descriptordict = {}
+
+    __descriptor_to_dict(self, descriptordata.configuration_descriptor)
+
    
     #epdb.st()  
     for field in descriptordata.configuration_descriptor.dataFields.field:
@@ -460,7 +463,7 @@ def __get_config_descriptor(self, systemid):
             if ftype == 'listType':
                 #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
-                epdb.st()
+                #epdb.st()
 
             # add info to dictionary
             descriptordict[fdesc] = {}
@@ -482,7 +485,7 @@ def __get_config_descriptor(self, systemid):
             if ftype == 'listType':
                 #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
-                epdb.st()
+                #epdb.st()
 
             # add info to dictionary
             descriptordict[fdesc] = {}
