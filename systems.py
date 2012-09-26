@@ -407,7 +407,7 @@ def __get_systemid_by_name(self, name):
                         '/all;filter_by=[system.name,EQUAL,' +
                         filterterm + ']')
     tmpdata = xobj.parse(tmpxml[1])
-    epdb.st()
+    #epdb.st()
     if len(tmpdata.systems.system) > 1:
         print "multiple matches for \"%s\"" % name
         for system in tmpdata.systems.system:
@@ -415,7 +415,7 @@ def __get_systemid_by_name(self, name):
         print "exiting..."
         sys.exit(1)
     print "# system_id: %s" % tmpdata.systems.system.system_id
-    epdb.st()
+    #epdb.st()
     return int(tmpdata.systems.system.system_id)
 
 
