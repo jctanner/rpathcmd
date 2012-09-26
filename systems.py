@@ -438,11 +438,12 @@ def __get_config_descriptor(self, systemid):
                         '/configuration_descriptor')           
    
     descriptordata = xobj.parse(tmpxml[1])
+    #descriptordict = {}
     descriptordict = {}
 
-    __descriptor_to_dict(self, descriptordata.configuration_descriptor)
+    descriptordict = __descriptor_to_dict(self, descriptordata.configuration_descriptor)
 
-   
+    ''' 
     #epdb.st()  
     for field in descriptordata.configuration_descriptor.dataFields.field:
 
@@ -528,6 +529,7 @@ def __get_config_descriptor(self, systemid):
         except:
             pass
             #print "\tno enumerated types"
+    '''
 
     print "## DESCRIPTOR INFO ##"
     #epdb.st()
