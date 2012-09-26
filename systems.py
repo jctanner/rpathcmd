@@ -551,7 +551,7 @@ def __get_config_descriptor(self, systemid):
 
 
 def __descriptor_to_dict(self, descriptor):
-    epdb.st()
+    #epdb.st()
     descriptordict = {}
     for field in descriptor.dataFields.field:
         #epdb.st()
@@ -574,8 +574,9 @@ def __descriptor_to_dict(self, descriptor):
 
             # test if "complex" configurator
             if ftype == 'listType':
-                #epdb.st()
+                epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                epdb.st()
                 descriptordict[fdesc]['listType'] = listfieldsdict
 
             # add info to dictionary
@@ -596,8 +597,9 @@ def __descriptor_to_dict(self, descriptor):
 
             # test if "complex" configurator
             if ftype == 'listType':
-                #epdb.st()
+                epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                epdb.st()
                 descriptordict[fdesc]['listType'] = listfieldsdict
 
             # add info to dictionary
