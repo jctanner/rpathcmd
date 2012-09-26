@@ -164,12 +164,12 @@ def do_my_systems_list(self, options):
 
             print "%s: %s %s %s %s" %(id, name, ip, state, owner)
 
-def help_system_showconfig(self):
-    print 'system_showconfig: show the current config descriptor for a system'
-    print 'usage; system_showconfig systemname'
+def help_system_config_descriptor(self):
+    print 'system_showconfig: get the config descriptor for a system'
+    print 'usage; system_config_descriptor systemname'
 
 
-def do_system_showconfig(self, options):
+def do_system_config_descriptor(self, options):
 
     h2 = httplib2.Http("~/.rpathcmd/.cache")
     h2.disable_ssl_certificate_validation = True    
@@ -442,94 +442,6 @@ def __get_config_descriptor(self, systemid):
     descriptordict = {}
 
     descriptordict = __descriptor_to_dict(self, descriptordata.configuration_descriptor)
-
-    ''' 
-    #epdb.st()  
-    for field in descriptordata.configuration_descriptor.dataFields.field:
-
-        # figure out what this field is called
-        try:
-            print "%s \"%s\", required: %s" % (field.name, 
-                                            field.descriptions.desc, 
-                                            field.required)
-
-            # convert from unicode to ascii
-            fname = field.name.encode('ascii','ignore')
-            fdesc = field.descriptions.desc.encode('ascii','ignore')
-            freq = field.required.encode('ascii','ignore')
-            fsection = field.section.key.encode('ascii','ignore')
-            ftype = field.type.encode('ascii','ignore')
-
-            # test if "complex" configurator
-            if ftype == 'listType':
-                #epdb.st()
-                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
-                #epdb.st()
-
-            # add info to dictionary
-            descriptordict[fdesc] = {}
-            descriptordict[fdesc]['tag'] = fname
-            descriptordict[fdesc]['required'] = bool(freq)
-            descriptordict[fdesc]['section'] = fsection
-            descriptordict[fdesc]['type'] = ftype
-            #epdb.st()
-        except:
-            print "%s \"%s\", required: N/A" % (field.name, 
-                                            field.descriptions.desc)
-            # convert from unicode to ascii
-            fname = field.name.encode('ascii','ignore')
-            fdesc = field.descriptions.desc.encode('ascii','ignore')
-            fsection = field.section.key.encode('ascii','ignore')
-            ftype = field.type.encode('ascii','ignore')
-
-            # test if "complex" configurator
-            if ftype == 'listType':
-                #epdb.st()
-                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
-                #epdb.st()
-
-            # add info to dictionary
-            descriptordict[fdesc] = {}
-            descriptordict[fdesc]['tag'] = fname
-            descriptordict[fdesc]['required'] = False
-            descriptordict[fdesc]['section'] = fsection
-            descriptordict[fdesc]['type'] = ftype
-
-        # check for a default value    
-        try:
-            print "\t*%s == default" % field.default
-            descriptordict[fdesc]['default'] = field.default.encode('ascii','ignore')
-        except:
-            descriptordict[fdesc]['default'] = "NULL"
-
-        # iterate through possible values    
-        descriptordict[fdesc]['values'] = []
-        try:
-            #epdb.st()
-            descriptordict[fdesc]['values'] = []
-            if len(field.enumeratedType.describedValue) > 1:
-                #epdb.st()
-                for value in field.enumeratedType.describedValue:
-                    print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
-                    #epdb.st()
-
-                    vkey = value.key.encode('ascii','ignore')
-                    vdesc = value.descriptions.desc.encode('ascii','ignore')
-
-                    descriptordict[fdesc]['values'].append({vdesc : vkey})
-            else:
-                #epdb.st()
-                print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
-                                    field.enumeratedType.describedValue.descriptions.desc)
-
-                vkey = field.enumeratedType.describedValue.key.encode('ascii','ignore')
-                vdesc = field.enumeratedType.describedValue.descriptions.desc.encode('ascii','ignore')
-
-                descriptordict[fdesc]['values'].append({vdesc : vkey})
-        except:
-            pass
-            #print "\tno enumerated types"
-    '''
 
     print "## DESCRIPTOR INFO ##"
     #epdb.st()
