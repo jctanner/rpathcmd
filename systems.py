@@ -456,6 +456,11 @@ def __get_config_descriptor(self, systemid):
             fsection = field.section.key.encode('ascii','ignore')
             ftype = field.type.encode('ascii','ignore')
 
+            # test if "complex" configurator
+            if ftype == 'listType':
+                epdb.st()
+                listfieldsdict = __descriptor_to_dict(self, descriptor)
+
             # add info to dictionary
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
@@ -530,3 +535,7 @@ def __get_config_descriptor(self, systemid):
     f = open(xmlfile, "w")
     f.write(tmpxml[1])
     f.close()
+
+
+def __descriptor_to_dict(self, descriptor):
+    epdb.st()
