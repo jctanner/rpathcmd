@@ -189,7 +189,7 @@ def do_package_spfimport(self, args):
         if field.name == 'config_descriptor':
             spfconfigdescriptor = str(field.default)
 
-    epdb.st()
+    #epdb.st()
     #print package_factory_rsp[1][1][0][1]
 
     configdata = {  'name': spfname,
