@@ -460,6 +460,7 @@ def __get_config_descriptor(self, systemid):
             if ftype == 'listType':
                 #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                epdb.st()
 
             # add info to dictionary
             descriptordict[fdesc] = {}
