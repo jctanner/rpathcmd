@@ -539,3 +539,83 @@ def __get_config_descriptor(self, systemid):
 
 def __descriptor_to_dict(self, descriptor):
     epdb.st()
+    descriptordict = {}
+    for field in descriptor.dataFields.field:
+
+        # figure out what this field is called
+        try:
+            print "%s \"%s\", required: %s" % (field.name,
+                                            field.descriptions.desc,
+                                            field.required)
+
+            # convert from unicode to ascii
+            fname = field.name.encode('ascii','ignore')
+            fdesc = field.descriptions.desc.encode('ascii','ignore')
+            freq = field.required.encode('ascii','ignore')
+            fsection = field.section.key.encode('ascii','ignore')
+            ftype = field.type.encode('ascii','ignore')
+
+            # test if "complex" configurator
+            if ftype == 'listType':
+                #epdb.st()
+                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+
+            # add info to dictionary
+            descriptordict[fdesc] = {}
+            descriptordict[fdesc]['tag'] = fname
+            descriptordict[fdesc]['required'] = bool(freq)
+            descriptordict[fdesc]['section'] = fsection
+            descriptordict[fdesc]['type'] = ftype
+            #epdb.st()
+        except:
+            print "%s \"%s\", required: N/A" % (field.name,
+                                            field.descriptions.desc)
+            # convert from unicode to ascii
+            fname = field.name.encode('ascii','ignore')
+            fdesc = field.descriptions.desc.encode('ascii','ignore')
+            fsection = field.section.key.encode('ascii','ignore')
+            ftype = field.type.encode('ascii','ignore')
+            # add info to dictionary
+            descriptordict[fdesc] = {}
+            descriptordict[fdesc]['tag'] = fname
+            descriptordict[fdesc]['required'] = False
+            descriptordict[fdesc]['section'] = fsection
+            descriptordict[fdesc]['type'] = ftype
+
+        # check for a default value    
+        try:
+            print "\t*%s == default" % field.default            
+            descriptordict[fdesc]['default'] = field.default.encode('ascii','ignore')        
+        except:
+            descriptordict[fdesc]['default'] = "NULL"        
+
+        # iterate through possible values            
+        descriptordict[fdesc]['values'] = []
+        try:
+            #epdb.st()
+            descriptordict[fdesc]['values'] = []
+            if len(field.enumeratedType.describedValue) > 1:
+                #epdb.st()
+                for value in field.enumeratedType.describedValue:
+                    print "\t%s,\"%s\"" % (value.key, value.descriptions.desc)
+                    #epdb.st()
+
+                    vkey = value.key.encode('ascii','ignore')
+                    vdesc = value.descriptions.desc.encode('ascii','ignore')
+
+                    descriptordict[fdesc]['values'].append({vdesc : vkey})
+            else:
+                #epdb.st()
+                print "\t%s,\"%s\"" % (field.enumeratedType.describedValue.key,
+                                    field.enumeratedType.describedValue.descriptions.desc)
+
+                vkey = field.enumeratedType.describedValue.key.encode('ascii','ignore')
+                vdesc = field.enumeratedType.describedValue.descriptions.desc.encode('ascii','ignore')
+
+                descriptordict[fdesc]['values'].append({vdesc : vkey})
+        except:
+            pass
+            #print "\tno enumerated types"
+
+    epdb.st()
+    return descriptordict
