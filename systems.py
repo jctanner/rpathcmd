@@ -647,5 +647,5 @@ def __descriptor_to_dict(self, descriptor):
             pass
             #print "\tno enumerated types"
 
-    epdb.st()
+    #epdb.st()
     return descriptordict
