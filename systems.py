@@ -572,12 +572,6 @@ def __descriptor_to_dict(self, descriptor):
                 fsection = "none"    
             ftype = field.type.encode('ascii','ignore')
 
-            # test if "complex" configurator
-            if ftype == 'listType':
-                epdb.st()
-                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
-                epdb.st()
-                descriptordict[fdesc]['listType'] = listfieldsdict
 
             # add info to dictionary
             descriptordict[fdesc] = {}
@@ -585,6 +579,13 @@ def __descriptor_to_dict(self, descriptor):
             descriptordict[fdesc]['required'] = bool(freq)
             descriptordict[fdesc]['section'] = fsection
             descriptordict[fdesc]['type'] = ftype
+
+            # test if "complex" configurator
+            if ftype == 'listType':
+                epdb.st()
+                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                epdb.st()
+
             #epdb.st()
         except:
             print "%s \"%s\", required: N/A" % (field.name,
@@ -595,13 +596,6 @@ def __descriptor_to_dict(self, descriptor):
             fsection = field.section.key.encode('ascii','ignore')
             ftype = field.type.encode('ascii','ignore')
 
-            # test if "complex" configurator
-            if ftype == 'listType':
-                epdb.st()
-                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
-                epdb.st()
-                descriptordict[fdesc]['listType'] = listfieldsdict
-
             # add info to dictionary
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
@@ -611,6 +605,12 @@ def __descriptor_to_dict(self, descriptor):
             except:
                 fsection = "none"    
             descriptordict[fdesc]['type'] = ftype
+
+            # test if "complex" configurator
+            if ftype == 'listType':
+                epdb.st()
+                listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                epdb.st()
 
         # check for a default value    
         try:
