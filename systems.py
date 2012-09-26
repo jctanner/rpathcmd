@@ -584,6 +584,7 @@ def __descriptor_to_dict(self, descriptor):
             if ftype == 'listType':
                 #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                descriptordict[fdesc]['listType'] = listfieldsdict
                 #epdb.st()
 
             #epdb.st()
@@ -610,6 +611,7 @@ def __descriptor_to_dict(self, descriptor):
             if ftype == 'listType':
                 #epdb.st()
                 listfieldsdict = __descriptor_to_dict(self, field.listType.descriptor)
+                descriptordict[fdesc]['listType'] = listfieldsdict
                 #epdb.st()
 
         # check for a default value    
