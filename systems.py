@@ -618,4 +618,4 @@ def __descriptor_to_dict(self, descriptor):
             #print "\tno enumerated types"
 
     epdb.st()
-    return descriptordict
+    #return descriptordict
