@@ -566,7 +566,10 @@ def __descriptor_to_dict(self, descriptor):
             fname = field.name.encode('ascii','ignore')
             fdesc = field.descriptions.desc.encode('ascii','ignore')
             freq = field.required.encode('ascii','ignore')
-            fsection = field.section.key.encode('ascii','ignore')
+            try:
+                fsection = field.section.key.encode('ascii','ignore')
+            except:
+                fsection = "none"    
             ftype = field.type.encode('ascii','ignore')
 
             # test if "complex" configurator
@@ -593,7 +596,10 @@ def __descriptor_to_dict(self, descriptor):
             descriptordict[fdesc] = {}
             descriptordict[fdesc]['tag'] = fname
             descriptordict[fdesc]['required'] = False
-            descriptordict[fdesc]['section'] = fsection
+            try:
+                descriptordict[fdesc]['section'] = fsection
+            except:
+                fsection = "none"    
             descriptordict[fdesc]['type'] = ftype
 
         # check for a default value    
@@ -632,4 +638,4 @@ def __descriptor_to_dict(self, descriptor):
             #print "\tno enumerated types"
 
     epdb.st()
-    #return descriptordict
+    return descriptordict
