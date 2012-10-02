@@ -185,6 +185,29 @@ def do_system_config_descriptor(self, options):
     #epdb.st()
 
     # api/v1/inventory/systems/$SYSTEM_ID/configuration
+    __get_config_descriptor(self, system_id)
+
+def help_system_config_current(self):
+    print 'system_showconfig: get the current config for a system'
+    print 'usage; system_config_current systemname'
+
+
+def do_system_config_current(self, options):
+
+    h2 = httplib2.Http("~/.rpathcmd/.cache")
+    h2.disable_ssl_certificate_validation = True    
+    h2.add_credentials(self.options.username, self.options.password)        
+
+    # set options    
+    (args, options) = parse_arguments(options)    
+    systemname = args[0]
+
+    # get systemid from name
+    #epdb.st()
+    system_id = __get_systemid_by_name(self, systemname)
+    #epdb.st()
+
+    # api/v1/inventory/systems/$SYSTEM_ID/configuration
 
     # get descriptor
     tmpxml =  h2.request('http://' + self.options.server + 
@@ -194,7 +217,6 @@ def do_system_config_descriptor(self, options):
     print tmpxml[1]
 
     __get_config_descriptor(self, system_id)
-
     
 def help_system_info(self):
     print 'system_info: show information about a system'
