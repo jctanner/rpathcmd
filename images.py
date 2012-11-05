@@ -517,7 +517,7 @@ def __get_event_type_id_by_name(self, name):
 
 def help_image_descriptor_run(self):
     print "image_descriptor_run: post a job with a descriptor yaml file"
-    print "usage: image_descriptor_run <path.to.yml.file>"
+    print "usage: image_descriptor_run <path.to.yml.file> <instancename>"
 
 def do_image_descriptor_run(self, args):
 
@@ -529,6 +529,9 @@ def do_image_descriptor_run(self, args):
 
     #epdb.st()
     filename = args[0]
+    instancename = 'testvm'
+    if len(args) > 1:
+        instancename = args[1]
 
     f = open(filename)
     dataMap = yaml.load(f)
@@ -541,6 +544,9 @@ def do_image_descriptor_run(self, args):
      'imageid': 85,
      'targetid': 1}
     '''
+    # set the instancename
+    dataMap['Instance Name']['default'] = instancename
+
     # basic validation of static/known inputs 
     if dataMap['imageid'] == 'NULL':
         print "please set the imageid in %s" % filename
@@ -578,6 +584,8 @@ def do_image_descriptor_run(self, args):
                     descriptorxml += "<%s>%s</%s>" %(dataMap[item]['tag'], dataMap[item]['default'], dataMap[item]['tag'])
         except:
             pass
+
+    #epdb.st()
 
     print "ERROR_COUNT: %s" % errors
     if errors > 0:
